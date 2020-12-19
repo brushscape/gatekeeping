@@ -1,2 +1,3 @@
-code for the gatekeeping game hopefully
-if I can get it working 
+code for the gatekeeping game
+
+Javascript and CSS stylesheet
