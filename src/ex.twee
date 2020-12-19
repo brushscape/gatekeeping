@@ -1309,7 +1309,7 @@ You've reached the special page
 <<nobr>>
 	<div class="hangmanBoard">
 
-	  <p class="hangmanWord" id="hangmanWord"></p>
+	<p class="hangmanWord" id="hangmanWord"></p>
 
 	  <div class="alphabet">
 		  <div class="alphaLine" id="firstLine">

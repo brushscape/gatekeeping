@@ -1,16 +1,16 @@
 body {
-	background-color:  #282A2C; /* whitesmoke; */
-	color: whitesmoke; /*text color*/
-  	font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
-  	font-size: 150%;
+		background-color:  #282A2C; /* whitesmoke; */
+		color: whitesmoke; /*text color*/
+	  font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
+	  font-size: 7vw;
 
-  	min-width: 800px;
-   	width: auto !important;
-   	width: 800px;
+  	/*min-width: 800px;*/
+		/*width: auto;/* !important;
+   	/*width: 800px;*/
 }
 
 a { /*edit link style*/
-	color: aliceblue;
+		color: aliceblue;
 }
 a:hover{
   	color: aliceblue;
@@ -19,17 +19,17 @@ a:hover{
 
 /*only affects pages with this tag*/
 .passcode{
-  background-color:  #282A2C;
-  color: whitesmoke; /*text color*/
-  text-align: center;
+	  background-color:  #282A2C;
+	  color: whitesmoke; /*text color*/
+	  text-align: center;
 }
 
 .passcodeBody{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  /*along x axis*/
-  align-items: center; /*along y axis*/
-  align-self: center;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;  /*along x axis*/
+	  align-items: center; /*along y axis*/
+	  align-self: center;
 }
 
 #passages button {
@@ -49,8 +49,9 @@ a:hover{
 #ui-bar{
  	display: none;
 }
+
 #story{
-  	margin-left: 3.5em;
+  	margin: 2vw 2vw !important;
 }
 
 .invalid { /*not working for some reason*/
@@ -163,38 +164,55 @@ a:hover{
 }
 
 .hangmanBoard{
+	align-items: center; /*center aligned within the column*/
   display: flex;
   flex-direction: column;
+	justify-content: flex-start;/*glues it to the top of the column*/
+	/*margin: auto; /*0 10vw; /*top and bottom : left and right*/
+
 }
 
 .hangmanWord{
-  display: flex;
-  flex-direction: column;
-	font-size: 200%;
-  justify-content: center;
+	font-size: 6vw;/*clamp(16px, 4vw, 22px);*/
   text-align: center;
   white-space: pre;
 }
 
 .hangmanFeedback{
-  display: flex;
-  flex-direction: column;
-	font-size: 200%;
-  justify-content: center;
+	font-size: 6vw;
   text-align: center;
   white-space: pre;
 }
 
-.alphabet{
+.alphabet{ /*full hangman alphabet board*/
   display: flex;
   flex-direction: column;
+	font-size: 5vw;
 }
 
-.alphaLine{
+.alphaLine{ /*just one line of the hangman alphabet*/
   display: flex;
   flex-direction: row;
   justify-content: center;
 
+}
+
+@media screen and (min-width: 800px) {
+  .alphabet, .hangmanFeedback, .hangmanWord {
+
+		height: auto;
+		width: 800px;
+  }
+	.hangmanFeedback, .hangmanWord{
+		font-size: 50px;
+	}
+	.alphabet{
+		font-size: 40px;
+	}
+	/*.hangmanBoard {
+		height: auto;
+		width: 800px;
+	}*/
 }
 
 button:disabled,

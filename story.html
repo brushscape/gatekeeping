@@ -99,18 +99,18 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
 	<!-- UUID://BE463596-4EA4-4DF3-8BE6-332196447E64// --><tw-storydata name="Gatekeeping" startnode="51" creator="Tweego" creator-version="2.0.0+089d4ca77e5b" ifid="BE463596-4EA4-4DF3-8BE6-332196447E64" zoom="0.6" format="SugarCube" format-version="2.33.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body {
-	background-color:  #282A2C; /* whitesmoke; */
-	color: whitesmoke; /*text color*/
-  	font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
-  	font-size: 150%;
+		background-color:  #282A2C; /* whitesmoke; */
+		color: whitesmoke; /*text color*/
+	  font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
+	  font-size: 7vw;
 
-  	min-width: 800px;
-   	width: auto !important;
-   	width: 800px;
+  	/*min-width: 800px;*/
+		/*width: auto;/* !important;
+   	/*width: 800px;*/
 }
 
 a { /*edit link style*/
-	color: aliceblue;
+		color: aliceblue;
 }
 a:hover{
   	color: aliceblue;
@@ -119,17 +119,17 @@ a:hover{
 
 /*only affects pages with this tag*/
 .passcode{
-  background-color:  #282A2C;
-  color: whitesmoke; /*text color*/
-  text-align: center;
+	  background-color:  #282A2C;
+	  color: whitesmoke; /*text color*/
+	  text-align: center;
 }
 
 .passcodeBody{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  /*along x axis*/
-  align-items: center; /*along y axis*/
-  align-self: center;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;  /*along x axis*/
+	  align-items: center; /*along y axis*/
+	  align-self: center;
 }
 
 #passages button {
@@ -149,8 +149,9 @@ a:hover{
 #ui-bar{
  	display: none;
 }
+
 #story{
-  	margin-left: 3.5em;
+  	margin: 2vw 2vw !important;
 }
 
 .invalid { /*not working for some reason*/
@@ -263,38 +264,55 @@ a:hover{
 }
 
 .hangmanBoard{
+	align-items: center; /*center aligned within the column*/
   display: flex;
   flex-direction: column;
+	justify-content: flex-start;/*glues it to the top of the column*/
+	/*margin: auto; /*0 10vw; /*top and bottom : left and right*/
+
 }
 
 .hangmanWord{
-  display: flex;
-  flex-direction: column;
-	font-size: 200%;
-  justify-content: center;
+	font-size: 6vw;/*clamp(16px, 4vw, 22px);*/
   text-align: center;
   white-space: pre;
 }
 
 .hangmanFeedback{
-  display: flex;
-  flex-direction: column;
-	font-size: 200%;
-  justify-content: center;
+	font-size: 6vw;
   text-align: center;
   white-space: pre;
 }
 
-.alphabet{
+.alphabet{ /*full hangman alphabet board*/
   display: flex;
   flex-direction: column;
+	font-size: 5vw;
 }
 
-.alphaLine{
+.alphaLine{ /*just one line of the hangman alphabet*/
   display: flex;
   flex-direction: row;
   justify-content: center;
 
+}
+
+@media screen and (min-width: 800px) {
+  .alphabet, .hangmanFeedback, .hangmanWord {
+
+		height: auto;
+		width: 800px;
+  }
+	.hangmanFeedback, .hangmanWord{
+		font-size: 50px;
+	}
+	.alphabet{
+		font-size: 40px;
+	}
+	/*.hangmanBoard {
+		height: auto;
+		width: 800px;
+	}*/
 }
 
 button:disabled,
@@ -524,6 +542,7 @@ var scrollDiff = 1000;
 $(document).on(':passageinit', function (ev) {
 	//console.log('clear full text');
 	fullText = [];
+  $(this.output).wiki("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
 });
 
 // currentHelper: Variable defined in the Twine passages 0 is initial, 1 is sucess, 2 is come, 3 is leave, 4 is coming back from chat
@@ -598,27 +617,31 @@ $(document).on(':passagedisplay', function (ev) {
 		document.getElementById('hangmanFeedback').style.color = 'darkgrey';
      currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length));
 		 var word = hangmanWords[currHangmanIndex];
-     currHangmanWord = word; 
-     console.log("Hangman Index "+currHangmanIndex);
-     console.log("Hangman Word " + word);
+     currHangmanWord = word;
+     console.log(word);
      hangmanWords.splice(currHangmanIndex, 1); //remove from main arrays
      usedWords.push(word);
      if(hangmanWords.length == 0){
        hangmanWords = usedWords;
        usedWords = [];
-       console.log("reset");
      }
-     console.log("remaining words: "+hangmanWords.length+" Used: "+usedWords.length);
 
-		 var displayWord = '_';
-	   for (var j = 1; j < word.length; j++) {
+		 var displayWord = '';
+     var newln = false;
+	   for (var j = 0; j < word.length; j++) {
 			 if(word.charAt(j) != ' ') {
 			 	displayWord += ' _';
 			 }
 			 else{
-				 displayWord += '  ';
+         if(j >= 8 && !newln){
+           displayWord += " <br>";
+           newln = true;
+         }else{
+           displayWord += '  ';
+         }
 			 }
 		 }
+     displayWord += ' ';
 		document.getElementById('hangmanWord').innerHTML = displayWord;
 		return;
 	}
@@ -1959,7 +1982,7 @@ setup.checkHangman = function checkHangman(letterString){
 [[Passcode]]</tw-passagedata><tw-passagedata pid="129" name="Fun Puzzle" tags="hangman" position="3298,617" size="100,100">&lt;&lt;nobr&gt;&gt;
 	&lt;div class=&quot;hangmanBoard&quot;&gt;
 
-	  &lt;p class=&quot;hangmanWord&quot; id=&quot;hangmanWord&quot;&gt;&lt;/p&gt;
+	&lt;p class=&quot;hangmanWord&quot; id=&quot;hangmanWord&quot;&gt;&lt;/p&gt;
 
 	  &lt;div class=&quot;alphabet&quot;&gt;
 		  &lt;div class=&quot;alphaLine&quot; id=&quot;firstLine&quot;&gt;

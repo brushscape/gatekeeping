@@ -132,6 +132,7 @@ var scrollDiff = 1000;
 $(document).on(':passageinit', function (ev) {
 	//console.log('clear full text');
 	fullText = [];
+  $(this.output).wiki("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
 });
 
 // currentHelper: Variable defined in the Twine passages 0 is initial, 1 is sucess, 2 is come, 3 is leave, 4 is coming back from chat
@@ -215,15 +216,22 @@ $(document).on(':passagedisplay', function (ev) {
        usedWords = [];
      }
 
-		 var displayWord = '_';
-	   for (var j = 1; j < word.length; j++) {
+		 var displayWord = '';
+     var newln = false;
+	   for (var j = 0; j < word.length; j++) {
 			 if(word.charAt(j) != ' ') {
 			 	displayWord += ' _';
 			 }
 			 else{
-				 displayWord += '  ';
+         if(j >= 8 && !newln){
+           displayWord += " <br>";
+           newln = true;
+         }else{
+           displayWord += '  ';
+         }
 			 }
 		 }
+     displayWord += ' ';
 		document.getElementById('hangmanWord').innerHTML = displayWord;
 		return;
 	}
