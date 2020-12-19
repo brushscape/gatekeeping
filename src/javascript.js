@@ -1,3 +1,42 @@
+Macro.add('message', {
+  handler: function () { // inside the macro contents -> message text
+    var username = '@blackout';
+    var avatar = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
+    // Currently unused, but kept if another user message is needed later
+    if (this.args[0].charAt(1) === ':') {
+      var user = this.args[0].charAt(0);
+      switch (user) {
+        case 'J':
+          username = '@blackout';
+          avatar = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
+          break;
+        case 'D':
+          username = '@cyborgrip';
+          avatar = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
+          break;
+        case 'Q':
+          username = '@calikilly';
+          avatar = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
+          break;
+        case 'M':
+          username = '@snakebait';
+          avatar = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
+          break;
+        default:
+          username = '@anonymous'; // username.children[0].innerHTML = '@anonymous';
+          break;
+      }
+    }
+    fullText.push(this.args[0]);
+    var html = "<div class='darkMessage' id='darkMessage'>";
+    html += "<div class='avatar'><img class='avatarImg' id='avatarImg' src='" + avatar + "' alt='Avatar'></div>";
+    html += "<div><p class='usernameP' id='usernameP'><b>" + username + "</b></p>";
+    html += "<p id='messageText'>" + " " + "</p></div>";
+    html += "</div>";
+    $(this.output).wiki(html);
+  }
+});
+
 /*
 helper popup messages on the passcode page to help the user
 */
@@ -72,6 +111,7 @@ var hangmanWords = [
 	'No justice no peace',
   'Scarcity is a fallacy'];
 var currHangmanIndex = 0;
+var currHangmanWord = '';
 var usedWords = [];
 
 var currMessage = '';
@@ -164,7 +204,17 @@ $(document).on(':passagedisplay', function (ev) {
   // Setup for the Hangman Page
 	if (tags().includes('hangman')) {
 		document.getElementById('hangmanFeedback').style.color = 'darkgrey';
+     currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length));
 		 var word = hangmanWords[currHangmanIndex];
+     currHangmanWord = word;
+     console.log(word);
+     hangmanWords.splice(currHangmanIndex, 1); //remove from main arrays
+     usedWords.push(word);
+     if(hangmanWords.length == 0){
+       hangmanWords = usedWords;
+       usedWords = [];
+     }
+
 		 var displayWord = '_';
 	   for (var j = 1; j < word.length; j++) {
 			 if(word.charAt(j) != ' ') {
@@ -677,14 +727,7 @@ setup.updateIndex = function updateCurrIndex() {
 setup.checkHangman = function checkHangman(letterString){
 	var i = 0;
 	var letter = letterString.charAt(0);
-  var index = Math.floor(Math.random() * Math.floor(hangmanWords.length()));
-	var word = hangmanWords[index].toUpperCase();
-  hangmanWords.splice(index, 1); //remove from main arrays
-  usedWords.push(word);
-  if(hangmanWords.length() == 0){
-    hangmanWords = usedWords;
-    usedWords = [];
-  }
+	var word = currHangmanWord.toUpperCase();
 
 	if(word.indexOf(letter) != -1){
 		var displayedWord = document.getElementById('hangmanWord').innerHTML;
@@ -712,6 +755,7 @@ setup.checkHangman = function checkHangman(letterString){
 			// if(currHangmanIndex >= hangmanWords.length){
 			// 	currHangmanIndex = 0;
 			// }
+      //currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length()));
 			setTimeout(state.display, 800, 'Passcode');
 		}
 	}

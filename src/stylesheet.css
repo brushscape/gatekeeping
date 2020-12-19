@@ -5,7 +5,7 @@ body {
   	font-size: 150%;
 
   	min-width: 800px;
-   	width: auto;/* !important;*/
+   	width: auto !important;
    	width: 800px;
 }
 
