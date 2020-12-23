@@ -228,12 +228,16 @@ a:hover{
 	padding: 1.5vw;
 	font-size: calc(8px + 1vw);
 	line-height: calc(12px + 1vw);
+	align-items: center;
 }
 
 .textCol{
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	align-self: flex-start;
 }
 
 .usernameP{

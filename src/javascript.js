@@ -140,8 +140,8 @@ var loadingChats = false;
 var chats;
 var numJaxAttempts = 0;
 var fullText=[];
-var chatScrollDiff = 1000;
-var manifScrollDiff = 700;
+var chatScrollDiff = 1.15;
+var manifScrollDiff = 1.25;
 
 var img = [
   'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',
@@ -486,8 +486,9 @@ function fitText(longestLine){
 
 // Update scroll on Chat Page
 function updateScroll(element,scrollDiff){
-    //ar element = document.getElementById('chatScroll');
-		if(element.scrollHeight - element.scrollTop <= scrollDiff){
+    console.log("amount: "+(element.scrollHeight - element.scrollTop) );
+    console.log("limit: "+(window.screen.height / scrollDiff));
+		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
     	element.scrollTop = element.scrollHeight;
 		}
 }

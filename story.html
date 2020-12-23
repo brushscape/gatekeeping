@@ -291,7 +291,7 @@ a:hover{
 }
 
 .chatScroll{
-  height: 85vh;
+  height: 75vh;
   overflow-y: auto;
   text-align: center;
 }
@@ -328,12 +328,16 @@ a:hover{
 	padding: 1.5vw;
 	font-size: calc(8px + 1vw);
 	line-height: calc(12px + 1vw);
+	align-items: center;
 }
 
 .textCol{
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	align-self: flex-start;
 }
 
 .usernameP{
@@ -488,7 +492,7 @@ button[disabled]{
 
 .manifestoText{
 	font-size: calc(10px + 1.3vw);
-	height: 80vh;
+	height: 75vh;
   overflow-y: auto;
 }
 
@@ -639,8 +643,8 @@ var loadingChats = false;
 var chats;
 var numJaxAttempts = 0;
 var fullText=[];
-var chatScrollDiff = 1000;
-var manifScrollDiff = 700;
+var chatScrollDiff = 1.15;
+var manifScrollDiff = 1.25;
 
 var img = [
   'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',
@@ -985,8 +989,9 @@ function fitText(longestLine){
 
 // Update scroll on Chat Page
 function updateScroll(element,scrollDiff){
-    //ar element = document.getElementById('chatScroll');
-		if(element.scrollHeight - element.scrollTop <= scrollDiff){
+    console.log("amount: "+(element.scrollHeight - element.scrollTop) );
+    console.log("limit: "+(window.screen.height / scrollDiff));
+		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
     	element.scrollTop = element.scrollHeight;
 		}
 }
