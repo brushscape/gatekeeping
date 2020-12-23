@@ -45,6 +45,7 @@ a:hover{
 	margin: calc(1px + 0.5vw);
 	font-size: calc(15px + 1vw);
 	text-align: center;
+	border-color: whitesmoke;
 }
 .codeFeedback { /*not working for some reason*/
   color: firebrick;
@@ -202,7 +203,17 @@ a:hover{
 }
 
 /* DISCUSSION MESSAGE PAGE */
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
+	.avatar {
+		margin-right: 15px !important;
+		height: 150px !important;/*200px*/
+		width: 150px !important;/*200px*/
+	}
+	.darkMessage {
+		padding: 15px !important;
+		font-size: 18px !important;
+		line-height: 25px !important;
+	}
 }
 
 .darkMessage {
@@ -215,8 +226,8 @@ a:hover{
 	display: flex;
 	flex-direction: row;
 	padding: 1.5vw;
-	font-size: calc(8px + 0.7vw);
-	line-height: calc(12px + 0.7vw);
+	font-size: calc(8px + 1vw);
+	line-height: calc(12px + 1vw);
 }
 
 .textCol{
@@ -252,7 +263,7 @@ a:hover{
 	flex-direction: column;
 
   margin: 2vw;
-	font-size: calc(8px + 0.7vw);;
+	font-size: calc(9px + 1vw);;
 }
 
 .option {
@@ -374,7 +385,14 @@ button[disabled]{
   }
 }
 
-.manifesto{
-  color: darkgrey;
+.manifestoText{
 	font-size: calc(10px + 1.3vw);
+	height: 80vh;
+  overflow-y: auto;
+}
+
+.fullManifestoPage{
+	color: darkgrey;
+	display: flex;
+	flex-direction: column;
 }

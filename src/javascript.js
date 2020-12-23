@@ -140,7 +140,8 @@ var loadingChats = false;
 var chats;
 var numJaxAttempts = 0;
 var fullText=[];
-var scrollDiff = 1000;
+var chatScrollDiff = 1000;
+var manifScrollDiff = 700;
 
 var img = [
   'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',
@@ -306,9 +307,9 @@ $(document).on(':passagedisplay', function (ev) {
 		messageDisplayed = false;
 		setTimeout(listenForClick,200);
 		currMessage = '';
-		document.getElementById('exit').style.display='none';
-		var manifesto = document.getElementById('manifesto').innerHTML;
-		document.getElementById('manifesto').innerHTML = '';
+		//document.getElementById('exit').style.display='none';
+		var manifesto = document.getElementById('manifestoText').innerHTML;
+		document.getElementById('manifestoText').innerHTML = '';
 		setTimeout(manifestoType, 700, manifesto, 0);
 		return;
 	}
@@ -339,7 +340,6 @@ $(document).on(':passagedisplay', function (ev) {
 });
 
 function crypticBackground(){
-  console.log("sup");
   var body = document.getElementById("passcodeBody");
   var crypt = document.createElement("div");
   crypt.id = 'cryptic';
@@ -382,7 +382,7 @@ function crypticBackground(){
     para.style.overflow = 'hidden';
 
     para.style.left = x+'vw';
-    para.style.top = y+'vw';
+    para.style.top = y+'vh';
 
     switch(direction){
       case 0:
@@ -464,8 +464,8 @@ function fitText(longestLine){
 }
 
 // Update scroll on Chat Page
-function updateScroll(){
-    var element = document.getElementById('chatScroll');
+function updateScroll(element,scrollDiff){
+    //ar element = document.getElementById('chatScroll');
 		if(element.scrollHeight - element.scrollTop <= scrollDiff){
     	element.scrollTop = element.scrollHeight;
 		}
@@ -477,7 +477,7 @@ function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
   var newIndex = scrollIndex+1;
   if(toDisplay.className == "chatNotif"){
     toDisplay.style.display = 'block';
-    updateScroll();
+    updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
   	if(newIndex < scroll.children.length){
   		chats = setTimeout(revealMessage, chatNotifWait, scroll, newIndex, textIndex, 0);
   		loadingChats = true;
@@ -530,7 +530,7 @@ function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
     messageText.style.wordSpacing = '-.2vw;';
     messageText.style.lineHeight = 'calc(10px + 0.5vw)';
   	toDisplay.style.display = 'flex';
-  	updateScroll();
+  	updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
   	if(newIndex < scroll.children.length){
   		var mLen = message.substring(2).length;
   		if(mLen < 10){
@@ -742,27 +742,33 @@ function typeText(message, i, currPassage){
 function manifestoType(message,i){
 	if(displayFullMessage){
 			// skip to fully typed messsage
-			document.getElementById('manifesto').innerHTML = message;
+			document.getElementById('manifestoText').innerHTML = message;
 			i = message.length;
 		}
-
+  if(i%10==0){
+    updateScroll(document.getElementById('manifestoText'),manifScrollDiff);
+  }
 	if(i<message.length){
 			// message not fully typed and no skip
 			var punc = message[i];
 			currMessage+=punc;
-			if(punc == '<'){
+			if(punc == '<'){ //skip over <br>
 				currMessage+=message.substring(i+1,i+4);
+        document.getElementById('manifestoText').innerHTML = currMessage;
+        updateScroll(document.getElementById('manifestoText'),manifScrollDiff);
 				i+=3;
-			}
+			}else{
+        document.getElementById('manifestoText').innerHTML = currMessage;
+      }
 			i++;
 
-			document.getElementById('manifesto').innerHTML = currMessage;
 			if(punc == '.' || punc == '?' || punc == '!'){
 				var nextCharIsPunc = false;
 				if(i < message.length){
 					nextCharIsPunc = message[i] == '.' || message[i] == '?' || message[i] == '!';
 				}
 				if(nextCharIsPunc){
+          updateScroll(document.getElementById('manifestoText'),manifScrollDiff);
 					if(message[i] == '.'){ //for elipses
 						setTimeout(manifestoType, 200, message, i);
 					}
@@ -775,6 +781,7 @@ function manifestoType(message,i){
 				}
 			}
 			else if (punc == ','){ //tiny pause at a comma
+        updateScroll(document.getElementById('manifestoText'),manifScrollDiff);
 				setTimeout(manifestoType, 300, message, i);
 			}
 			else{ //no pause for normal text

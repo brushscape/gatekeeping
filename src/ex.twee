@@ -673,7 +673,7 @@ Gatekeeping
 <div class="helper" id="helper">
 	<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
 	<div class="allHelperText">
-		<p class="usernameP"><b id="username">
+		<p class="chatUsernameP"><b id="username">
 		</b></p>
 		<p class="helperText" id="helperText">
 			This is an alert box.
@@ -790,7 +790,7 @@ Gatekeeping
 <div class="helper" id="helper">
 		<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
     <div class="allHelperText">
-	  <p class="usernameP"><b id="username">
+	  <p class="chatUsernameP"><b id="username">
 	  </b></p>
 	  <p class="helperText" id="helperText">
 	  This is an alert box.
@@ -1509,7 +1509,7 @@ You've reached the special page
 
 
 :: Manifesto [manifesto] {"position":"3512,2303","size":"100,100"}
-<h3>The NightWeb's Manifesto</h3><p class="manifesto" id="manifesto">If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
+<div class="fullManifestoPage"><h3>The NightWeb's Manifesto</h3><div class="manifestoText" id="manifestoText"><p>If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
 
 Productivity is a fallacy fabricated by the bourgeoisie to exhaust the masses beyond the point of revolution. Service is a cruel mockery of altruism that demands the giving tree to cough up its innards to be mashed into soft green bills. Money is a collective illusion that would die like a fairy if everyone stopped believing in it. And corporate faces will never change their tunes of profit or death without a mountain of change falling into their pockets.
 
@@ -1527,9 +1527,10 @@ There are those who attack, those who defend, those who provide, those who distr
 
 All are welcome and all are resolute.
 
-The NightWeb lies in wait. </p>
+The NightWeb lies in wait. </p></div>
 <<nobr>>
-<div id="exit">
+<div id="exit" class="exit">
 	[[Exit->Passcode]]
 </div>
 <</nobr>>
+</div>
