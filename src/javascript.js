@@ -170,11 +170,22 @@ $(document).on(':passageinit', function (ev) {
   }
 });
 
+
+
 // currentHelper: Variable defined in the Twine passages 0 is initial, 1 is sucess, 2 is come, 3 is leave, 4 is coming back from chat
 $(document).on(':passagedisplay', function (ev) {
   // Setup for the Passcode Page
 	if (tags().includes('passcode')) {
 		console.log('at the passcode');
+    $(".codeInputBox").keyup(function () {
+        if (this.value.length == this.maxLength) {
+          if($(this).next('.codeInputBox').length){
+            $(this).next('.codeInputBox').focus();
+          }else{
+            $( ":button" ).focus();
+          }
+        }
+    });
     currPage="passcode";
     crypticBackground();
 		switch(state.active.variables.currentHelper){

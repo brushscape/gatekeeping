@@ -669,11 +669,22 @@ $(document).on(':passageinit', function (ev) {
   }
 });
 
+
+
 // currentHelper: Variable defined in the Twine passages 0 is initial, 1 is sucess, 2 is come, 3 is leave, 4 is coming back from chat
 $(document).on(':passagedisplay', function (ev) {
   // Setup for the Passcode Page
 	if (tags().includes('passcode')) {
 		console.log('at the passcode');
+    $(".codeInputBox").keyup(function () {
+        if (this.value.length == this.maxLength) {
+          if($(this).next('.codeInputBox').length){
+            $(this).next('.codeInputBox').focus();
+          }else{
+            $( ":button" ).focus();
+          }
+        }
+    });
     currPage="passcode";
     crypticBackground();
 		switch(state.active.variables.currentHelper){
@@ -2028,9 +2039,9 @@ setup.checkHangman = function checkHangman(letterString){
 	&lt;p&gt;&lt;/p&gt;
 	&lt;p class=&quot;passcodeText&quot;&gt;Passcode:&lt;/p&gt;
 	&lt;div class=&quot;codeInput&quot;&gt;
-		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
 	&lt;/div&gt;
 	&lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
 	setup.checkPasscode();
@@ -2137,9 +2148,9 @@ setup.checkHangman = function checkHangman(letterString){
   &lt;p&gt;&lt;/p&gt;
   &lt;p class=&quot;passcodeText&quot;&gt;Passcode:&lt;/p&gt;
   &lt;div class=&quot;codeInput&quot;&gt;
-	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-  &lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+  &lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
 	&lt;/div&gt;
 	&lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
   	setup.checkPasscode();
