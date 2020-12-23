@@ -31,6 +31,7 @@ a:hover{
 .passcodeText{
   font-size: calc(20px + 3vw);
 	margin-bottom: 2vw;
+	z-index: 1;
 }
 .codeInput{
 	display: flex;
@@ -38,6 +39,7 @@ a:hover{
 	justify-content: center;
 	align-items: stretch;
 	margin: calc(10px + 2vw);
+	z-index: 1;
 }
 .codeInputBox{
 	margin: calc(1px + 0.5vw);
@@ -48,19 +50,76 @@ a:hover{
   color: firebrick;
   opacity: 0;
 	font-size: calc(15px + 1vw);
+	z-index: 1;
 }
 
 #passages button {
   background-color: #664180;
   border-color: #2C1D36;
 	font-size: calc(15px + 1vw);
+	z-index: 1;
 }
 
 .enter{
   background-color: #A5CCEC;
 }
 
-
+@keyframes moveDown {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(0, 20vw);
+	}
+}
+@keyframes moveUp {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(0, -20vw);
+	}
+}
+@keyframes moveLeft {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(20vw, 0);
+	}
+}
+@keyframes moveRight {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(-20vw, 0);
+	}
+}
 
 /*turn off the sugarcube sidebar*/
 #ui-bar{
@@ -275,6 +334,7 @@ button[disabled]{
 	transform: translateX(-50%);
   width: calc(300px + ((100vw - 300px) * 0.5));
 	margin: 1vw;
+	z-index: 2;
 }
 
 .helperText{

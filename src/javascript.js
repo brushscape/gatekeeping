@@ -105,6 +105,7 @@ var passwordDict = {THO: "D:Why don't you just check the <b>errors</b> <i>tho</i
 										AST: "Q:im too prone to take <i>a st</i>ab",
 										EAD: "M:you know we're not the only l<i>ead</i>",
 										ROP: "D:a c<i>rop</i> of <b>logs</b> are waiting for you"};
+//var passCryptDict = {};
 
 // phrases for the hangman page
 var hangmanWords = [
@@ -147,6 +148,7 @@ var img = [
   'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large',
   'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large'
 ];
+var imgLoaded = false;
 
 function preload() {
     for (var i = 0; i < arguments.length; i++) {
@@ -161,7 +163,10 @@ $(document).on(':passageinit', function (ev) {
 	//console.log('clear full text');
 	fullText = [];
   $(this.output).wiki("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-  preload();
+  if(!imgLoaded){
+    preload();
+    imgLoaded = true;
+  }
 });
 
 // currentHelper: Variable defined in the Twine passages 0 is initial, 1 is sucess, 2 is come, 3 is leave, 4 is coming back from chat
@@ -170,6 +175,7 @@ $(document).on(':passagedisplay', function (ev) {
 	if (tags().includes('passcode')) {
 		console.log('at the passcode');
     currPage="passcode";
+    crypticBackground();
 		switch(state.active.variables.currentHelper){
 			case 0: // initial
 				initIndex = 0;
@@ -332,6 +338,101 @@ $(document).on(':passagedisplay', function (ev) {
 	setTimeout(typeText, 700, fullText[0], 0, state.active.title);
 });
 
+function crypticBackground(){
+  console.log("sup");
+  var body = document.getElementById("passcodeBody");
+  var crypt = document.createElement("div");
+  crypt.id = 'cryptic';
+  crypt.style.overflow = 'hidden';
+
+  var codePhrase = state.active.variables.passcodePhrase;
+  var passcodes = [];
+  for(var k=0; k<codePhrase.length; k+=3){
+    var code = codePhrase.substring(k,k+3).toUpperCase();
+    passcodes.push(code);
+    //passCryptDict[code] = [];
+  }
+  var currPasscode = setup.getCurrentPasscode();
+
+  for(var i=0; i<passcodes.length*5; i++){
+    var div = document.createElement("div");
+
+    var currCodeToDisplay = passcodes[i%(passcodes.length)];
+    var size = (Math.random() * 3)+1;
+    var x = (Math.random() * 100);
+    var y = (Math.random() * 100);
+    var delay = (Math.random() * 20)-10;
+    var length = 20;
+    var direction = Math.floor(Math.random() * 4);
+
+
+    var innerText = currCodeToDisplay;
+
+    div.style.fontSize = size +'vw';
+    div.style.lineHeight = size*2 +'vw';
+    div.style.letterSpacing = size*1.5 +'vw';
+    div.style.opacity = '0.2';
+    div.style.overflow = 'hidden';
+    div.className = currCodeToDisplay;
+
+    var para = document.createElement("p");
+    para.style.position = 'absolute';
+    para.style.zIndex = '0';
+    para.style.opacity = '0';
+    para.style.overflow = 'hidden';
+
+    para.style.left = x+'vw';
+    para.style.top = y+'vw';
+
+    switch(direction){
+      case 0:
+        para.style.animation = 'moveDown '+length+'s infinite';
+        var newText = innerText[0];
+        for(var j=1;j<innerText.length;j++){
+          newText += '<br>'+innerText[j];
+        }
+        innerText = newText;
+        break;
+      case 1:
+        para.style.animation = 'moveUp '+length+'s infinite';
+        var newText = innerText[0];
+        for(var j=1;j<innerText.length;j++){
+          newText += '<br>'+innerText[j];
+        }
+        innerText = newText;
+        break;
+      case 2:
+        para.style.animation = 'moveLeft '+length+'s infinite';
+        break;
+      case 3:
+        para.style.animation = 'moveRight '+length+'s infinite';
+        break;
+    }
+    para.style.animationDelay = delay+'s';
+    para.style.animationTimingFunction = 'linear';
+    para.innerHTML=innerText;
+    //para.style.animation = 'moveDown 15s infinite';
+    div.appendChild(para);
+    crypt.appendChild(div);
+    //passCryptDict[currCodeToDisplay].push(div);
+  }
+  body.appendChild(crypt);
+  updateBackground(passcodes[0],currPasscode);
+}
+
+function updateBackground(prevPasscode, currPasscode){
+
+  var prevCodeDisplays = document.getElementsByClassName(prevPasscode);
+  for(var i=0;i<prevCodeDisplays.length;i++){
+    prevCodeDisplays[i].style.opacity = '0.2';
+  }
+
+  var currCodeDisplays = document.getElementsByClassName(currPasscode);
+  for(var j=0;j<currCodeDisplays.length;j++){
+    currCodeDisplays[j].style.opacity = '0.425';
+  }
+}
+
 // Fit hangman word inside div if too long
 function fitText(longestLine){
 //return;
@@ -374,9 +475,7 @@ function updateScroll(){
 function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
   var toDisplay = scroll.children[scrollIndex];
   var newIndex = scrollIndex+1;
-  console.log(toDisplay.className);
   if(toDisplay.className == "chatNotif"){
-    console.log("notif "+scrollIndex);
     toDisplay.style.display = 'block';
     updateScroll();
   	if(newIndex < scroll.children.length){
@@ -384,10 +483,8 @@ function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
   		loadingChats = true;
   	}else {
   		loadingChats = false;
-      console.log("chat end");
   	}
   }else{
-    console.log("message "+scrollIndex);
   	var message = fullText[textIndex];
   	var user = message.charAt(0);
   	var avatar = toDisplay.children[0];
@@ -448,7 +545,6 @@ function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
       loadingChats = true;
   	}else {
   		loadingChats = false;
-      console.log("chat end");
   	}
   }
 
@@ -770,6 +866,7 @@ setup.checkPasscode = function checkPasscode(){
 			}
 			else if(numFailedAttempts%3 == 0 && numFailedAttempts>0){
 				setup.updateIndex();
+        updateBackground(normalCode,setup.getCurrentPasscode());
 				document.getElementById('codeFeedback').innerHTML = 'Thrice Invalid<br>New Code Chosen';
 			}
 			//document.getElementById('invalid').className ='invalid';
@@ -828,14 +925,14 @@ function revealHelper(helperText, nextMessage){
 			case 0:
 				var isNext = initIndex < initHelper.length-1;
 				var mLen = helperText.length;
-				var randTime = mLen*40 + 300;//+500?
+				var randTime = mLen*40 + 500;//+500?
 				helperTimeout = setTimeout(revealHelper, randTime, initHelper[initIndex], isNext);
 				initIndex++;
 				break;
 			case 1:
 				isNext = successIndex < successHelper.length-1;
 				mLen = helperText.length;
-				randTime = mLen*40 + 300;//+500?
+				randTime = mLen*40 + 500;//+500?
 				//console.log('time '+randTime);
 				helperTimeout = setTimeout(revealHelper, randTime, successHelper[successIndex], isNext);
 				successIndex++;

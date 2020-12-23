@@ -683,7 +683,7 @@ Gatekeeping
 	</div>
 
 
-<div class="passcodeBody">
+<div id="passcodeBody" class="passcodeBody">
 	<p></p>
 	<p></p>
 	<p class="passcodeText">Passcode:</p>
@@ -800,7 +800,7 @@ Gatekeeping
 </div>
 
 
-<div class="passcodeBody">
+<div id="passcodeBody" class="passcodeBody">
   <p></p>
   <p></p>
   <p class="passcodeText">Passcode:</p>
