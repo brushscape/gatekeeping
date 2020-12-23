@@ -38,7 +38,7 @@ a:hover{
 	flex-direction: row;
 	justify-content: center;
 	align-items: stretch;
-	margin: calc(10px + 2vw);
+	margin: calc(16px + 1.5vw);
 	z-index: 1;
 }
 .codeInputBox{
@@ -372,6 +372,7 @@ button[disabled]{
   position: relative;
 	align-items: flex-start;
 	opacity: 0.5;
+	padding: 1vw;
 }
 /* When moving the mouse over the close button */
 .closebtn:hover {

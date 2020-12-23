@@ -344,6 +344,12 @@ function crypticBackground(){
   var crypt = document.createElement("div");
   crypt.id = 'cryptic';
   crypt.style.overflow = 'hidden';
+  crypt.style.width = '100vw';
+  crypt.style.height = '100vh';
+  crypt.style.zIndex = '0';
+  crypt.style.left = '0';
+  crypt.style.top='0';
+  crypt.style.position='absolute';
 
   var codePhrase = state.active.variables.passcodePhrase;
   var passcodes = [];
@@ -375,18 +381,21 @@ function crypticBackground(){
     div.style.overflow = 'hidden';
     div.className = currCodeToDisplay;
 
+    var wrapper = document.createElement("div");
+    wrapper.className = 'rCodesWrapper';
     var para = document.createElement("p");
-    para.style.position = 'absolute';
-    para.style.zIndex = '0';
-    para.style.opacity = '0';
-    para.style.overflow = 'hidden';
+    para.className = 'rCodesText';
+    wrapper.style.position = 'absolute';
+    wrapper.style.zIndex = '0';
+    wrapper.style.opacity = '0';
+    wrapper.style.overflow = 'hidden';
 
-    para.style.left = x+'vw';
-    para.style.top = y+'vh';
+    wrapper.style.left = x+'vw';
+    wrapper.style.top = y+'vh';
 
     switch(direction){
       case 0:
-        para.style.animation = 'moveDown '+length+'s infinite';
+        wrapper.style.animation = 'moveDown '+length+'s infinite';
         var newText = innerText[0];
         for(var j=1;j<innerText.length;j++){
           newText += '<br>'+innerText[j];
@@ -394,7 +403,7 @@ function crypticBackground(){
         innerText = newText;
         break;
       case 1:
-        para.style.animation = 'moveUp '+length+'s infinite';
+        wrapper.style.animation = 'moveUp '+length+'s infinite';
         var newText = innerText[0];
         for(var j=1;j<innerText.length;j++){
           newText += '<br>'+innerText[j];
@@ -402,17 +411,18 @@ function crypticBackground(){
         innerText = newText;
         break;
       case 2:
-        para.style.animation = 'moveLeft '+length+'s infinite';
+        wrapper.style.animation = 'moveLeft '+length+'s infinite';
         break;
       case 3:
-        para.style.animation = 'moveRight '+length+'s infinite';
+        wrapper.style.animation = 'moveRight '+length+'s infinite';
         break;
     }
-    para.style.animationDelay = delay+'s';
-    para.style.animationTimingFunction = 'linear';
+    wrapper.style.animationDelay = delay+'s';
+    wrapper.style.animationTimingFunction = 'linear';
+
     para.innerHTML=innerText;
-    //para.style.animation = 'moveDown 15s infinite';
-    div.appendChild(para);
+    wrapper.appendChild(para);
+    div.appendChild(wrapper);
     crypt.appendChild(div);
     //passCryptDict[currCodeToDisplay].push(div);
   }
