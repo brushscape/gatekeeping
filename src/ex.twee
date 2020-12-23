@@ -13,6 +13,7 @@ Gatekeeping
 
 
 :: Enter {"position":"3029,747","size":"100,100"}
+<<nobr>>
 <<message "Oh my, is that a newbie I spy? What are you doing in this corner of the internet?">>
 
 <div class="responses">
@@ -26,9 +27,11 @@ Gatekeeping
 	  [[I’m just looking for answers.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Am I not supposed to be here? {"position":"1045,948","size":"100,100"}
+<<nobr>>
 <<message "Permission is a tricky thing. It’s hard to know who has it and who doesn’t. So you tell me. Are you supposed to be here?">>
 
 <div class="responses">
@@ -42,9 +45,11 @@ Gatekeeping
 	  [[Who’s to say, really?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I’m not even sure how I got here. {"position":"3032,1051","size":"100,100"}
+<<nobr>>
 <<message "How fortuitous. Bewildered wanderers are my favorite.">>
 
 <div class="responses">
@@ -58,9 +63,11 @@ Gatekeeping
 	  [[I don’t wander.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I’m just looking for answers. {"position":"5180,981","size":"100,100"}
+<<nobr>>
 <<message "A noble pursuit. But do you know the right questions?">>
 
 <div class="responses">
@@ -74,9 +81,11 @@ Gatekeeping
 	  [[Would you even answer them if I asked?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Yes, I am. {"position":"894,1100","size":"100,100"}
+<<nobr>>
 <<message "Are you really so sure? Do you even know where you flew into, little bird?">>
 
 <div class="responses">
@@ -90,9 +99,11 @@ Gatekeeping
 	  [[Obviously. And this is a dumb way to hide it.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Probably not. {"position":"1045,1098","size":"100,100"}
+<<nobr>>
 <<message "Hm, pity. I wanted to play with someone new.">>
 
 <div class="responses">
@@ -106,9 +117,11 @@ Gatekeeping
 	  [[I’m not as new as you seem to think.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Who’s to say, really? {"position":"1195,1098","size":"100,100"}
+<<nobr>>
 <<message "Ha, now that’s an attitude I like. Are you sure you’ve never been here before?">>
 
 <div class="responses">
@@ -122,9 +135,11 @@ Gatekeeping
 	  [[You’re the one who assumed I was a newbie.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: It’s just a webpage. {"position":"116,1360","size":"100,100"}
+<<nobr>>
 <<message "Hm, a pitiful way to view this place. I don’t hang around places that are ‘just’ anything…">>
 
 <div class="responses">
@@ -138,9 +153,11 @@ Gatekeeping
 	  [[You’re kind of infuriating.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Not really. Are you going to tell me? {"position":"456,1330","size":"100,100"}
+<<nobr>>
 <<message "I could… but that would ruin the fun.">>
 
 <div class="responses">
@@ -154,6 +171,7 @@ Gatekeeping
 	  [[Why so cryptic?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Then what’s so interesting about this place? [noexit] {"position":"0,1530","size":"100,100"}
@@ -189,6 +207,7 @@ Gatekeeping
 
 
 :: What do you mean, play? {"position":"1038,1698","size":"100,100"}
+<<nobr>>
 <<message "What don’t I mean? I’m up for any game, little bird…">>
 
 <div class="responses">
@@ -202,9 +221,11 @@ Gatekeeping
 	  [[What if I don’t like games?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Like me? {"position":"714,1696","size":"100,100"}
+<<nobr>>
 <<message "Maybe. Are you fun to play with?">>
 
 <div class="responses">
@@ -218,6 +239,7 @@ Gatekeeping
 	  [[You tell me.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I’m not really one for games. [noexit] {"position":"580,1850","size":"100,100"}
@@ -239,6 +261,7 @@ Gatekeeping
 
 
 :: No, but I’ve been looking for this place. {"position":"1199,1327","size":"100,100"}
+<<nobr>>
 <<message "Really? And why is that?">>
 
 <div class="responses">
@@ -252,9 +275,11 @@ Gatekeeping
 	  [[You know why.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Who can remember such things? {"position":"1541,1319","size":"100,100"}
+<<nobr>>
 <<message "Now you’re just being coy.">>
 
 <div class="responses">
@@ -268,9 +293,11 @@ Gatekeeping
 	  [[No, my memory is actually terrible.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: You’re the one who assumed I was a newbie. {"position":"1855,1313","size":"100,100"}
+<<nobr>>
 <<message "An ignorant assumption, it would appear. So what now?">>
 
 <div class="responses">
@@ -284,6 +311,7 @@ Gatekeeping
 	  [[You tell me, oh mysterious one.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I want to know more. [noexit] {"position":"1075,1525","size":"100,100"}
@@ -312,6 +340,7 @@ Gatekeeping
 
 
 :: Why is that? {"position":"2888,1198","size":"100,100"}
+<<nobr>>
 <<message "They stumble on the strangest of places and the most interesting of secrets.">>
 
 <div class="responses">
@@ -325,9 +354,11 @@ Gatekeeping
 	  [[Are you a bewildered wanderer?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Who are you, exactly? {"position":"3038,1198","size":"100,100"}
+<<nobr>>
 <<message "That is most definitely the wrong question.">>
 
 <div class="responses">
@@ -341,9 +372,11 @@ Gatekeeping
 	  [[I don’t like talking to strangers.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I don’t wander. {"position":"3188,1198","size":"100,100"}
+<<nobr>>
 <<message "Oh, so this little bird has purpose. Yet you don’t even know how you got here.">>
 
 <div class="responses">
@@ -357,9 +390,11 @@ Gatekeeping
 	  [[Purpose is overrated.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Are you a secret? {"position":"2289,1372","size":"100,100"}
+<<nobr>>
 <<message "Only to most. To a few, I’m a documented catastrophe.">>
 
 <div class="responses">
@@ -373,9 +408,11 @@ Gatekeeping
 	  [[That sounds like the dream.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: What have I stumbled upon? {"position":"2610,1379","size":"100,100"}
+<<nobr>>
 <<message "Just an idea. An idea most people are unwilling to accept.">>
 
 <div class="responses">
@@ -389,9 +426,11 @@ Gatekeeping
 	  [[You don’t like most people, do you?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Are you a bewildered wanderer? {"position":"2927,1363","size":"100,100"}
+<<nobr>>
 <<message "Are you a bewildered wanderer?">>
 
 <div class="responses">
@@ -405,6 +444,7 @@ Gatekeeping
 	  [[Being bewildered is fun. You should try it sometime.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Am I supposed to be scared? [noexit] {"position":"2139,1522","size":"100,100"}
@@ -426,6 +466,7 @@ Gatekeeping
 
 
 :: There are no wrong questions. {"position":"2673,1664","size":"100,100"}
+<<nobr>>
 <<message "Please. You’re surrounded by wrong questions.">>
 
 <div class="responses">
@@ -439,9 +480,11 @@ Gatekeeping
 	  [[I can’t win, can I?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: What’s the right one? {"position":"3030,1668","size":"100,100"}
+<<nobr>>
 <<message "What makes you think there’s a right one? ">>
 
 <div class="responses">
@@ -455,9 +498,11 @@ Gatekeeping
 	  [[You’re impossible.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I don’t like talking to strangers. {"position":"3397,1663","size":"100,100"}
+<<nobr>>
 <<message "You’d better get to know me then.">>
 
 <div class="responses">
@@ -471,6 +516,7 @@ Gatekeeping
 	  [[I’m not convinced you’re worth knowing.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Like what? [noexit] {"position":"2555,1810","size":"100,100"}
@@ -492,6 +538,7 @@ Gatekeeping
 
 
 :: I’m not noble. {"position":"5006,1127","size":"100,100"}
+<<nobr>>
 <<message "Good. I don’t have a lot of patience for knightly virtues.">>
 
 <div class="responses">
@@ -505,9 +552,11 @@ Gatekeeping
 	  [[Who are you anyway?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: There are no right questions. {"position":"5180,1131","size":"100,100"}
+<<nobr>>
 <<message "Maybe not. So what do you want to know, little bird?">>
 
 <div class="responses">
@@ -521,9 +570,11 @@ Gatekeeping
 	  [[I want to know what you want me to ask.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Would you even answer them if I asked? {"position":"5330,1131","size":"100,100"}
+<<nobr>>
 <<message "Perhaps. What are your questions, little bird?">>
 
 <div class="responses">
@@ -537,9 +588,11 @@ Gatekeeping
 	  [[How do I get past you?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Neither do I. {"position":"4382,1346","size":"100,100"}
+<<nobr>>
 <<message "Then you came to the right place. Tradition is dead here. We make our own rules.">>
 
 <div class="responses">
@@ -553,9 +606,11 @@ Gatekeeping
 	  [[Who is ‘we’?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Why not? {"position":"4753,1325","size":"100,100"}
+<<nobr>>
 <<message "They’re too concerned with rules and not knowing when to break them.">>
 
 <div class="responses">
@@ -569,9 +624,11 @@ Gatekeeping
 	  [[Rules are a construct.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Who are you anyway? {"position":"5090,1311","size":"100,100"}
+<<nobr>>
 <<message "Why would I tell you?">>
 
 <div class="responses">
@@ -585,6 +642,7 @@ Gatekeeping
 	  [[Clearly, you wouldn’t.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Why make any rules at all? [noexit] {"position":"4278,1516","size":"100,100"}
@@ -613,31 +671,32 @@ Gatekeeping
 <<set $currPassIndex = 0>>
 
 <div class="helper" id="helper">
-		<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
-    <div class="allHelperText">
-	  <p class="usernameP"><b id="username">
-	  </b></p>
-	  <p class="helperText" id="helperText">
-	  This is an alert box.
-	  </p>
+	<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
+	<div class="allHelperText">
+		<p class="usernameP"><b id="username">
+		</b></p>
+		<p class="helperText" id="helperText">
+			This is an alert box.
+		</p>
 	</div>
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-</div>
+	<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+	</div>
 
 
 <div class="passcodeBody">
-  <p></p>
-  <p></p>
-  <p class="passcodeText">Passcode:</p>
-  <div class="codeInput">
-	<input id="textbox-first" name="textbox-first" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<input id="textbox-mid" name="textbox-mid" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<input id="textbox-last" name="textbox-last" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<p id = "invalid" class=“invalid”> Invalid Code </p>
-  </div>
-  <<button "Enter">><<script>>
-  	setup.checkPasscode();
-  <</script>><</button>>
+	<p></p>
+	<p></p>
+	<p class="passcodeText">Passcode:</p>
+	<div class="codeInput">
+		<input class="codeInputBox" id="textbox-first" name="textbox-first" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+		<input class="codeInputBox" id="textbox-mid" name="textbox-mid" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+		<input class="codeInputBox" id="textbox-last" name="textbox-last" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+	</div>
+	<<button "Enter">><<script>>
+	setup.checkPasscode();
+	<</script>><</button>>
+	<p class=“codeFeedback” id="codeFeedback" style="color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;">Invalid</p>
+
 </div>
 <</nobr>>
 
@@ -645,73 +704,85 @@ Gatekeeping
 :: Chat [chat] {"position":"3313,811","size":"100,100"}
 <<nobr>>
 <<set $currentHelper = 4>>
+<div class="chatPage">
   <div class="chatScroll" id="chatScroll">
-  	<p class="chatNotif">
-  		@anonymousbird has entered the chat
-	</p>
-	<<message "D:So... what was the point of all this?">>
-	<<message "M:Jax wanted a powertrip">>
-	<<message "Q:this is a boring powertrip">>
-	<<message "D:Quinn's kind of right. The stakes were very low.">>
-	<<message "J:Maybe to you">>
-	<<message "M:the hell is that supposed to mean?">>
-	<<message "J:I added anyone who played to my botnet. The game gives me time to hack into their machines.">>
-	<<message "D:Well shit. How many do you have?">>
-	<<message "J:Wouldn't you like to know">>
-	<<message "D:I mean yeah. That's why I asked?">>
-	<<message "Q:what's a botnet">>
-	<<message "D:Jax is basically zombifying people's computer so that they can steal computational power">>
-	<<message "Q:oh shit! ur making zombies?!">>
-	<<message "M:it's not as cool as it sounds">>
-	<<message "J:Tell that to your stream. Cuz you just went live">>
-	<<message "M:WTF JAX GET OFF MY COMPUTER">>
-	<<message "D:The hell? How are you on Mouse's machine">>
-	<<message "M:you are so goddamn lucky that was only on test mode. I would have killed you if that had gone public">>
-	<<message "J:HA! But you should have seen the look on your face tho">>
-	<<message "Q:no fair! i wanna see Mouse looking stupid">>
-	<<message "M:I didnt look stupid!">>
-	<<message "D:Guys, seriously, can you not?">>
-	<<message "Q:omfg mouse looks like they just shit their pants">>
-	<<message "M:wtf! how are you seeing me?! I turned off my camera!">>
-	<<message "Q:jax sent me a screenshot">>
-	<<message "M:JAX">>
-	<<message "D:Jax...">>
-	<<message "J:What? It's funny!">>
-	<<message "D:How do you even have access to Mouse's account?">>
-	<<message "J:Dude, I hacked you all ages ago. Though I'd hardly call Mouse's a hack. They use the same password for everything.">>
-	<<message "M:blame SilCore. they manage all my accounts">>
-	<<message "D:Guess it's time to comb my OS for Jax-shaped viruses">>
-	<<message "J:It's cute you think you can get rid of me">>
-	<<message "Q:when r u gonna teach me how to mess with mouse like that">>
-	<<message "J:Oh easy. Just run <u>this link</u> whenever you want to give them a heartattack">>
-	<<message "M:JAX">>
-	<<message "J:What?">>
-	<<message "D:Quinn, don't you dare run that! Don't be a script kiddie">>
-	<<message "J:**script kitty">>
-	<<message "D:Jax stfu">>
-	<<message "Q:like this?">>
-	<<message "M:QUINN GET OFF MY FUCKING COMPUTER">>
-	<<message "J:good kitty">>
-	<<message "Q:dammit! daeka broke my link">>
-	<<message "J:Come on, Daeka. You're spoiling the fun">>
-	<<message "D:Harassing Mouse is not 'fun'">>
-	<<message "J:Isn't it though?">>
-	<<message "Q:lol">>
-	<<message "M:do you want me to start harassing you back, you cocky egotistical embodiment of a god-complex">>
-	<<message "J:It's cute you think you can hurt me">>
-	<<message "M:I hate you">>
-	<<message "M:You don't even care about radicalizing any of these people do you?">>
-	<<message "J:I thought that was your job.">>
-	<<message "D:It's all our jobs? That's kind of the point?">>
-	<<message "Q:what's the point?">>
-	<<message "M:oh dont worry. Everyone already knows you dont care about the cause">>
-	<<message "J:You're just here to maul some corporates">>
-	<<message "Q:damn right i am">>
-	<<message "D:sigh I need to separate you two">>
+  	<p class="chatNotif">@anonymousbird has entered the chat</p>
+		<<message "D:So... what was the point of all this?">>
+		<<message "M:Jax wanted a powertrip">>
+		<<message "Q:this is a boring powertrip">>
+		<<message "D:Quinn's kind of right. The stakes were very low.">>
+		<<message "J:Maybe to you">>
+		<<message "M:the hell is that supposed to mean?">>
+		<<message "J:I added anyone who played to my botnet. The game gives me time to hack into their machines &#128521">>
+		<<message "D:Well shit. How many do you have?">>
+		<<message "J:Wouldn't you like to know &#128527">>
+		<<message "D:I don't know why I expected a straight answer...">>
+		<<message "Q:whats a botnet">>
+		<<message "D:Jax is basically zombifying people's computer so that they can steal computing power">>
+		<<message "Q:oh shit!! ur making zombies?!">>
+		<<message "M:it's not as cool as it sounds">>
+		<<message "J:Tell that to your stream. Cuz you just went live &#128526&#128073&#128073">>
+		<<message "M:WTF JAX GET OFF MY COMPUTER">>
+		<<message "D:How the hell are you on Mouse's machine?">>
+		<<message "M:you are so goddamn lucky that was only on test mode. I would have killed you if that had gone public">>
+		<<message "J:HA! You should have seen the look on your face tho &#128514&#128514&#128514">>
+		<<message "Q:no fair! i wanna see Mouse looking stupid">>
+		<<message "M:&#128405">>
+		<<message "D:Guys, seriously, can you not?">>
+		<<message "Q:omfg mouse looks like they just shit their pants">>
+		<<message "M:I turned off my camera, you little shit! wtf are you talking about?!">>
+		<<message "Q:jax sent me a screenshot">>
+		<<message "M:JAX">>
+		<<message "D:Jax...">>
+		<<message "J:&#128514 What?! It's funny">>
+		<<message "D:How do you even have access to Mouse's account?">>
+		<<message "J:Dude, I hacked you all ages ago. Though I'd hardly call Mouse's a hack. They use the same password for everything smh">>
+		<<message "M:blame SilCore. they manage all my accounts">>
+		<<message "D:Guess it's time to comb my OS for Jax-shaped viruses &#128579">>
+		<<message "J:It's cute you think you can get rid of me &#128536">>
+		<<message "Q:when r u gonna teach me how to mess with mouse like that">>
+		<<message "J:Oh easy. Just run <u>this link</u> whenever you want to give them a heartattack &#128521">>
+		<<message "M:JAX">>
+		<<message "D:Quinn, don't run that. Don't be a script kiddie">>
+		<<message "J:**script kitty &#128514&#128514&#128514">>
+		<<message "D:Jax stfu">>
+		<<message "Q:like this?">>
+		<<message "M:QUINN GET OFF MY FUCKING COMPUTER">>
+		<<message "J:good kitty &#128527">>
+		<<message "Q:dammit! daeka broke my link">>
+		<<message "J:Come on, Daeka &#128553 You're spoiling the fun &#128548">>
+		<<message "D:Harassing Mouse is not 'fun'">>
+		<<message "J:Isn't it though? &#128527">>
+		<<message "Q:lol">>
+		<<message "M:do you want me to start harassing you back, you cocky egotistical embodiment of a god-complex?">>
+		<<message "J:It's cute you think you can hurt me &#128536">>
+		<<message "M:I hate you &#128579">>
+		<<message "M:You don't even care about radicalizing any of these people do you?">>
+		<<message "J:I thought that was your job &#128533">>
+		<<message "D:It's all our jobs? That's kind of the point???">>
+		<<message "Q:whats the point?">>
+		<<message "M:don't worry about it. it's not like you care">>
+		<<message "D:Yeah, no one's really expecting you to be invested in theology Quinn">>
+		<<message "J:You're just here to maul some corporates &#128520">>
+		<<message "Q:damn right i am">>
+		<<message "D:sigh I need to separate you two">>
+		<<message "M:good luck. you're better off separating yourself &#9996&#128405">>
+		<p class="chatNotif">@snakebait has left the chat</p>
+		<<message "J:lol poor baby got their feelings hurt">>
+		<<message "D:One of these days you're going to do something they won't forgive you for">>
+		<<message "J:¯\_(ツ)_/¯ cross that bridge and all that &#128521">>
+		<<message "D:Don't say I didn't warn you">>
+		<p class="chatNotif">@cyborgrip has left the chat</p>
+		<<message "J:You leaving too, you little traitor?">>
+		<<message "Q:u know me &#128520">>
+		<p class="chatNotif">@calikilly has left the chat</p>
+		<<message "J:all too well...">>
+		<p class="chatNotif">@blackout has left the chat</p>
   </div>
-
+	<br>
+	[[Exit Chat->Passcode]]
+</div>
 <</nobr>>
-[[Exit Chat->Passcode]]
 
 
 :: Passcode [passcode] {"position":"3100,619","size":"100,100"}
@@ -734,14 +805,15 @@ Gatekeeping
   <p></p>
   <p class="passcodeText">Passcode:</p>
   <div class="codeInput">
-	<input id="textbox-first" name="textbox-first" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<input id="textbox-mid" name="textbox-mid" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<input id="textbox-last" name="textbox-last" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<p id = "invalid" class=“invalid”> Invalid Code </p>
-  </div>
-  <<button "Enter">><<script>>
+	<input class="codeInputBox" id="textbox-first" name="textbox-first" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+	<input class="codeInputBox" id="textbox-mid" name="textbox-mid" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+  <input class="codeInputBox" id="textbox-last" name="textbox-last" type="text" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+	</div>
+	<<button "Enter">><<script>>
   	setup.checkPasscode();
   <</script>><</button>>
+	<p class=“codeFeedback” id="codeFeedback" style="color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;">Invalid</p>
+
 </div>
 <</nobr>>
 
@@ -765,6 +837,7 @@ Gatekeeping
 
 
 :: Obviously. And this is a dumb way to hide it. {"position":"798,1327","size":"100,100"}
+<<nobr>>
 <<message "What makes you say that?">>
 
 <div class="responses">
@@ -778,9 +851,11 @@ Gatekeeping
 	  [[It shouldn’t be hidden.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I’m not as new as you seem to think. {"position":"1377,1696","size":"100,100"}
+<<nobr>>
 <<message "Is that so? And yet you chose the simple passcode…">>
 
 <div class="responses">
@@ -794,6 +869,7 @@ Gatekeeping
 	  [[I thought it’d be fun to get through your way.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I bet I could guess. [noexit] {"position":"341,1526","size":"100,100"}
@@ -959,6 +1035,7 @@ Gatekeeping
 
 
 :: I can be lost and have purpose. {"position":"3273,1361","size":"100,100"}
+<<nobr>>
 <<message "Maybe, but you’re admitting you’re rather bad at pursuing that purpose.">>
 
 <div class="responses">
@@ -972,9 +1049,11 @@ Gatekeeping
 	  [[What if my purpose was to get lost?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Are you making fun of me? {"position":"3643,1359","size":"100,100"}
+<<nobr>>
 <<message "I might be. Should I not?">>
 
 <div class="responses">
@@ -988,9 +1067,11 @@ Gatekeeping
 	  [[Only if I can make fun of you back.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Purpose is overrated. {"position":"3919,1353","size":"100,100"}
+<<nobr>>
 <<message "Interesting… What do you have instead?">>
 
 <div class="responses">
@@ -1004,6 +1085,7 @@ Gatekeeping
 	  [[Chaos.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: That’s kind of rude. [noexit] {"position":"3193,1538","size":"100,100"}
@@ -1097,6 +1179,7 @@ Gatekeeping
 
 
 :: I want to know who you are. {"position":"4832,1684","size":"100,100"}
+<<nobr>>
 <<message "Many do. But none have found out. I like it that way.">>
 
 <div class="responses">
@@ -1110,9 +1193,11 @@ Gatekeeping
 	  [[I envy your anonymity.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I want to know how you’re such a pain. {"position":"5137,1684","size":"100,100"}
+<<nobr>>
 <<message "Years of practice. It’s my most treasured hobby.">>
 
 <div class="responses">
@@ -1126,9 +1211,11 @@ Gatekeeping
 	  [[Can you teach me sometime?]]
   </div>
 </div>
+<</nobr>>
 
 
 :: I want to know what you want me to ask. {"position":"5456,1669","size":"100,100"}
+<<nobr>>
 <<message "You can ask whatever you’d like.">>
 
 <div class="responses">
@@ -1142,6 +1229,7 @@ Gatekeeping
 	  [[I’m not even sure what questions I have anymore.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: That sounds lonely. [noexit] {"position":"4682,1834","size":"100,100"}
@@ -1199,6 +1287,7 @@ Gatekeeping
 
 
 :: Where am I? {"position":"5433,1306","size":"100,100"}
+<<nobr>>
 <<message "Where do you want to be? ">>
 
 <div class="responses">
@@ -1212,9 +1301,11 @@ Gatekeeping
 	  [[Where the anarchs live.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Who are you? {"position":"5778,1297","size":"100,100"}
+<<nobr>>
 <<message "That I cannot answer.">>
 
 <div class="responses">
@@ -1228,9 +1319,11 @@ Gatekeeping
 	  [[Of course you can’t.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: How do I get past you? {"position":"6150,1291","size":"100,100"}
+<<nobr>>
 <<message "What makes you think you can?">>
 
 <div class="responses">
@@ -1244,6 +1337,7 @@ Gatekeeping
 	  [[You are insufferable.]]
   </div>
 </div>
+<</nobr>>
 
 
 :: Don’t you know who you are? [noexit] {"position":"5817,1507","size":"100,100"}
@@ -1396,9 +1490,8 @@ You've reached the special page
 				setup.checkHangman("Z");
 				<</script>><</button>>
 		  </div>
-
-		  <p class="hangmanFeedback" id="hangmanFeedback"> o o o o o o </p>
 	  </div>
+		<p class="hangmanFeedback" id="hangmanFeedback"> o o o o o o </p>
 	</div>
 <</nobr>>
 
@@ -1416,20 +1509,19 @@ You've reached the special page
 
 
 :: Manifesto [manifesto] {"position":"3512,2303","size":"100,100"}
-<h3>The NightWeb's Manifesto</h3>
-<p class="manifesto" id="manifesto">If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
+<h3>The NightWeb's Manifesto</h3><p class="manifesto" id="manifesto">If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
 
 Productivity is a fallacy fabricated by the bourgeoisie to exhaust the masses beyond the point of revolution. Service is a cruel mockery of altruism that demands the giving tree to cough up its innards to be mashed into soft green bills. Money is a collective illusion that would die like a fairy if everyone stopped believing in it. And corporate faces will never change their tunes of profit or death without a mountain of change falling into their pockets.
 
 So what’s a burned out, broke, bootless, bona fide bitch to do?
 
-It started with a gentle slip off the reachable internet into the NightWeb, free from prying corporate eyes and pressures to contribute to their twisted sense of purpose.
+First, we slipped off the reachable internet into the NightWeb, free from prying corporate eyes and pressures to contribute to their twisted sense of purpose.
 
-It followed with wealth of knowledge being shared and expanded and refined between emphatically impassioned imbeciles across the web.
+Then, we shared and expanded and refined our wealth of knowledge between emphatically impassioned imbeciles across the web.
 
-It sharpens with targeted strategies to deplatform, defund, and dethrone the reigning elites.
+Now, we target strategies to deplatform, defund, and dethrone the reigning corporations.
 
-And it ends with a collective overhaul of hierarchy and worth-politics.
+And soon we will end with a collective overhaul of hierarchy and worth-politics.
 
 There are those who attack, those who defend, those who provide, those who distribute, and those who do all or none of those things.
 
@@ -1441,7 +1533,3 @@ The NightWeb lies in wait. </p>
 	[[Exit->Passcode]]
 </div>
 <</nobr>>
-
-
-:: Untitled Passage {"position":"2478.3333333333335,1306.6666666666667","size":"100,100"}
-Double-click this passage to edit it.

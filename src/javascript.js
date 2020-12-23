@@ -2,8 +2,8 @@ Macro.add('message', {
   handler: function () { // inside the macro contents -> message text
     var username = '@blackout';
     var avatar = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
-    // Currently unused, but kept if another user message is needed later
-    if (this.args[0].charAt(1) === ':') {
+    var isChat = this.args[0].charAt(1) === ':';
+    if (isChat) {
       var user = this.args[0].charAt(0);
       switch (user) {
         case 'J':
@@ -28,14 +28,25 @@ Macro.add('message', {
       }
     }
     fullText.push(this.args[0]);
-    var html = "<div class='darkMessage' id='darkMessage'>";
-    html += "<div class='avatar'><img class='avatarImg' id='avatarImg' src='" + avatar + "' alt='Avatar'></div>";
-    html += "<div><p class='usernameP' id='usernameP'><b>" + username + "</b></p>";
-    html += "<p id='messageText'>" + " " + "</p></div>";
-    html += "</div>";
+    var html;
+    if(isChat){
+      html = "<div class='chatMessage' id='chatMessage'>";
+      html += "<div class='chatAvatar'><img class='avatarImg' id='avatarImg' src='" + avatar + "' alt='Avatar'></div>";
+      html += "<div class='chatTextCol'><p class='chatUsernameP' id='chatUsernameP'><b>" + username + "</b></p>";
+      html += "<p id='chatMessageText'>" + " " + "</p></div>";
+      html += "</div>";
+    }else{
+      html = "<div class='darkMessage' id='darkMessage'>";
+      html += "<div class='avatar'><img class='avatarImg' id='avatarImg' src='" + avatar + "' alt='Avatar'></div>";
+      html += "<div class='textCol'><p class='usernameP' id='usernameP'><b>" + username + "</b></p>";
+      html += "<p id='messageText'>" + " " + "</p></div>";
+      html += "</div>";
+    }
     $(this.output).wiki(html);
   }
 });
+
+var currPage;
 
 /*
 helper popup messages on the passcode page to help the user
@@ -46,6 +57,7 @@ var initHelper =
   ]; // 'Q:think they have the guts to try some passcodes?'];
 var successHelper =
   [
+    "Q:so... is that it?",
     "M:I can't believe <i>Jax</i> thought that would be a worthwhile reward.",
     "D:If you want to complain, take it to the chat."
   ]; // 'Q:i bet newby doesnt even know how to get there...'];
@@ -96,23 +108,25 @@ var passwordDict = {THO: "D:Why don't you just check the <b>errors</b> <i>tho</i
 
 // phrases for the hangman page
 var hangmanWords = [
-	'Be gay do crime',
+	'Be gay, do crime',
 	'Anarchy',
 	'Eat the rich',
-	'People over profits',
-	'Silence is compliance',
+	'People, over profits',
+	'Silence is, compliance',
 	'Anonymous',
-	'Abolish the police',
+	'Abolish, the police',
 	'Vendetta',
-	'Money is a construct',
-	'All cops are bastards',
-	'This machine kills fascists',
+	'Money is, a construct',
+	'All cops, are bastards',
+	'This machine, kills fascists',
 	'Liberation',
-	'No justice no peace',
-  'Scarcity is a fallacy'];
+	'No justice, no peace',
+  'Scarcity, is a fallacy'];
 var currHangmanIndex = 0;
 var currHangmanWord = '';
+var finalDisplayWord = '';
 var usedWords = [];
+var mq;
 
 var currMessage = '';
 var displayFullMessage = false;
@@ -127,12 +141,27 @@ var numJaxAttempts = 0;
 var fullText=[];
 var scrollDiff = 1000;
 
+var img = [
+  'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',
+  'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large',
+  'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large',
+  'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large'
+];
+
+function preload() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = preload.arguments[i];
+    }
+}
+
 //https://intfiction.org/t/sugarcube-click-anywhere-to-proceed-to-the-next-passage/42454/4
 
 $(document).on(':passageinit', function (ev) {
 	//console.log('clear full text');
 	fullText = [];
   $(this.output).wiki("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+  preload();
 });
 
 // currentHelper: Variable defined in the Twine passages 0 is initial, 1 is sucess, 2 is come, 3 is leave, 4 is coming back from chat
@@ -140,6 +169,7 @@ $(document).on(':passagedisplay', function (ev) {
   // Setup for the Passcode Page
 	if (tags().includes('passcode')) {
 		console.log('at the passcode');
+    currPage="passcode";
 		switch(state.active.variables.currentHelper){
 			case 0: // initial
 				initIndex = 0;
@@ -176,9 +206,7 @@ $(document).on(':passagedisplay', function (ev) {
 
 		document.getElementById('helper').style.display = 'none';
 
-		var invalid = document.getElementById('invalid');
-		invalid.style.opacity = 0;
-		invalid.style.color = 'firebrick';
+		//var invalid = document.getElementById('invalid').innerHTML="";
 
 		numFailedAttempts = 0;
 		if(loadingChats){
@@ -191,25 +219,29 @@ $(document).on(':passagedisplay', function (ev) {
   // Setup for the Chat Page
 	if (tags().includes('chat')) {
 		//console.log('at the chat');
+    currPage="chat";
 		formatMessage(false);
-		var chatMessages = document.getElementsByClassName('darkMessage');
-		for(var i = 0; i < chatMessages.length; i++)
+		//var chatMessages = document.getElementsByClassName('chatMessage');
+    var chatScroll = document.getElementById('chatScroll');
+    var chatMessages = chatScroll.children;
+    for(var i = 1; i < chatMessages.length; i++)
 		{
 			chatMessages[i].style.display = 'none';
 		}
-		chats = setTimeout(revealMessage, 900, chatMessages, 0);
-		loadingChats = true;
+		chats = setTimeout(revealMessage, 900, chatScroll, 1, 0, 0);
+		loadingChats = false;//true;
 		return;
 	}
 
   // Setup for the Hangman Page
 	if (tags().includes('hangman')) {
+    currPage="hangman";
 		document.getElementById('hangmanFeedback').style.color = 'darkgrey';
      currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length));
 		 var word = hangmanWords[currHangmanIndex];
      currHangmanWord = word;
      console.log(word);
-     hangmanWords.splice(currHangmanIndex, 1); //remove from main arrays
+     hangmanWords.splice(currHangmanIndex, 1); //remove from main array
      usedWords.push(word);
      if(hangmanWords.length == 0){
        hangmanWords = usedWords;
@@ -217,27 +249,52 @@ $(document).on(':passagedisplay', function (ev) {
      }
 
 		 var displayWord = '';
-     var newln = false;
+     var hiddenWord = '';
+     //var wordStart = 0;
+     var lineStart = 0;
+     var lineLength = 0;
+     var longestLine = 0;
 	   for (var j = 0; j < word.length; j++) {
-			 if(word.charAt(j) != ' ') {
-			 	displayWord += ' _';
-			 }
-			 else{
-         if(j >= 8 && !newln){
-           displayWord += " <br>";
-           newln = true;
-         }else{
-           displayWord += '  ';
+       var currChar = word.charAt(j);
+       if(currChar == ','){
+         displayWord += ' <br>';
+         hiddenWord += ' <br>';
+         j++;
+         lineLength = displayWord.length - lineStart - 4;
+         if(lineLength>longestLine){
+           longestLine = lineLength;
          }
-			 }
+         lineStart = displayWord.length;
+         //wordStart = j+1;
+       }
+       else if(word.charAt(j) == ' '){
+         //console.log("finished word "+word.substring(wordStart,j));
+         displayWord += '  ';
+         hiddenWord += '  ';
+         //wordStart = j+1;
+       }
+       else{
+         displayWord += ' _';
+         hiddenWord += ' ' + word.charAt(j);
+       }
 		 }
      displayWord += ' ';
+     lineLength = displayWord.length-lineStart;
+     if(lineLength>longestLine){
+       longestLine = lineLength;
+     }
+     finalDisplayWord = hiddenWord + ' ';
+     finalDisplayWord = finalDisplayWord.toUpperCase();
+     fitText(longestLine);
+
+
 		document.getElementById('hangmanWord').innerHTML = displayWord;
 		return;
 	}
 
   // Setup for the Manifesto Page
 	if(tags().includes('manifesto')){
+    currPage="manifesto";
 		displayFullMessage = false;
 		responsesDisplayed = false;
 		messageDisplayed = false;
@@ -253,6 +310,8 @@ $(document).on(':passagedisplay', function (ev) {
 	if(tags().includes('other')){
 		return;
 	}
+
+  currPage="discussion";
 
 	if(state.active.title == 'Enter'){
 		console.log('chatting with JAX: attempt '+numJaxAttempts);
@@ -273,6 +332,36 @@ $(document).on(':passagedisplay', function (ev) {
 	setTimeout(typeText, 700, fullText[0], 0, state.active.title);
 });
 
+// Fit hangman word inside div if too long
+function fitText(longestLine){
+//return;
+  var defaultAdjust = 7; //vw
+  var defaultBig = 60;//px
+  var bigScreenThresh = 800; //px
+
+  //mq = window.matchMedia("(min-width: 800px)");
+    //mq.addListener(WidthChange);
+  //if(currPage == "hangman"){
+    var wordDiv = document.getElementById('hangmanWord');
+    if(longestLine >= 25){
+        //longer than 25
+        // if(mq.matches)
+        //   wordDiv.style.fontSize = "40px";
+        // else
+          wordDiv.style.fontSize = "calc(14px + 1.4vw)";
+    }else if(longestLine >= 20){
+        //longer than 20
+          wordDiv.style.fontSize = "calc(16px + 1.6vw)";
+    }else if(longestLine >= 15){
+          //longer than 15
+          wordDiv.style.fontSize = "calc(18px + 1.8vw)";
+    }else{
+        //shorter than 15
+          wordDiv.style.fontSize = "calc(20px + 2vw)";
+    }
+//  }
+}
+
 // Update scroll on Chat Page
 function updateScroll(){
     var element = document.getElementById('chatScroll');
@@ -282,70 +371,115 @@ function updateScroll(){
 }
 
 // Reveal messages in Chat Page
-function revealMessage(messages, index){
-	var message = fullText[index];
-	var user = message.charAt(0);
-	var avatar = messages[index].children[0];
-	var avatarImg = avatar.children[0];
-	var text = messages[index].children[1];
-	var username = text.children[0];
-	var messageText = text.children[1];
-  	switch(user){
-				//Jax #4E4256
-				case 'J':
-					username.children[0].innerHTML = '@blackout';
-					avatarImg.src = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
-					messages[index].style.backgroundColor = '#4E4256';
-					messages[index].style.borderColor = '#2C1D36'
-					break;
-				//Daeka #425653
-				case 'D':
-					username.children[0].innerHTML = '@cyborgrip';
-					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
-					messages[index].style.backgroundColor = '#425653';
-					messages[index].style.borderColor = '#1D3630'
-					break;
-				//Quinn #56424B
-				case 'Q':
-					username.children[0].innerHTML = '@calikilly';
-					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
-					messages[index].style.backgroundColor = '#56424B';
-					messages[index].style.borderColor = '#361D28';
-					break;
-				//Mouse #564C42
-				case 'M':
-					username.children[0].innerHTML = '@snakebait';
-					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
-					messages[index].style.backgroundColor = '#564C42';
-					messages[index].style.borderColor = '#36291D'
-					break;
-				default:
-					username.children[0].innerHTML = '@anonymous';
-					break;
-			}
-	messageText.innerHTML = message.substring(2);
-	messages[index].style.display = 'flex';
-	updateScroll();
-	if(index+1 < messages.length){
-		var mLen = message.substring(2).length;
-		if(mLen < 10){
-			mLen = 10;
-		}
-		var randTime = Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
-		chats = setTimeout(revealMessage, randTime, messages, index+1);
-		loadingChats = true;
-	}else {
-		loadingChats = false;
-	}
+function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
+  var toDisplay = scroll.children[scrollIndex];
+  var newIndex = scrollIndex+1;
+  console.log(toDisplay.className);
+  if(toDisplay.className == "chatNotif"){
+    console.log("notif "+scrollIndex);
+    toDisplay.style.display = 'block';
+    updateScroll();
+  	if(newIndex < scroll.children.length){
+  		chats = setTimeout(revealMessage, chatNotifWait, scroll, newIndex, textIndex, 0);
+  		loadingChats = true;
+  	}else {
+  		loadingChats = false;
+      console.log("chat end");
+  	}
+  }else{
+    console.log("message "+scrollIndex);
+  	var message = fullText[textIndex];
+  	var user = message.charAt(0);
+  	var avatar = toDisplay.children[0];
+  	var avatarImg = avatar.children[0];
+  	var text = toDisplay.children[1];
+  	var username = text.children[0];
+  	var messageText = text.children[1];
+    	switch(user){
+  				//Jax #4E4256
+  				case 'J':
+  					username.children[0].innerHTML = '@blackout';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
+  					toDisplay.style.backgroundColor = '#4E4256';
+  					toDisplay.style.borderColor = '#2C1D36'
+  					break;
+  				//Daeka #425653
+  				case 'D':
+  					username.children[0].innerHTML = '@cyborgrip';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
+  					toDisplay.style.backgroundColor = '#425653';
+  					toDisplay.style.borderColor = '#1D3630'
+  					break;
+  				//Quinn #56424B
+  				case 'Q':
+  					username.children[0].innerHTML = '@calikilly';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
+  				  toDisplay.style.backgroundColor = '#56424B';
+  					toDisplay.style.borderColor = '#361D28';
+  					break;
+  				//Mouse #564C42
+  				case 'M':
+  					username.children[0].innerHTML = '@snakebait';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
+  					toDisplay.style.backgroundColor = '#564C42';
+  					toDisplay.style.borderColor = '#36291D'
+  					break;
+  				default:
+  					username.children[0].innerHTML = '@anonymous';
+  					break;
+  			}
+  	messageText.innerHTML = message.substring(2);
+    messageText.style.margin = '0';
+    messageText.style.wordSpacing = '-.2vw;';
+    messageText.style.lineHeight = 'calc(10px + 0.5vw)';
+  	toDisplay.style.display = 'flex';
+  	updateScroll();
+  	if(newIndex < scroll.children.length){
+  		var mLen = message.substring(2).length;
+  		if(mLen < 10){
+  			mLen = 10;
+  		}
+  		var randTime = Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
+      if(scroll.children[newIndex].className == 'chatNotif'){
+        chats = setTimeout(revealMessage, 600, scroll, newIndex, textIndex+1, randTime);
+      }else{
+    	  chats = setTimeout(revealMessage, randTime, scroll, newIndex, textIndex+1, 0);
+      }
+      loadingChats = true;
+  	}else {
+  		loadingChats = false;
+      console.log("chat end");
+  	}
+  }
 
+}
+
+function displayFull(){
+  if(!messageDisplayed){
+    displayFullMessage = true;
+  }
 }
 
 // Format the message boxes
 // (format needs to be different for the main discussion and the Chat Page
 // justJax: true if on a discussion tree page, false if on the Chat Page
 function formatMessage(justJax){
-	var i=0;
+  var i=0;
 	var x = [];
+  if(justJax){
+    document.getElementById('darkMessage').addEventListener("click",function(){displayFull();});
+		document.getElementById('messageText').innterHTML = '';
+		var temp2 = document.getElementById('messageText');
+		x.push(temp2);
+	}
+	else{
+		x = document.getElementsByClassName('chatMessageText');
+	}
+	for(i=0;i<x.length;i++){
+		x[i].style.margin = '0';
+	}
+
+  return;
 	if(justJax){
 		var temp = document.getElementById('darkMessage');
 		x=[temp];
@@ -564,8 +698,8 @@ function fadeInResponse(j, currPassage){
 	if(currPassage != state.active.title){
 		return;
 	}
+  var x = document.getElementsByClassName('responses')[0];
 	if(j<1){
-		var x = document.getElementsByClassName('responses')[0];
 		x.style.opacity = j;
 		if (x.style.display == 'none'){
 			x.style.display = 'flex';
@@ -574,8 +708,20 @@ function fadeInResponse(j, currPassage){
 		setTimeout(fadeInResponse, 10, j, currPassage);
 	}
 	else{
+    x.style.opacity = 1;
 		responsesDisplayed = true;
+
+    //makes sure clicking on anywhere in the option will click the link, not just the text
+    var options = x.children;
+    for(var i = 0; i < options.length; i++){
+      var optionLink = options[i].children[0];
+      options[i].addEventListener("click", clickOption.bind(this,optionLink));
+    }
 	}
+}
+
+function clickOption(optionLink){
+  optionLink.click();
 }
 
 // Check for correct passcode on the Passcode Page
@@ -588,20 +734,22 @@ setup.checkPasscode = function checkPasscode(){
 		var last = document.getElementById('textbox-last');
 		var currCode = first.value + mid.value + last.value;
 		document.getElementById('helper').style.display = 'none';
+    document.getElementById('codeFeedback').style.opacity = 1;
 
 		if(normalCode == currCode.toUpperCase()){
        // correct code, proceed to jax discussion tree
-			 document.getElementById('invalid').innerHTML = 'Correct!';
-			 document.getElementById('invalid').style.color = 'lightgreen';
+			 document.getElementById('codeFeedback').innerHTML = 'Correct!';
+			 document.getElementById('codeFeedback').style.color = 'lightgreen';
 			 numJaxAttempts++;
 			 clearTimeout(helperTimeout);
 			 state.display('Enter', this);
+
 			return;
 		}
 		else if(specialCode == currCode.toUpperCase()){
       // correct special code, proceed to secret chat page
-			 document.getElementById('invalid').innerHTML = 'Valid ID';
-			 document.getElementById('invalid').style.color = 'lightblue';
+			 document.getElementById('codeFeedback').innerHTML = 'Valid ID';
+			 document.getElementById('codeFeedback').style.color = 'lightblue';
 			 clearTimeout(helperTimeout);
 			 state.display('Chat', this);
 			return;
@@ -610,12 +758,11 @@ setup.checkPasscode = function checkPasscode(){
       // invalid code, alert user to try again
 			numFailedAttempts++;
 
-			document.getElementById('invalid').style.opacity = 1;
 			if(numFailedAttempts%3 == 1){
-				document.getElementById('invalid').innerHTML = 'Invalid';
+				document.getElementById('codeFeedback').innerHTML = 'Invalid';
 			}
 			else if(numFailedAttempts%3 == 2){
-				document.getElementById('invalid').innerHTML = 'Twice Invalid';
+				document.getElementById('codeFeedback').innerHTML = 'Twice Invalid';
 				if(state.active.variables.currentHelper==0){
 					revealHelper('M:they look kind of clueless to me...', false);
 					state.active.variables.currentHelper = -1;
@@ -623,7 +770,7 @@ setup.checkPasscode = function checkPasscode(){
 			}
 			else if(numFailedAttempts%3 == 0 && numFailedAttempts>0){
 				setup.updateIndex();
-				document.getElementById('invalid').innerHTML = 'Thrice Invalid - New Code Chosen';
+				document.getElementById('codeFeedback').innerHTML = 'Thrice Invalid<br>New Code Chosen';
 			}
 			//document.getElementById('invalid').className ='invalid';
 			//document.getElementById('invalid').style.animation ='flashing 3s linear';
@@ -681,14 +828,14 @@ function revealHelper(helperText, nextMessage){
 			case 0:
 				var isNext = initIndex < initHelper.length-1;
 				var mLen = helperText.length;
-				var randTime = mLen*40;//+500?
+				var randTime = mLen*40 + 300;//+500?
 				helperTimeout = setTimeout(revealHelper, randTime, initHelper[initIndex], isNext);
 				initIndex++;
 				break;
 			case 1:
 				isNext = successIndex < successHelper.length-1;
 				mLen = helperText.length;
-				randTime = mLen*40;//+500?
+				randTime = mLen*40 + 300;//+500?
 				//console.log('time '+randTime);
 				helperTimeout = setTimeout(revealHelper, randTime, successHelper[successIndex], isNext);
 				successIndex++;
@@ -739,14 +886,16 @@ setup.checkHangman = function checkHangman(letterString){
 
 	if(word.indexOf(letter) != -1){
 		var displayedWord = document.getElementById('hangmanWord').innerHTML;
-		var j = 0;
-		for(i = 0; i < word.length; i++)
+    for(i = 0; i < finalDisplayWord.length; i++)
 		{
-			if(word.charAt(i) == letter){
-				var temp = displayedWord.substring(0,j) + letter + displayedWord.substring(j+1,displayedWord.length);
-				displayedWord = temp;
-			}
-			j+=2;
+      var currChar = finalDisplayWord.charAt(i);
+      if(currChar == '<'){//skip break <br>
+        i += 3;
+      }
+      else if(currChar == letter){
+    		var temp = displayedWord.substring(0,i) + letter + displayedWord.substring(i+1,displayedWord.length);
+  			displayedWord = temp;
+      }
 		}
 		document.getElementById('hangmanWord').innerHTML = displayedWord;
 	}
@@ -764,7 +913,8 @@ setup.checkHangman = function checkHangman(letterString){
 			// 	currHangmanIndex = 0;
 			// }
       //currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length()));
-			setTimeout(state.display, 800, 'Passcode');
+      //mq.removeListener(WidthChange);
+      setTimeout(state.display, 800, 'Passcode');
 		}
 	}
 	var buttons = document.getElementsByTagName('button');
@@ -785,6 +935,8 @@ setup.checkHangman = function checkHangman(letterString){
 		// 	currHangmanIndex = 0;
 		// }
 		numJaxAttempts++;
+    //mq.removeListener(WidthChange);
 		setTimeout(state.display, 800, 'Enter');
 	}
+
 };
