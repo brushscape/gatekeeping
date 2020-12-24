@@ -140,8 +140,8 @@ var loadingChats = false;
 var chats;
 var numJaxAttempts = 0;
 var fullText=[];
-var chatScrollDiff = 1.15;
-var manifScrollDiff = 1.25;
+var chatScrollDiff = 1.05;
+var manifScrollDiff = 1.1;
 
 var img = [
   'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',

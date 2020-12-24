@@ -153,7 +153,7 @@ a:hover{
 	flex-direction: row;
   margin: 2vw 0;
 	padding: 1vw;
-	font-size: calc(8px + 0.5vw);
+	font-size: calc(10px + 0.5vw);
 	text-align: justify;
 	width:inherit;
 }
@@ -170,7 +170,7 @@ a:hover{
 
 .chatMessageText{ /*Not working for some reason. set in javascript*/
 	margin: 0;
-	line-height: calc(12px + 0.5vw);
+	line-height: calc(14px + 0.5vw);
 }
 
 .chatUsernameP{
@@ -341,7 +341,7 @@ button[disabled]{
 .helper {
 	display: flex;
   flex-direction: row;
-  font-size: calc(8px + 0.7vw);
+  font-size: calc(10px + 0.7vw);
 	left: 50%; /* centers on x axis */
 	padding: 1vw;
 	position: fixed;
