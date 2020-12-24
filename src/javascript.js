@@ -375,19 +375,20 @@ function crypticBackground(){
     var div = document.createElement("div");
 
     var currCodeToDisplay = passcodes[i%(passcodes.length)];
-    var size = (Math.random() * 3)+1;
+    var size = (Math.random() * 1)+0.5;
+    var smallest = '10px';
     var x = (Math.random() * 100);
     var y = (Math.random() * 100);
     var delay = (Math.random() * 20)-10;
-    var length = 20;
+    var length = 15;
     var direction = Math.floor(Math.random() * 4);
 
 
     var innerText = currCodeToDisplay;
 
-    div.style.fontSize = size +'vw';
-    div.style.lineHeight = size*2 +'vw';
-    div.style.letterSpacing = size*1.5 +'vw';
+    div.style.fontSize = 'calc('+smallest + ' + '+size +'vw)';
+    div.style.lineHeight = 'calc('+smallest + ' + '+size*4 +'vw)';
+    div.style.letterSpacing = 'calc('+smallest + ' + '+size*2.5 +'vw)';
     div.style.opacity = '0.2';
     div.style.overflow = 'hidden';
     div.className = currCodeToDisplay;
