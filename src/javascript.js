@@ -551,7 +551,8 @@ function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
   	messageText.innerHTML = message.substring(2);
     messageText.style.margin = '0';
     messageText.style.wordSpacing = '-.2vw;';
-    messageText.style.lineHeight = 'calc(10px + 0.5vw)';
+    messageText.style.lineHeight = 'calc(15px + 0.5vw)';
+    messageText.style.padding = '0.5vw';
   	toDisplay.style.display = 'flex';
   	updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
   	if(newIndex < scroll.children.length){

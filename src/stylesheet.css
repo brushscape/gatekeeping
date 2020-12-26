@@ -170,7 +170,6 @@ a:hover{
 
 .chatMessageText{ /*Not working for some reason. set in javascript*/
 	margin: 0;
-	line-height: calc(14px + 0.5vw);
 }
 
 .chatUsernameP{
