@@ -766,7 +766,7 @@ Gatekeeping
 		<<message "J:You're just here to maul some corporates &#128520">>
 		<<message "Q:damn right i am">>
 		<<message "D:sigh I need to separate you two">>
-		<<message "M:good luck. you're better off separating yourself &#x270C&#128405">>
+		<<message "M:good luck. you're better off separating yourself &#9996&#128405">>
 		<p class="chatNotif">@snakebait has left the chat</p>
 		<<message "J:lol poor baby got their feelings hurt">>
 		<<message "D:One of these days you're going to do something they won't forgive you for">>
