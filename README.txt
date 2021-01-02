@@ -1,4 +1,4 @@
-Code for the gatekeeping game
+Code for Gatekeeping game
 
 All my original code in src folder (Twee file, Javascript, and CSS stylesheet)
 
