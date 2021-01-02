@@ -1,0 +1,31 @@
+
+Here are all the secrets:
+
+Passcode Page:
+  You can get the passcode one of three ways.
+  1. all the codes are floating in the background and the current code is the darkest opacity
+  2. the current code is italicized in the helper popup messages
+  3. if you open up the inspector on the html page, the code is printed to console
+  All together, they spell out a sentence. It just loops through the sentence by 3's to get the passcodes.
+
+Discussion Tree:
+  There are three outcomes to the discussion.
+    1. you piss them off and get sent back to the passcode
+    2. you intrigue them and they send you to the puzzle
+    3. you impress them and they let you to the reward
+  The easiest ways to get to the reward are either to be genuinely curious or be an aloof asshole. They think the latter is hilarious.
+  If you tap on the message bubble, you can skip through the typing effect.
+
+Puzzle Page:
+  Obviously, the puzzle is hangman.
+  The phrases are also printed to console, but that's usually more trouble than it's worth. Playing the game is faster.
+  Worst case scenario, you get sent back to the passcode.
+
+Chat Page:
+  The secret passcode to get here is italicized in a helper popup when you get back from the reward page.
+  It's their name, so if you know that, you don't even have to wait lol.
+  And it's also printed to console, so if you aren't familiar with my OCs, you can look there.
+
+And I think that's all the secrets? If you get stuck at any point and want to know why, you can always dm me.
+And if you notice any bugs, please dm me so I can fix them. Knowing the specific circumstances around the bug is very helpful.
+But yeah, I think that's all I got.

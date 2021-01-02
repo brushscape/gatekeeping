@@ -86,25 +86,25 @@ var helperTimeout;
 
 // though the rich are drunk on money, your parched lips won't taste a drop
 // dictionary for the passcodes and their corresponding helper messages
-var passwordDict = {THO: "D:Why don't you just check the <b>errors</b> <i>tho</i>",
+var passwordDict = {THO: "D:I <i>tho</i>ught it would go faster",
 										UGH: "Q:<i>ugh</i> ur not very good at this r u",
-										THE: "M:didnt think <i>the</i> code would be this hard",
+										THE: "M:I didnt think <i>the</i> code would be this hard",
 										RIC: "D:Can't you see the t<i>ric</i>k",
 										HAR: "M:how <i>har</i>d are you going to make me <i>har</i>p on you",
 										EDR: "Q:this has last<i>ed r</i>eally long",
-										UNK: "D:u should try being more p<i>unk</i>",
+										UNK: "D:You seem to be in a f<i>unk</i>",
 										ONM: "M:at this rate you’ll have to put in a t<i>on m</i>ore",
-										ONE: "M:<i>one</i> more fail and you're back here again",
-										YYO: "D:This could be the da<i>y yo</i>u <b>inspect</b> a little closer",
-										URP: "D:We're not here to <b>console</b> yo<i>ur p</i>itiful ego",
-										ARC: "M:arent you almost done with this <i>arc</i>?",
-										HED: "D:I wonder if any of these matc<i>hed</i>...",
-										LIP: "M:you better be givin them <i>lip</i> otherwise whats the point",
-										SWO: "Q:think u can get em to get me a <i>swo</i>rd?",
-										NTT: "Q:they probs w<i>ont t</i>ake the chance",
-										AST: "Q:im too prone to take <i>a st</i>ab",
-										EAD: "M:you know we're not the only l<i>ead</i>",
-										ROP: "D:a c<i>rop</i> of <b>logs</b> are waiting for you"};
+										ONE: "D:Maybe try <i>one</i> more time",
+										YYO: "D:There's no need to do this b<i>y yo</i>urself",
+										URP: "M:we're not here to console yo<i>ur p</i>itiful ego",
+										ARC: "M:if you dont get this soon, I'm m<i>arc</i>hing out of here",
+										HED: "Q:i wanna s<i>hed</i> my promise to be here",
+										LIP: "M:you'd better be giving them <i>lip</i> in there",
+										SWO: "D:I wish I wasn't <i>swo</i>rn to secrecy",
+										NTT: "M:I ca<i>nt t</i>ell you hints forever",
+										AST: "M:it's <i>a st</i>rain to come up with these sentences",
+										EAD: "M:why did I agree to this? they didnt even pl<i>ead</i>",
+										ROP: "D:I'm not sure how I was <i>rop</i>ed into this either"};
 //var passCryptDict = {};
 
 // phrases for the hangman page
@@ -144,10 +144,10 @@ var chatScrollDiff = 0.95;
 var manifScrollDiff = 1;
 
 var img = [
-  'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',
-  'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large',
-  'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large',
-  'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large'
+  'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small',
+  'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
+  'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
+  'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
 ];
 var imgLoaded = false;
 
@@ -201,18 +201,18 @@ $(document).on(':passagedisplay', function (ev) {
 				successIndex++;
 				break;
 			case 2: // coming from Come Back State
+        comeIndex++;
+        if(comeIndex >= comeHelper.length){
+          comeIndex = 0;
+        }
 				helperTimeout = setTimeout(revealHelper, 700, comeHelper[comeIndex], false);
-				comeIndex++;
-				if(comeIndex >= comeHelper.length){
-					comeIndex = 0;
-				}
 				break;
 			case 3: // coming from Leave State
+        leaveIndex++;
+        if(leaveIndex >= leaveHelper.length){
+          leaveIndex = 0;
+        }
 				helperTimeout = setTimeout(revealHelper, 700, leaveHelper[leaveIndex], false);
-				leaveIndex++;
-				if(leaveIndex >= leaveHelper.length){
-					leaveIndex = 0;
-				}
 				break;
 			case 4: // coming from Secret Chat State
 				helperTimeout = setTimeout(revealHelper, 700, chatHelper, false);
@@ -487,8 +487,8 @@ function fitText(longestLine){
 
 // Update scroll on Chat Page
 function updateScroll(element,scrollDiff){
-    console.log("amount: "+(element.scrollHeight - element.scrollTop) );
-    console.log("limit: "+(window.screen.height / scrollDiff));
+    //console.log("amount: "+(element.scrollHeight - element.scrollTop) );
+    //console.log("limit: "+(window.screen.height / scrollDiff));
 		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
     	element.scrollTop = element.scrollHeight;
 		}
@@ -671,6 +671,7 @@ function formatMessage(justJax){
 
 // allows you to skip before the timeout on the discussion tree pages without response options and the typing out
 function listenForClick(){
+  return;
 		if(delayedLoadSet){
 			 clearTimeout(delayedLoad);
 			 delayedLoad = undefined;
@@ -1035,7 +1036,7 @@ setup.checkHangman = function checkHangman(letterString){
 			document.getElementById('hangmanFeedback').innerHTML = 'FAILED';
 			document.getElementById('hangmanFeedback').style.color = 'crimson';
 			setup.updateIndex();
-			state.active.variables.currentHelper = 2;
+			state.active.variables.currentHelper = 2; //coming from puzzle
 			// currHangmanIndex++;
 			// if(currHangmanIndex >= hangmanWords.length){
 			// 	currHangmanIndex = 0;

@@ -588,25 +588,25 @@ var helperTimeout;
 
 // though the rich are drunk on money, your parched lips won't taste a drop
 // dictionary for the passcodes and their corresponding helper messages
-var passwordDict = {THO: "D:Why don't you just check the <b>errors</b> <i>tho</i>",
+var passwordDict = {THO: "D:I <i>tho</i>ught it would go faster",
 										UGH: "Q:<i>ugh</i> ur not very good at this r u",
-										THE: "M:didnt think <i>the</i> code would be this hard",
+										THE: "M:I didnt think <i>the</i> code would be this hard",
 										RIC: "D:Can't you see the t<i>ric</i>k",
 										HAR: "M:how <i>har</i>d are you going to make me <i>har</i>p on you",
 										EDR: "Q:this has last<i>ed r</i>eally long",
-										UNK: "D:u should try being more p<i>unk</i>",
+										UNK: "D:You seem to be in a f<i>unk</i>",
 										ONM: "M:at this rate you’ll have to put in a t<i>on m</i>ore",
-										ONE: "M:<i>one</i> more fail and you're back here again",
-										YYO: "D:This could be the da<i>y yo</i>u <b>inspect</b> a little closer",
-										URP: "D:We're not here to <b>console</b> yo<i>ur p</i>itiful ego",
-										ARC: "M:arent you almost done with this <i>arc</i>?",
-										HED: "D:I wonder if any of these matc<i>hed</i>...",
-										LIP: "M:you better be givin them <i>lip</i> otherwise whats the point",
-										SWO: "Q:think u can get em to get me a <i>swo</i>rd?",
-										NTT: "Q:they probs w<i>ont t</i>ake the chance",
-										AST: "Q:im too prone to take <i>a st</i>ab",
-										EAD: "M:you know we're not the only l<i>ead</i>",
-										ROP: "D:a c<i>rop</i> of <b>logs</b> are waiting for you"};
+										ONE: "D:Maybe try <i>one</i> more time",
+										YYO: "D:There's no need to do this b<i>y yo</i>urself",
+										URP: "M:we're not here to console yo<i>ur p</i>itiful ego",
+										ARC: "M:if you dont get this soon, I'm m<i>arc</i>hing out of here",
+										HED: "Q:i wanna s<i>hed</i> my promise to be here",
+										LIP: "M:you'd better be giving them <i>lip</i> in there",
+										SWO: "D:I wish I wasn't <i>swo</i>rn to secrecy",
+										NTT: "M:I ca<i>nt t</i>ell you hints forever",
+										AST: "M:it's <i>a st</i>rain to come up with these sentences",
+										EAD: "M:why did I agree to this? they didnt even pl<i>ead</i>",
+										ROP: "D:I'm not sure how I was <i>rop</i>ed into this either"};
 //var passCryptDict = {};
 
 // phrases for the hangman page
@@ -646,10 +646,10 @@ var chatScrollDiff = 0.95;
 var manifScrollDiff = 1;
 
 var img = [
-  'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large',
-  'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large',
-  'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large',
-  'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large'
+  'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small',
+  'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
+  'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
+  'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
 ];
 var imgLoaded = false;
 
@@ -703,18 +703,18 @@ $(document).on(':passagedisplay', function (ev) {
 				successIndex++;
 				break;
 			case 2: // coming from Come Back State
+        comeIndex++;
+        if(comeIndex >= comeHelper.length){
+          comeIndex = 0;
+        }
 				helperTimeout = setTimeout(revealHelper, 700, comeHelper[comeIndex], false);
-				comeIndex++;
-				if(comeIndex >= comeHelper.length){
-					comeIndex = 0;
-				}
 				break;
 			case 3: // coming from Leave State
+        leaveIndex++;
+        if(leaveIndex >= leaveHelper.length){
+          leaveIndex = 0;
+        }
 				helperTimeout = setTimeout(revealHelper, 700, leaveHelper[leaveIndex], false);
-				leaveIndex++;
-				if(leaveIndex >= leaveHelper.length){
-					leaveIndex = 0;
-				}
 				break;
 			case 4: // coming from Secret Chat State
 				helperTimeout = setTimeout(revealHelper, 700, chatHelper, false);
@@ -989,8 +989,8 @@ function fitText(longestLine){
 
 // Update scroll on Chat Page
 function updateScroll(element,scrollDiff){
-    console.log("amount: "+(element.scrollHeight - element.scrollTop) );
-    console.log("limit: "+(window.screen.height / scrollDiff));
+    //console.log("amount: "+(element.scrollHeight - element.scrollTop) );
+    //console.log("limit: "+(window.screen.height / scrollDiff));
 		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
     	element.scrollTop = element.scrollHeight;
 		}
@@ -1173,6 +1173,7 @@ function formatMessage(justJax){
 
 // allows you to skip before the timeout on the discussion tree pages without response options and the typing out
 function listenForClick(){
+  return;
 		if(delayedLoadSet){
 			 clearTimeout(delayedLoad);
 			 delayedLoad = undefined;
@@ -1537,7 +1538,7 @@ setup.checkHangman = function checkHangman(letterString){
 			document.getElementById('hangmanFeedback').innerHTML = 'FAILED';
 			document.getElementById('hangmanFeedback').style.color = 'crimson';
 			setup.updateIndex();
-			state.active.variables.currentHelper = 2;
+			state.active.variables.currentHelper = 2; //coming from puzzle
 			// currHangmanIndex++;
 			// if(currHangmanIndex >= hangmanWords.length){
 			// 	currHangmanIndex = 0;
@@ -2060,44 +2061,50 @@ setup.checkHangman = function checkHangman(letterString){
 &lt;div class=&quot;chatPage&quot;&gt;
   &lt;div class=&quot;chatScroll&quot; id=&quot;chatScroll&quot;&gt;
   	&lt;p class=&quot;chatNotif&quot;&gt;@anonymousbird has entered the chat&lt;/p&gt;
-		&lt;&lt;message &quot;M:good luck. you&#39;re better off separating yourself &amp;#9996&amp;#128405&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:So... what was the point of all this?&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:Jax wanted a powertrip&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:this was the most obnoxious way to spread a manifesto. great job Jax &amp;#128579&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:I doubt that was the primary purpose of this...&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:you&#39;re probably right. I bet they just wanted a powertrip&quot;&gt;&gt;
 		&lt;&lt;message &quot;Q:this is a boring powertrip&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Quinn&#39;s kind of right. The stakes were very low.&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:Maybe to you&quot;&gt;&gt;
 		&lt;&lt;message &quot;M:the hell is that supposed to mean?&quot;&gt;&gt;
-		&lt;&lt;message &quot;J:I added anyone who played to my botnet. The game gives me time to hack into their machines &amp;#128521&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Well shit. How many do you have?&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:I added anyone who played to my botnet. The game gives me time to upload the virus &amp;#128521&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:Well shit. How many did you add?&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:Wouldn&#39;t you like to know &amp;#128527&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:I don&#39;t know why I expected a straight answer...&quot;&gt;&gt;
 		&lt;&lt;message &quot;Q:whats a botnet&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Jax is basically zombifying people&#39;s computer so that they can steal computing power&quot;&gt;&gt;
-		&lt;&lt;message &quot;Q:oh shit!! ur making zombies?!&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:It&#39;s basically when you zombifying people&#39;s computers so you can steal computing power&quot;&gt;&gt;
+		&lt;&lt;message &quot;Q:oh shit!! jax is makin zombies?!&quot;&gt;&gt;
 		&lt;&lt;message &quot;M:it&#39;s not as cool as it sounds&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:It is exactly as cool as it sounds. You just don&#39;t give a shit about computers&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:why should I? we have enough reclusive circuit nuts without me caring about motherboards&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:Those were some cute buzzwords, facer. &amp;#128527 Want to see how they&#39;re actually used?&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:Jax...&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:What?! What&#39;s a little demonstration amongst friends &amp;#128521&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:**comrades. at best.&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:Ouch&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:Damn, this little mouse bites &amp;#128556 You show those teeth to your followers?&quot;&gt;&gt;
+		&lt;&lt;message &quot;Q:and here i thought facers needed to be likable&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:i don&#39;t need to waste my charisma on you &amp;#128405&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:Tell that to your stream. Cuz you just went live &amp;#128526&amp;#128073&amp;#128073&quot;&gt;&gt;
 		&lt;&lt;message &quot;M:WTF JAX GET OFF MY COMPUTER&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:How the hell are you on Mouse&#39;s machine?&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:you are so goddamn lucky that was only on test mode. I would have killed you if that had gone public&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:...what is happening?&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:you are so goddamn lucky that was still on test mode. I would have killed you if that had gone public&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:HA! You should have seen the look on your face tho &amp;#128514&amp;#128514&amp;#128514&quot;&gt;&gt;
-		&lt;&lt;message &quot;Q:no fair! i wanna see Mouse looking stupid&quot;&gt;&gt;
+		&lt;&lt;message &quot;Q:no fair! i wanna see mouse lookin stupid&quot;&gt;&gt;
 		&lt;&lt;message &quot;M:&amp;#128405&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Guys, seriously, can you not?&quot;&gt;&gt;
-		&lt;&lt;message &quot;Q:omfg mouse looks like they just shit their pants&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:I turned off my camera, you little shit! wtf are you talking about?!&quot;&gt;&gt;
-		&lt;&lt;message &quot;Q:jax sent me a screenshot&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:JAX&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Jax...&quot;&gt;&gt;
-		&lt;&lt;message &quot;J:&amp;#128514 What?! It&#39;s funny&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:How do you even have access to Mouse&#39;s account?&quot;&gt;&gt;
-		&lt;&lt;message &quot;J:Dude, I hacked you all ages ago. Though I&#39;d hardly call Mouse&#39;s a hack. They use the same password for everything smh&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:blame SilCore. they manage all my accounts&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Guess it&#39;s time to comb my OS for Jax-shaped viruses &amp;#128579&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:Dude, they are trivial to hack. They use the same password for everything smh&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:And their camera?&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:How else am I supposed to keep an eye on you guys &amp;#128521&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:um, you&#39;re not???&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:Guess it&#39;s time to comb my OS for Jax-shaped viruses again &amp;#128579&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:It&#39;s cute you think you can get rid of me &amp;#128536&quot;&gt;&gt;
 		&lt;&lt;message &quot;Q:when r u gonna teach me how to mess with mouse like that&quot;&gt;&gt;
-		&lt;&lt;message &quot;J:Oh easy. Just run &lt;u&gt;this link&lt;/u&gt; whenever you want to give them a heartattack &amp;#128521&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:Oh easy. Running &lt;u&gt;this&lt;/u&gt; gets you into their camera and &lt;u&gt;this&lt;/u&gt; uploads screenshots to their feed&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:I&#39;m sure you can figure out how to give them a heartattack from there &amp;#128521&quot;&gt;&gt;
+		&lt;&lt;message &quot;Q:nice&quot;&gt;&gt;
 		&lt;&lt;message &quot;M:JAX&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Quinn, don&#39;t run that. Don&#39;t be a script kiddie&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:Quinn, don&#39;t touch that link! Don&#39;t be a script kiddie!&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:**script kitty &amp;#128514&amp;#128514&amp;#128514&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:Jax stfu&quot;&gt;&gt;
 		&lt;&lt;message &quot;Q:like this?&quot;&gt;&gt;
@@ -2110,21 +2117,21 @@ setup.checkHangman = function checkHangman(letterString){
 		&lt;&lt;message &quot;Q:lol&quot;&gt;&gt;
 		&lt;&lt;message &quot;M:do you want me to start harassing you back, you cocky egotistical embodiment of a god-complex?&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:It&#39;s cute you think you can hurt me &amp;#128536&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:I hate you &amp;#128579&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:You don&#39;t even care about radicalizing any of these people do you?&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:Do you even care about radicalizing these people?&quot;&gt;&gt;
 		&lt;&lt;message &quot;J:I thought that was your job &amp;#128533&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:It&#39;s all our jobs? That&#39;s kind of the point???&quot;&gt;&gt;
-		&lt;&lt;message &quot;Q:whats the point?&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:don&#39;t worry about it. it&#39;s not like you care&quot;&gt;&gt;
-		&lt;&lt;message &quot;D:Yeah, no one&#39;s really expecting you to be invested in theology Quinn&quot;&gt;&gt;
-		&lt;&lt;message &quot;J:You&#39;re just here to maul some corporates &amp;#128520&quot;&gt;&gt;
+		&lt;&lt;message &quot;Q:i thought the point was eating the rich&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:that&#39;s a metaphor, dumbass&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:Is it?&quot;&gt;&gt;
+		&lt;&lt;message &quot;D:Mostly. Though I&#39;m not really expecting Quinn to be invested in theology&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:They&#39;re just here to maul some corporates &amp;#128520&quot;&gt;&gt;
 		&lt;&lt;message &quot;Q:damn right i am&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:sigh I need to separate you two&quot;&gt;&gt;
-		&lt;&lt;message &quot;M:good luck. you&#39;re better off separating yourself &amp;#65039&amp;#128405&quot;&gt;&gt;
+		&lt;&lt;message &quot;M:good luck. you&#39;re better off separating yourself &amp;#9996&amp;#128405&quot;&gt;&gt;
 		&lt;p class=&quot;chatNotif&quot;&gt;@snakebait has left the chat&lt;/p&gt;
 		&lt;&lt;message &quot;J:lol poor baby got their feelings hurt&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:One of these days you&#39;re going to do something they won&#39;t forgive you for&quot;&gt;&gt;
-		&lt;&lt;message &quot;J:¯\_(ツ)_/¯ cross that bridge and all that &amp;#128521&quot;&gt;&gt;
+		&lt;&lt;message &quot;J:¯\\_(ツ)_/¯ cross that bridge and all that &amp;#128521&quot;&gt;&gt;
 		&lt;&lt;message &quot;D:Don&#39;t say I didn&#39;t warn you&quot;&gt;&gt;
 		&lt;p class=&quot;chatNotif&quot;&gt;@cyborgrip has left the chat&lt;/p&gt;
 		&lt;&lt;message &quot;J:You leaving too, you little traitor?&quot;&gt;&gt;
