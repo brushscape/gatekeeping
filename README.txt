@@ -1,6 +1,10 @@
-code for the gatekeeping game
+Code for the gatekeeping game
 
-Javascript and CSS stylesheet
+Twee file, Javascript, and CSS stylesheet
+
+Playable at https://brushscape.neocities.org/story.html
+
+See cheats and tricks in cheats-tricks.txt file 
 
 
 Helpful links:
