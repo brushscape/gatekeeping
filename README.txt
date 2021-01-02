@@ -1,6 +1,6 @@
 Code for the gatekeeping game
 
-Twee file, Javascript, and CSS stylesheet
+All my original code in src folder (Twee file, Javascript, and CSS stylesheet)
 
 Playable at https://brushscape.neocities.org/story.html
 
