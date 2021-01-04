@@ -707,9 +707,9 @@ Gatekeeping
 <div class="chatPage">
   <div class="chatScroll" id="chatScroll">
   	<p class="chatNotif">@anonymousbird has entered the chat</p>
-		<<message "M:this was the most obnoxious way to spread a manifesto. great job Jax &#128579">>
-		<<message "D:I doubt that was the primary purpose of this...">>
-		<<message "M:you're probably right. I bet they just wanted a powertrip">>
+		<<message "M:this was an obnoxious way to spread a manifesto">>
+		<<message "D:I doubt that was the main purpose of this...">>
+		<<message "M:I bet they just wanted a powertrip">>
 		<<message "Q:this is a boring powertrip">>
 		<<message "J:Maybe to you">>
 		<<message "M:the hell is that supposed to mean?">>
