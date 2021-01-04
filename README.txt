@@ -4,7 +4,7 @@ All my original code in src folder (Twee file, Javascript, and CSS stylesheet)
 
 Playable at https://brushscape.neocities.org/story.html
 
-See cheats and tricks in cheats-tricks.txt file 
+See cheats and tricks in cheats-tricks.txt file (on mobile? click 'View code' then select 'cheats-tricks.txt')
 
 
 Helpful links:
