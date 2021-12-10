@@ -119,7 +119,7 @@ function revealHelper(helperText, nextMessage){
 	}
 }
 
-
+//controls the floating passwords on the passcode page
 function crypticBackground(){
   var body = document.getElementById("passcodeBody");
   var crypt = document.createElement("div");
