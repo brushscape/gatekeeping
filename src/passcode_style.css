@@ -1,0 +1,150 @@
+/*PASSCODE PAGE*/
+.passcode{
+	  background-color:  #282A2C;
+	  color: whitesmoke; /*text color*/
+	  text-align: center;
+}
+.passcodeBody{
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+}
+.passcodeText{
+  font-size: calc(20px + 3vw);
+	margin-bottom: 2vw;
+	z-index: 1;
+}
+.codeInput{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: stretch;
+	margin: calc(16px + 1.5vw);
+	z-index: 1;
+}
+.codeInputBox{
+	margin: calc(1px + 0.5vw);
+	font-size: calc(15px + 1vw);
+	text-align: center;
+	border-color: whitesmoke;
+}
+.codeFeedback { /*not working for some reason*/
+  color: firebrick;
+  opacity: 0;
+	font-size: calc(15px + 1vw);
+	z-index: 1;
+}
+
+#passages button {
+  background-color: #664180;
+  border-color: #2C1D36;
+	font-size: calc(15px + 1vw);
+	z-index: 1;
+}
+
+.enter{
+  background-color: #A5CCEC;
+}
+
+@keyframes moveDown {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(0, 20vw);
+	}
+}
+@keyframes moveUp {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(0, -20vw);
+	}
+}
+@keyframes moveLeft {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(20vw, 0);
+	}
+}
+@keyframes moveRight {
+	0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+	0%{
+		transform: translate(0, 0);
+	}
+	100%{
+		transform: translate(-20vw, 0);
+	}
+}
+
+/* The helper message box */
+.helper {
+	display: flex;
+  flex-direction: row;
+  font-size: calc(10px + 0.7vw);
+	left: 50%; /* centers on x axis */
+	padding: 1vw;
+	position: fixed;
+  text-align: left;
+	transform: translateX(-50%);
+  width: calc(300px + ((100vw - 300px) * 0.5));
+	margin: 1vw;
+	z-index: 2;
+}
+
+.helperText{
+	margin: 0;
+}
+.allHelperText{
+  flex-grow: 3;
+}
+.helperAvatarImg {
+	align-self: center;
+  border-radius: 50%;
+  height: auto;
+	width: calc(10px + 5vw);
+	margin-right: 2vw;
+}
+/* The close button */
+.closebtn {
+  color: white;
+	cursor: pointer;
+	float: right;
+  font-size: calc(15px + 1vw);;
+	font-weight: bold;
+  line-height: calc(8px + 0.5vw);
+  position: relative;
+	align-items: flex-start;
+	opacity: 0.5;
+	padding: 1vw;
+}
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}

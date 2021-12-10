@@ -1,17 +1,3 @@
-:: StoryTitle
-Gatekeeping
-
-
-:: StoryData
-{
-	"ifid": "BE463596-4EA4-4DF3-8BE6-332196447E64",
-	"format": "SugarCube",
-	"format-version": "2.31.1",
-	"start": "Start",
-	"zoom": 0.6
-}
-
-
 :: Enter {"position":"3029,747","size":"100,100"}
 <<nobr>>
 <<message "Oh my, is that a newbie I spy? What are you doing in this corner of the internet?">>
@@ -28,6 +14,26 @@ Gatekeeping
   </div>
 </div>
 <</nobr>>
+
+:: Come Back [noexit] {"position":"3030,2082","size":"100,100"}
+<<message "Come back another time, little bird. You might belong here someday.">>
+
+<<set $nextPassage = "Fun Puzzle">>
+
+
+:: Leave [noexit] {"position":"3279,2071","size":"100,100"}
+<<message "You're a bore. Get out of here before I make you.">>
+
+<<script>>setup.updateIndex();<</script>>
+<<set $nextPassage = "Passcode">>
+<<set $currentHelper = 3>>
+
+:: Welcome [noexit] {"position":"3514,2068","size":"100,100"}
+<<message "Welcome to the NightWeb, little bird.">>
+
+<<set $nextPassage = "Manifesto">>
+<<set $currentHelper = 1>>
+
 
 
 :: Am I not supposed to be here? {"position":"1045,948","size":"100,100"}
@@ -192,20 +198,6 @@ Gatekeeping
 <<set $nextPassage = "Come Back">>
 
 
-:: Come Back [noexit] {"position":"3030,2082","size":"100,100"}
-<<message "Come back another time, little bird. You might belong here someday.">>
-
-<<set $nextPassage = "Fun Puzzle">>
-
-
-:: Leave [noexit] {"position":"3279,2071","size":"100,100"}
-<<message "You're a bore. Get out of here before I make you.">>
-
-<<script>>setup.updateIndex();<</script>>
-<<set $nextPassage = "Passcode">>
-<<set $currentHelper = 3>>
-
-
 :: What do you mean, play? {"position":"1038,1698","size":"100,100"}
 <<nobr>>
 <<message "What don’t I mean? I’m up for any game, little bird…">>
@@ -330,13 +322,6 @@ Gatekeeping
 <<message "Ha! Standard fare. The anarch revenge club.">>
 
 <<set $nextPassage = "Welcome">>
-
-
-:: Welcome [noexit] {"position":"3514,2068","size":"100,100"}
-<<message "Welcome to the NightWeb, little bird.">>
-
-<<set $nextPassage = "Manifesto">>
-<<set $currentHelper = 1>>
 
 
 :: Why is that? {"position":"2888,1198","size":"100,100"}
@@ -661,168 +646,6 @@ Gatekeeping
 <<message "And that is definitely the wrong question.">>
 
 <<set $nextPassage = "Leave">>
-
-
-:: Start [passcode] {"position":"2956,617","size":"100,100"}
-<<nobr>>
-<<set $currentHelper = 0>>
-<<set $chatPassword = "JAX">>
-<<set $passcodePhrase = "Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop">>
-<<set $currPassIndex = 0>>
-
-<div class="helper" id="helper">
-	<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
-	<div class="allHelperText">
-		<p class="chatUsernameP"><b id="username">
-		</b></p>
-		<p class="helperText" id="helperText">
-			This is an alert box.
-		</p>
-	</div>
-	<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-	</div>
-
-
-<div id="passcodeBody" class="passcodeBody">
-	<p></p>
-	<p></p>
-	<p class="passcodeText">Passcode:</p>
-	<div class="codeInput">
-		<input class="codeInputBox" id="textbox-first" name="textbox-first" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-		<input class="codeInputBox" id="textbox-mid" name="textbox-mid" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-		<input class="codeInputBox" id="textbox-last" name="textbox-last" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	</div>
-	<<button "Enter">><<script>>
-	setup.checkPasscode();
-	<</script>><</button>>
-	<p class=“codeFeedback” id="codeFeedback" style="color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;">Invalid</p>
-
-</div>
-<</nobr>>
-
-
-:: Chat [chat] {"position":"3313,811","size":"100,100"}
-<<nobr>>
-<<set $currentHelper = 4>>
-<div class="chatPage">
-  <div class="chatScroll" id="chatScroll">
-  	<p class="chatNotif">@anonymousbird has entered the chat</p>
-		<<message "M:this was an obnoxious way to spread a manifesto">>
-		<<message "D:I doubt that was the main purpose of this...">>
-		<<message "M:I bet they just wanted a powertrip">>
-		<<message "Q:this is a boring powertrip">>
-		<<message "J:Maybe to you">>
-		<<message "M:the hell is that supposed to mean?">>
-		<<message "J:I added anyone who played to my botnet. The game gives me time to upload the virus &#128521">>
-		<<message "D:Well shit. How many did you add?">>
-		<<message "J:Wouldn't you like to know &#128527">>
-		<<message "D:I don't know why I expected a straight answer...">>
-		<<message "Q:whats a botnet">>
-		<<message "D:It's basically when you zombifying people's computers so you can steal computing power">>
-		<<message "Q:oh shit!! jax is makin zombies?!">>
-		<<message "M:it's not as cool as it sounds">>
-		<<message "J:It is exactly as cool as it sounds. You just don't give a shit about computers">>
-		<<message "M:why should I? we have enough reclusive circuit nuts without me caring about motherboards">>
-		<<message "J:Those were some cute buzzwords, facer. &#128527 Want to see how they're actually used?">>
-		<<message "D:Jax...">>
-		<<message "J:What?! What's a little demonstration amongst friends &#128521">>
-		<<message "M:**comrades. at best.">>
-		<<message "D:Ouch">>
-		<<message "J:Damn, this little mouse bites &#128556 You show those teeth to your followers?">>
-		<<message "Q:and here i thought facers needed to be likable">>
-		<<message "M:i don't need to waste my charisma on you &#128405">>
-		<<message "J:Tell that to your stream. Cuz you just went live &#128526&#128073&#128073">>
-		<<message "M:WTF JAX GET OFF MY COMPUTER">>
-		<<message "D:...what is happening?">>
-		<<message "M:you are so goddamn lucky that was still on test mode. I would have killed you if that had gone public">>
-		<<message "J:HA! You should have seen the look on your face tho &#128514&#128514&#128514">>
-		<<message "Q:no fair! i wanna see mouse lookin stupid">>
-		<<message "M:&#128405">>
-		<<message "D:How do you even have access to Mouse's account?">>
-		<<message "J:Dude, they are trivial to hack. They use the same password for everything smh">>
-		<<message "D:And their camera?">>
-		<<message "J:How else am I supposed to keep an eye on you guys &#128521">>
-		<<message "M:um, you're not???">>
-		<<message "D:Guess it's time to comb my OS for Jax-shaped viruses again &#128579">>
-		<<message "J:It's cute you think you can get rid of me &#128536">>
-		<<message "Q:when r u gonna teach me how to mess with mouse like that">>
-		<<message "J:Oh easy. Running <u>this</u> gets you into their camera and <u>this</u> uploads screenshots to their feed">>
-		<<message "J:I'm sure you can figure out how to give them a heartattack from there &#128521">>
-		<<message "Q:nice">>
-		<<message "M:JAX">>
-		<<message "D:Quinn, don't touch that link! Don't be a script kiddie!">>
-		<<message "J:**script kitty &#128514&#128514&#128514">>
-		<<message "D:Jax stfu">>
-		<<message "Q:like this?">>
-		<<message "M:QUINN GET OFF MY FUCKING COMPUTER">>
-		<<message "J:good kitty &#128527">>
-		<<message "Q:dammit! daeka broke my link">>
-		<<message "J:Come on, Daeka &#128553 You're spoiling the fun &#128548">>
-		<<message "D:Harassing Mouse is not 'fun'">>
-		<<message "J:Isn't it though? &#128527">>
-		<<message "Q:lol">>
-		<<message "M:do you want me to start harassing you back, you cocky egotistical embodiment of a god-complex?">>
-		<<message "J:It's cute you think you can hurt me &#128536">>
-		<<message "M:Do you even care about radicalizing these people?">>
-		<<message "J:I thought that was your job &#128533">>
-		<<message "D:It's all our jobs? That's kind of the point???">>
-		<<message "Q:i thought the point was eating the rich">>
-		<<message "M:that's a metaphor, dumbass">>
-		<<message "J:Is it?">>
-		<<message "D:Mostly. Though I'm not really expecting Quinn to be invested in theology">>
-		<<message "J:They're just here to maul some corporates &#128520">>
-		<<message "Q:damn right i am">>
-		<<message "D:sigh I need to separate you two">>
-		<<message "M:good luck. you're better off separating yourself &#9996&#128405">>
-		<p class="chatNotif">@snakebait has left the chat</p>
-		<<message "J:lol poor baby got their feelings hurt">>
-		<<message "D:One of these days you're going to do something they won't forgive you for">>
-		<<message "J:¯\\_(ツ)_/¯ cross that bridge and all that &#128521">>
-		<<message "D:Don't say I didn't warn you">>
-		<p class="chatNotif">@cyborgrip has left the chat</p>
-		<<message "J:You leaving too, you little traitor?">>
-		<<message "Q:u know me &#128520">>
-		<p class="chatNotif">@calikilly has left the chat</p>
-		<<message "J:all too well...">>
-		<p class="chatNotif">@blackout has left the chat</p>
-  </div>
-	<br>
-	[[Exit Chat->Passcode]]
-</div>
-<</nobr>>
-
-
-:: Passcode [passcode] {"position":"3100,619","size":"100,100"}
-<<nobr>>
-<div class="helper" id="helper">
-		<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
-    <div class="allHelperText">
-	  <p class="chatUsernameP"><b id="username">
-	  </b></p>
-	  <p class="helperText" id="helperText">
-	  This is an alert box.
-	  </p>
-	</div>
-  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-</div>
-
-
-<div id="passcodeBody" class="passcodeBody">
-  <p></p>
-  <p></p>
-  <p class="passcodeText">Passcode:</p>
-  <div class="codeInput">
-	<input class="codeInputBox" id="textbox-first" name="textbox-first" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	<input class="codeInputBox" id="textbox-mid" name="textbox-mid" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-  <input class="codeInputBox" id="textbox-last" name="textbox-last" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
-	</div>
-	<<button "Enter">><<script>>
-  	setup.checkPasscode();
-  <</script>><</button>>
-	<p class=“codeFeedback” id="codeFeedback" style="color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;">Invalid</p>
-
-</div>
-<</nobr>>
 
 
 :: Why wouldn’t people accept it? [noexit] {"position":"2496,1525","size":"100,100"}
@@ -1399,145 +1222,3 @@ Gatekeeping
 <<message "Thank you. I make an effort to be.">>
 
 <<set $nextPassage = "Come Back">>
-
-
-:: SPECIAL [other] {"position":"1376,2026","size":"100,100"}
-You've reached the special page
-[[Passcode]]
-
-
-:: Fun Puzzle [hangman] {"position":"3298,617","size":"100,100"}
-<<nobr>>
-	<div class="hangmanBoard">
-
-	<p class="hangmanWord" id="hangmanWord"></p>
-
-	  <div class="alphabet">
-		  <div class="alphaLine" id="firstLine">
-				<<button "A">><<script>>
-				setup.checkHangman("A");
-				<</script>><</button>>
-				<<button "B">><<script>>
-				setup.checkHangman("B");
-				<</script>><</button>>
-				<<button "C">><<script>>
-				setup.checkHangman("C");
-				<</script>><</button>>
-				<<button "D">><<script>>
-				setup.checkHangman("D");
-				<</script>><</button>>
-				<<button "E">><<script>>
-				setup.checkHangman("E");
-				<</script>><</button>>
-				<<button "F">><<script>>
-				setup.checkHangman("F");
-				<</script>><</button>>
-				<<button "G">><<script>>
-				setup.checkHangman("G");
-				<</script>><</button>>
-				<<button "H">><<script>>
-				setup.checkHangman("H");
-				<</script>><</button>>
-				<<button "I">><<script>>
-				setup.checkHangman("I");
-				<</script>><</button>>
-				<<button "J">><<script>>
-				setup.checkHangman("J");
-				<</script>><</button>>
-		  </div>
-		  <div class="alphaLine" id="secondLine">
-			    <<button "K">><<script>>
-				setup.checkHangman("K");
-				<</script>><</button>>
-				<<button "L">><<script>>
-				setup.checkHangman("L");
-				<</script>><</button>>
-				<<button "M">><<script>>
-				setup.checkHangman("M");
-				<</script>><</button>>
-				<<button "N">><<script>>
-				setup.checkHangman("N");
-				<</script>><</button>>
-				<<button "O">><<script>>
-				setup.checkHangman("O");
-				<</script>><</button>>
-				<<button "P">><<script>>
-				setup.checkHangman("P");
-				<</script>><</button>>
-				<<button "Q">><<script>>
-				setup.checkHangman("Q");
-				<</script>><</button>>
-				<<button "R">><<script>>
-				setup.checkHangman("R");
-				<</script>><</button>>
-				<<button "S">><<script>>
-				setup.checkHangman("S");
-				<</script>><</button>>
-		  </div>
-		  <div class="alphaLine" id="thirdLine">
-			    <<button "T">><<script>>
-				setup.checkHangman("T");
-				<</script>><</button>>
-				<<button "U">><<script>>
-				setup.checkHangman("U");
-				<</script>><</button>>
-				<<button "V">><<script>>
-				setup.checkHangman("V");
-				<</script>><</button>>
-				<<button "W">><<script>>
-				setup.checkHangman("W");
-				<</script>><</button>>
-				<<button "X">><<script>>
-				setup.checkHangman("X");
-				<</script>><</button>>
-				<<button "Y">><<script>>
-				setup.checkHangman("Y");
-				<</script>><</button>>
-				<<button "Z">><<script>>
-				setup.checkHangman("Z");
-				<</script>><</button>>
-		  </div>
-	  </div>
-		<p class="hangmanFeedback" id="hangmanFeedback"> o o o o o o </p>
-	</div>
-<</nobr>>
-
-
-:: Testing Setup [other] {"position":"3214,320","size":"100,100"}
-<<set $chatPassword = "JAX">>
-<<set $passcodePhrase = "Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop">>
-<<set $currPassIndex = 0>>
-
-[[Fun Puzzle]]
-
-[[Chat]]
-
-[[Welcome]]
-
-
-:: Manifesto [manifesto] {"position":"3512,2303","size":"100,100"}
-<div class="fullManifestoPage"><h3>The NightWeb's Manifesto</h3><div class="manifestoText" id="manifestoText"><p>If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
-
-Productivity is a fallacy fabricated by the bourgeoisie to exhaust the masses beyond the point of revolution. Service is a cruel mockery of altruism that demands the giving tree to cough up its innards to be mashed into soft green bills. Money is a collective illusion that would die like a fairy if everyone stopped believing in it. And corporate faces will never change their tunes of profit or death without a mountain of change falling into their pockets.
-
-So what’s a burned out, broke, bootless, bona fide bitch to do?
-
-First, we slipped off the reachable internet into the NightWeb, free from prying corporate eyes and pressures to contribute to their twisted sense of purpose.
-
-Then, we shared and expanded and refined our wealth of knowledge between emphatically impassioned imbeciles across the web.
-
-Now, we target strategies to deplatform, defund, and dethrone the reigning corporations.
-
-And soon we will end with a collective overhaul of hierarchy and worth-politics.
-
-There are those who attack, those who defend, those who provide, those who distribute, and those who do all or none of those things.
-
-All are welcome and all are resolute.
-
-The NightWeb lies in wait. </p></div>
-<<nobr>>
-<div id="exit" class="exit">
-	[[Exit->Passcode]]
-</div>
-<</nobr>>
-</div>

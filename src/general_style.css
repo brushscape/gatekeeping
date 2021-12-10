@@ -1,0 +1,36 @@
+body {
+		background-color:  #282A2C; /* whitesmoke; */
+		color: whitesmoke; /*text color*/
+	  font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
+	  /*font-size: 7vw;
+
+  	/*min-width: 800px;*/
+		/*width: auto;/* !important;
+   	/*width: 800px;*/
+}
+
+a { /*edit link style*/
+		color: aliceblue;
+}
+a:hover{
+  	color: aliceblue;
+  	text-decoration: none; /*take away underline*/
+}
+
+/*turn off the sugarcube sidebar*/
+#ui-bar{
+ 	display: none;
+}
+
+#story{
+  	margin: 2vw 2vw !important;
+}
+
+@-webkit-keyframes flashing{
+  50% {opacity: 1;}
+}
+
+.passage input[type="text"] {
+  min-width: 20px;
+  width: 20px;
+}

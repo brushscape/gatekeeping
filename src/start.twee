@@ -1,0 +1,71 @@
+::StoryTitle
+Gatekeeping
+
+::StoryAuthor
+void
+
+::StorySettings
+obfuscate:rot13
+jquery:on
+
+::StoryData
+{
+	"ifid": "BE463596-4EA4-4DF3-8BE6-332196447E64",
+	"format": "SugarCube",
+	"format-version": "2.31.1",
+	"start": "Start",
+	"zoom": 0.6
+}
+
+:: Start [passcode] {"position":"2956,617","size":"100,100"}
+<<nobr>>
+<<set $currentHelper = 0>>
+<<set $chatPassword = "JAX">>
+<<set $passcodePhrase = "Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop">>
+<<set $currPassIndex = 0>>
+
+<div class="helper" id="helper">
+	<img id="helperAvatarImg" class="helperAvatarImg" src="https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100" alt="Avatar">
+	<div class="allHelperText">
+		<p class="chatUsernameP"><b id="username">
+		</b></p>
+		<p class="helperText" id="helperText">
+			This is an alert box.
+		</p>
+	</div>
+	<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+	</div>
+
+
+<div id="passcodeBody" class="passcodeBody">
+	<p></p>
+	<p></p>
+	<p class="passcodeText">Passcode:</p>
+	<div class="codeInput">
+		<input class="codeInputBox" id="textbox-first" name="textbox-first" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+		<input class="codeInputBox" id="textbox-mid" name="textbox-mid" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+		<input class="codeInputBox" id="textbox-last" name="textbox-last" type="text" onfocus="this.select()" tabindex="0" class="macro-textbox" maxlength="1" style="text-transform: uppercase">
+	</div>
+	<<button "Enter">><<script>>
+	setup.checkPasscode();
+	<</script>><</button>>
+	<p class=“codeFeedback” id="codeFeedback" style="color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;">Invalid</p>
+
+</div>
+<</nobr>>
+
+:: SPECIAL [other] {"position":"1376,2026","size":"100,100"}
+You've reached the special page
+[[Passcode]]
+
+
+:: Testing Setup [other] {"position":"3214,320","size":"100,100"}
+<<set $chatPassword = "JAX">>
+<<set $passcodePhrase = "Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop">>
+<<set $currPassIndex = 0>>
+
+[[Fun Puzzle]]
+
+[[Chat]]
+
+[[Welcome]]

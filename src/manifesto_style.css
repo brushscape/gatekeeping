@@ -1,0 +1,18 @@
+/*MANIFESTO PAGE*/
+@media screen and (min-width: 800px) {
+  .manifesto {
+		font-size: 20px !important;
+  }
+}
+
+.manifestoText{
+	font-size: calc(10px + 1.3vw);
+	height: 80vh;
+  overflow-y: auto;
+}
+
+.fullManifestoPage{
+	color: darkgrey;
+	display: flex;
+	flex-direction: column;
+}

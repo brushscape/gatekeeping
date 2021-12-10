@@ -1,0 +1,85 @@
+/* DISCUSSION MESSAGE PAGE */
+@media screen and (min-width: 1000px) {
+	.avatar {
+		margin-right: 15px !important;
+		height: 150px !important;/*200px*/
+		width: 150px !important;/*200px*/
+	}
+	.darkMessage {
+		padding: 15px !important;
+		font-size: 18px !important;
+		line-height: 25px !important;
+	}
+}
+
+.darkMessage {
+  background-color: #4E4256;/*#72657B;/*#9C94A2;*/
+	border: 3px solid #dedede;
+  border-color: #2C1D36;/*#483D50; /*#72657B;*/
+	/*color: whitesmoke;*/
+	border-radius: 5px;
+
+	display: flex;
+	flex-direction: row;
+	padding: 1.5vw;
+	font-size: calc(8px + 1vw);
+	line-height: calc(12px + 1vw);
+	align-items: center;
+}
+
+.textCol{
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	align-self: flex-start;
+}
+
+.usernameP{
+	margin-top: 0;
+	margin-bottom: 1vw;
+}
+
+.messageText{
+	margin: 0;
+}
+
+.avatar {
+	flex: none;
+	margin-right: 1.5vw;
+	height: calc(25px + 12vw);/*200px*/
+	width: calc(25px + 12vw);/*200px*/
+}
+
+.avatarImg {
+	height: 100%;
+	width: 100%;
+}
+
+.responses{
+  display: flex;
+	align-items: center;
+	flex-direction: column;
+
+  margin: 2vw;
+	font-size: calc(9px + 1vw);;
+}
+
+.option {
+	/*background-color: #282A2C;*/
+	display: flex;
+  border: 3px solid #5D8FB7;
+  border-color: #664180;
+	border-radius: 5px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 1.5vw;
+	height: auto;
+	width: 100%;
+}
+.option:hover {
+  background-color: #4E4256;/*#9A71B4;*/
+  border-color: #2C1D36;
+}

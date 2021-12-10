@@ -98,7 +98,155 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://BE463596-4EA4-4DF3-8BE6-332196447E64// --><tw-storydata name="Gatekeeping" startnode="51" creator="Tweego" creator-version="2.0.0+089d4ca77e5b" ifid="BE463596-4EA4-4DF3-8BE6-332196447E64" zoom="0.6" format="SugarCube" format-version="2.33.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">body {
+	<!-- UUID://BE463596-4EA4-4DF3-8BE6-332196447E64// --><tw-storydata name="Gatekeeping" startnode="131" creator="Tweego" creator-version="2.0.0+089d4ca77e5b" ifid="BE463596-4EA4-4DF3-8BE6-332196447E64" zoom="0.6" format="SugarCube" format-version="2.33.2" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "chat_style.css" */
+/* CHAT PAGE */
+.chatMessage {
+	align-items: center;
+	justify-content: flex-start;
+  background-color: #4E4256;/*#72657B;/*#9C94A2;*/
+	border: 4px solid #dedede;
+  border-color: #2C1D36;/*#483D50; /*#72657B;*/
+  border-radius: 3px;
+	color: whitesmoke;
+	display: flex;
+	flex-direction: row;
+  margin: 2vw 0;
+	padding: 1vw;
+	font-size: calc(10px + 0.5vw);
+	text-align: justify;
+	width:inherit;
+}
+
+.chatTextCol{
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	align-self: flex-start;
+	margin-right: 1vw;
+}
+
+.chatMessageText{ /*Not working for some reason. set in javascript*/
+	margin: 0;
+}
+
+.chatUsernameP{
+	margin: 0;
+}
+
+.chatAvatar {
+  display: block;
+  float: left;
+	height: calc(25px + 5vw);/*100px*/
+  margin-right: 1.8vw;/*20px*/
+  width: calc(25px + 5vw);/*100px*/
+	flex: none;
+}
+
+.chatPage{
+	font-size: calc(9px + 0.5vw);
+}
+
+.chatScroll{
+  height: 85vh;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.chatNotif{
+  color: darkgrey;
+	margin-left: 1vw;
+	opacity: 0.8;
+}
+/* twine-user-stylesheet #2: "converse_style.css" */
+/* DISCUSSION MESSAGE PAGE */
+@media screen and (min-width: 1000px) {
+	.avatar {
+		margin-right: 15px !important;
+		height: 150px !important;/*200px*/
+		width: 150px !important;/*200px*/
+	}
+	.darkMessage {
+		padding: 15px !important;
+		font-size: 18px !important;
+		line-height: 25px !important;
+	}
+}
+
+.darkMessage {
+  background-color: #4E4256;/*#72657B;/*#9C94A2;*/
+	border: 3px solid #dedede;
+  border-color: #2C1D36;/*#483D50; /*#72657B;*/
+	/*color: whitesmoke;*/
+	border-radius: 5px;
+
+	display: flex;
+	flex-direction: row;
+	padding: 1.5vw;
+	font-size: calc(8px + 1vw);
+	line-height: calc(12px + 1vw);
+	align-items: center;
+}
+
+.textCol{
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	align-items: flex-start;
+	justify-content: flex-start;
+	align-self: flex-start;
+}
+
+.usernameP{
+	margin-top: 0;
+	margin-bottom: 1vw;
+}
+
+.messageText{
+	margin: 0;
+}
+
+.avatar {
+	flex: none;
+	margin-right: 1.5vw;
+	height: calc(25px + 12vw);/*200px*/
+	width: calc(25px + 12vw);/*200px*/
+}
+
+.avatarImg {
+	height: 100%;
+	width: 100%;
+}
+
+.responses{
+  display: flex;
+	align-items: center;
+	flex-direction: column;
+
+  margin: 2vw;
+	font-size: calc(9px + 1vw);;
+}
+
+.option {
+	/*background-color: #282A2C;*/
+	display: flex;
+  border: 3px solid #5D8FB7;
+  border-color: #664180;
+	border-radius: 5px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 1.5vw;
+	height: auto;
+	width: 100%;
+}
+.option:hover {
+  background-color: #4E4256;/*#9A71B4;*/
+  border-color: #2C1D36;
+}
+/* twine-user-stylesheet #3: "general_style.css" */
+body {
 		background-color:  #282A2C; /* whitesmoke; */
 		color: whitesmoke; /*text color*/
 	  font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
@@ -117,6 +265,92 @@ a:hover{
   	text-decoration: none; /*take away underline*/
 }
 
+/*turn off the sugarcube sidebar*/
+#ui-bar{
+ 	display: none;
+}
+
+#story{
+  	margin: 2vw 2vw !important;
+}
+
+@-webkit-keyframes flashing{
+  50% {opacity: 1;}
+}
+
+.passage input[type="text"] {
+  min-width: 20px;
+  width: 20px;
+}
+/* twine-user-stylesheet #4: "hangman_style.css" */
+/* HANGMAN GAME */
+.hangmanBoard{
+	align-items: center; /*center aligned within the column*/
+  display: flex;
+  flex-direction: column;
+	justify-content: flex-start;/*glues it to the top of the column*/
+	/*margin: auto; /*0 10vw; /*top and bottom : left and right*/
+
+}
+
+.hangmanWord{
+	font-size: calc(13px + 2vw);/*calc(16px + 2vw); /*clamp(16px, 4vw, 60px);*/
+  text-align: center;
+  white-space: pre;
+	margin: calc(10px + 3vw);
+}
+
+.hangmanFeedback{
+	font-size: calc(20px + 2vw);
+  text-align: center;
+  white-space: pre;
+	margin: 2vw;
+}
+
+.alphabet{ /*full hangman alphabet board*/
+  display: flex;
+  flex-direction: column;
+	font-size: calc(20px + 2vw);
+}
+
+.alphaLine{ /*just one line of the hangman alphabet*/
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+
+button:disabled,
+button[disabled]{
+  opacity: 0;
+}
+
+@media screen and (max-width: 450px) {
+  /* .helper {
+		width: 95vw !important;
+  } */
+}
+/* twine-user-stylesheet #5: "manifesto_style.css" */
+/*MANIFESTO PAGE*/
+@media screen and (min-width: 800px) {
+  .manifesto {
+		font-size: 20px !important;
+  }
+}
+
+.manifestoText{
+	font-size: calc(10px + 1.3vw);
+	height: 80vh;
+  overflow-y: auto;
+}
+
+.fullManifestoPage{
+	color: darkgrey;
+	display: flex;
+	flex-direction: column;
+}
+/* twine-user-stylesheet #6: "passcode_style.css" */
 /*PASSCODE PAGE*/
 .passcode{
 	  background-color:  #282A2C;
@@ -222,220 +456,6 @@ a:hover{
 	}
 }
 
-/*turn off the sugarcube sidebar*/
-#ui-bar{
- 	display: none;
-}
-
-#story{
-  	margin: 2vw 2vw !important;
-}
-
-@-webkit-keyframes flashing{
-  50% {opacity: 1;}
-}
-
-.passage input[type="text"] {
-  min-width: 20px;
-  width: 20px;
-}
-
-/* CHAT PAGE */
-.chatMessage {
-	align-items: center;
-	justify-content: flex-start;
-  background-color: #4E4256;/*#72657B;/*#9C94A2;*/
-	border: 4px solid #dedede;
-  border-color: #2C1D36;/*#483D50; /*#72657B;*/
-  border-radius: 3px;
-	color: whitesmoke;
-	display: flex;
-	flex-direction: row;
-  margin: 2vw 0;
-	padding: 1vw;
-	font-size: calc(10px + 0.5vw);
-	text-align: justify;
-	width:inherit;
-}
-
-.chatTextCol{
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	align-items: flex-start;
-	justify-content: flex-start;
-	align-self: flex-start;
-	margin-right: 1vw;
-}
-
-.chatMessageText{ /*Not working for some reason. set in javascript*/
-	margin: 0;
-}
-
-.chatUsernameP{
-	margin: 0;
-}
-
-.chatAvatar {
-  display: block;
-  float: left;
-	height: calc(25px + 5vw);/*100px*/
-  margin-right: 1.8vw;/*20px*/
-  width: calc(25px + 5vw);/*100px*/
-	flex: none;
-}
-
-.chatPage{
-	font-size: calc(9px + 0.5vw);
-}
-
-.chatScroll{
-  height: 85vh;
-  overflow-y: auto;
-  text-align: center;
-}
-
-.chatNotif{
-  color: darkgrey;
-	margin-left: 1vw;
-	opacity: 0.8;
-}
-
-/* DISCUSSION MESSAGE PAGE */
-@media screen and (min-width: 1000px) {
-	.avatar {
-		margin-right: 15px !important;
-		height: 150px !important;/*200px*/
-		width: 150px !important;/*200px*/
-	}
-	.darkMessage {
-		padding: 15px !important;
-		font-size: 18px !important;
-		line-height: 25px !important;
-	}
-}
-
-.darkMessage {
-  background-color: #4E4256;/*#72657B;/*#9C94A2;*/
-	border: 3px solid #dedede;
-  border-color: #2C1D36;/*#483D50; /*#72657B;*/
-	/*color: whitesmoke;*/
-	border-radius: 5px;
-
-	display: flex;
-	flex-direction: row;
-	padding: 1.5vw;
-	font-size: calc(8px + 1vw);
-	line-height: calc(12px + 1vw);
-	align-items: center;
-}
-
-.textCol{
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	align-items: flex-start;
-	justify-content: flex-start;
-	align-self: flex-start;
-}
-
-.usernameP{
-	margin-top: 0;
-	margin-bottom: 1vw;
-}
-
-.messageText{
-	margin: 0;
-}
-
-.avatar {
-	flex: none;
-	margin-right: 1.5vw;
-	height: calc(25px + 12vw);/*200px*/
-	width: calc(25px + 12vw);/*200px*/
-}
-
-.avatarImg {
-	height: 100%;
-	width: 100%;
-}
-
-.responses{
-  display: flex;
-	align-items: center;
-	flex-direction: column;
-
-  margin: 2vw;
-	font-size: calc(9px + 1vw);;
-}
-
-.option {
-	/*background-color: #282A2C;*/
-	display: flex;
-  border: 3px solid #5D8FB7;
-  border-color: #664180;
-	border-radius: 5px;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	margin: 1.5vw;
-	height: auto;
-	width: 100%;
-}
-.option:hover {
-  background-color: #4E4256;/*#9A71B4;*/
-  border-color: #2C1D36;
-}
-
-/* HANGMAN GAME */
-.hangmanBoard{
-	align-items: center; /*center aligned within the column*/
-  display: flex;
-  flex-direction: column;
-	justify-content: flex-start;/*glues it to the top of the column*/
-	/*margin: auto; /*0 10vw; /*top and bottom : left and right*/
-
-}
-
-.hangmanWord{
-	font-size: calc(13px + 2vw);/*calc(16px + 2vw); /*clamp(16px, 4vw, 60px);*/
-  text-align: center;
-  white-space: pre;
-	margin: calc(10px + 3vw);
-}
-
-.hangmanFeedback{
-	font-size: calc(20px + 2vw);
-  text-align: center;
-  white-space: pre;
-	margin: 2vw;
-}
-
-.alphabet{ /*full hangman alphabet board*/
-  display: flex;
-  flex-direction: column;
-	font-size: calc(20px + 2vw);
-}
-
-.alphaLine{ /*just one line of the hangman alphabet*/
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-}
-
-
-button:disabled,
-button[disabled]{
-  opacity: 0;
-}
-
-@media screen and (max-width: 450px) {
-  /* .helper {
-		width: 95vw !important;
-  } */
-}
-
 /* The helper message box */
 .helper {
 	display: flex;
@@ -481,26 +501,221 @@ button[disabled]{
 .closebtn:hover {
   color: black;
 }
-
-/*MANIFESTO PAGE*/
-@media screen and (min-width: 800px) {
-  .manifesto {
-		font-size: 20px !important;
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "chat_func.js" */
+// Reveal messages in Chat Page
+function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
+  var toDisplay = scroll.children[scrollIndex];
+  var newIndex = scrollIndex+1;
+  if(toDisplay.className == "chatNotif"){
+    toDisplay.style.display = 'block';
+    updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
+  	if(newIndex < scroll.children.length){
+  		chats = setTimeout(revealMessage, chatNotifWait, scroll, newIndex, textIndex, 0);
+  		loadingChats = true;
+  	}else {
+  		loadingChats = false;
+  	}
+  }else{
+  	var message = fullText[textIndex];
+  	var user = message.charAt(0);
+  	var avatar = toDisplay.children[0];
+  	var avatarImg = avatar.children[0];
+  	var text = toDisplay.children[1];
+  	var username = text.children[0];
+  	var messageText = text.children[1];
+    	switch(user){
+  				//Jax #4E4256
+  				case 'J':
+  					username.children[0].innerHTML = '@blackout';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
+  					toDisplay.style.backgroundColor = '#4E4256';
+  					toDisplay.style.borderColor = '#2C1D36'
+  					break;
+  				//Daeka #425653
+  				case 'D':
+  					username.children[0].innerHTML = '@cyborgrip';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
+  					toDisplay.style.backgroundColor = '#425653';
+  					toDisplay.style.borderColor = '#1D3630'
+  					break;
+  				//Quinn #56424B
+  				case 'Q':
+  					username.children[0].innerHTML = '@calikilly';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
+  				  toDisplay.style.backgroundColor = '#56424B';
+  					toDisplay.style.borderColor = '#361D28';
+  					break;
+  				//Mouse #564C42
+  				case 'M':
+  					username.children[0].innerHTML = '@snakebait';
+  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
+  					toDisplay.style.backgroundColor = '#564C42';
+  					toDisplay.style.borderColor = '#36291D'
+  					break;
+  				default:
+  					username.children[0].innerHTML = '@anonymous';
+  					break;
+  			}
+  	messageText.innerHTML = message.substring(2);
+    messageText.style.margin = '0';
+    messageText.style.wordSpacing = '-.2vw;';
+    messageText.style.lineHeight = 'calc(15px + 0.5vw)';
+    messageText.style.padding = '0.5vw';
+  	toDisplay.style.display = 'flex';
+  	updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
+  	if(newIndex < scroll.children.length){
+  		var mLen = message.substring(2).length;
+  		if(mLen < 10){
+  			mLen = 10;
+  		}
+  		var randTime = Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
+      if(scroll.children[newIndex].className == 'chatNotif'){
+        chats = setTimeout(revealMessage, 600, scroll, newIndex, textIndex+1, randTime);
+      }else{
+    	  chats = setTimeout(revealMessage, randTime, scroll, newIndex, textIndex+1, 0);
+      }
+      loadingChats = true;
+  	}else {
+  		loadingChats = false;
+  	}
   }
+
 }
 
-.manifestoText{
-	font-size: calc(10px + 1.3vw);
-	height: 80vh;
-  overflow-y: auto;
+// Update scroll on Chat Page
+function updateScroll(element,scrollDiff){
+    //console.log("amount: "+(element.scrollHeight - element.scrollTop) );
+    //console.log("limit: "+(window.screen.height / scrollDiff));
+		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
+    	element.scrollTop = element.scrollHeight;
+		}
+}
+/* twine-user-script #2: "converse_func.js" */
+// Types out the message on the Jax discussion pages
+function typeText(message, i, currPassage){
+	if(currPassage != state.active.title){
+		return;
+	}
+	if(displayFullMessage){
+			// skip to fully typed messsage
+			document.getElementById('messageText').innerHTML = message;
+			i = message.length;
+		}
+
+	if(i<message.length){
+			// message not fully typed and no skip
+			var punc = message[i];
+			currMessage+=punc;
+			i++;
+			document.getElementById('messageText').innerHTML = currMessage;
+			if(punc == '.' || punc == '?' || punc == '!'){
+				var nextCharIsPunc = false;
+				if(i < message.length){
+					nextCharIsPunc = message[i] == '.' || message[i] == '?' || message[i] == '!';
+				}
+				if(nextCharIsPunc){
+					if(message[i] == '.'){ // for elipses
+						setTimeout(typeText, 200, message, i, currPassage);
+					}
+					else{ //for just multiple question marks or exclamation points
+						setTimeout(typeText, 30, message, i, currPassage);
+					}
+				}
+				else { //pause at end of sentence
+					setTimeout(typeText, 500, message, i, currPassage);
+				}
+			}
+			else if (punc == ','){ //tiny pause at a comma
+				setTimeout(typeText, 300, message, i, currPassage);
+			}
+			else{ //no pause for normal text
+				setTimeout(typeText, 30, message, i, currPassage);
+			}
+
+	}
+	else {
+		// message is fully typed
+		messageDisplayed = true;
+		if(document.getElementsByClassName('responses').length > 0){
+			fadeInResponse(0, currPassage);
+		}else if(tags().includes('noexit')){
+					//listenForNextPassageClick();
+			delayedLoad = setTimeout(state.display, 1000, state.active.variables.nextPassage);
+			delayedLoadSet = true;
+		}
+	}
+
 }
 
-.fullManifestoPage{
-	color: darkgrey;
-	display: flex;
-	flex-direction: column;
+// Fade in the response options to Jax on the discussion tree pages
+function fadeInResponse(j, currPassage){
+	if(currPassage != state.active.title){
+		return;
+	}
+  var x = document.getElementsByClassName('responses')[0];
+	if(j<1){
+		x.style.opacity = j;
+		if (x.style.display == 'none'){
+			x.style.display = 'flex';
+		}
+		j+=0.01;
+		setTimeout(fadeInResponse, 10, j, currPassage);
+	}
+	else{
+    x.style.opacity = 1;
+		responsesDisplayed = true;
+
+    //makes sure clicking on anywhere in the option will click the link, not just the text
+    var options = x.children;
+    for(var i = 0; i < options.length; i++){
+      var optionLink = options[i].children[0];
+      options[i].addEventListener("click", clickOption.bind(this,optionLink));
+    }
+	}
 }
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">Macro.add('message', {
+
+// allows you to skip before the timeout on the discussion tree pages without response options and the typing out
+function listenForClick(){
+  return;
+		if(delayedLoadSet){
+			 clearTimeout(delayedLoad);
+			 delayedLoad = undefined;
+			 delayedLoadSet = false;
+		}
+		//$('html').on('click', function (ev) {  /* Look for click event */
+		document.body.addEventListener('keyup', function a(e) {
+			//if ((ev.target == $('html')[0]) || ($('#passages')[0].contains(ev.target))) 		{  /* Check click location. */
+			if(e.which == 13){ //enter key
+				if(!messageDisplayed){
+					displayFullMessage = true;
+				}
+				else if(tags().includes('noexit')){
+					currMessage = '';
+					state.display(state.active.variables.nextPassage, this);
+					if(delayedLoadSet){
+						clearTimeout(delayedLoad);
+						delayedLoad = undefined;
+						delayedLoadSet = false;
+					}
+					if(document.getElementsByClassName('responses').length > 0){
+						var x = document.getElementsByClassName('responses')[0];
+						x.style.opacity = 0;
+						x.style.display = 'none';
+					}
+				}
+				if(!tags().includes('noexit')){
+					document.body.removeEventListener('keyup', a);
+					//$('html').off('click');  /* Stop looking for click. */
+				}
+
+		}
+	});
+}
+/* twine-user-script #3: "general_func.js" */
+// if (typeof S == "undefined") {
+// 	var S = {
+
+Macro.add('message', {
   handler: function () { // inside the macro contents -> message text
     var username = '@blackout';
     var avatar = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
@@ -510,19 +725,19 @@ button[disabled]{
       switch (user) {
         case 'J':
           username = '@blackout';
-          avatar = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
+          avatar = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small';
           break;
         case 'D':
           username = '@cyborgrip';
-          avatar = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
+          avatar = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small';
           break;
         case 'Q':
           username = '@calikilly';
-          avatar = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
+          avatar = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small';
           break;
         case 'M':
           username = '@snakebait';
-          avatar = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
+          avatar = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small';
           break;
         default:
           username = '@anonymous'; // username.children[0].innerHTML = '@anonymous';
@@ -607,29 +822,6 @@ var passwordDict = {THO: "D:I <i>tho</i>ught it would go faster",
 										AST: "M:it's <i>a st</i>rain to come up with these sentences",
 										EAD: "M:why did I agree to this? they didnt even pl<i>ead</i>",
 										ROP: "D:I'm not sure how I was <i>rop</i>ed into this either"};
-//var passCryptDict = {};
-
-// phrases for the hangman page
-var hangmanWords = [
-	'Be gay, do crime',
-	'Anarchy',
-	'Eat the rich',
-	'People, over profits',
-	'Silence is, compliance',
-	'Anonymous',
-	'Abolish, the police',
-	'Vendetta',
-	'Money is, a construct',
-	'All cops, are bastards',
-	'This machine, kills fascists',
-	'Liberation',
-	'No justice, no peace',
-  'Scarcity, is a fallacy'];
-var currHangmanIndex = 0;
-var currHangmanWord = '';
-var finalDisplayWord = '';
-var usedWords = [];
-var mq;
 
 var currMessage = '';
 var displayFullMessage = false;
@@ -646,10 +838,10 @@ var chatScrollDiff = 0.95;
 var manifScrollDiff = 1;
 
 var img = [
-  'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small',
-  'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
-  'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
-  'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
+  'img/avatar_blackout.JPG',//'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small',
+  'img/avatar_cyborgrip.JPG',//'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
+  'img/avatar_calikilly.JPG',//'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
+  'img/avatar_snakebait.JPG'//'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
 ];
 var imgLoaded = false;
 
@@ -852,229 +1044,6 @@ $(document).on(':passagedisplay', function (ev) {
 	setTimeout(typeText, 700, fullText[0], 0, state.active.title);
 });
 
-function crypticBackground(){
-  var body = document.getElementById("passcodeBody");
-  var crypt = document.createElement("div");
-  crypt.id = 'cryptic';
-  crypt.style.overflow = 'hidden';
-  crypt.style.width = '100vw';
-  crypt.style.height = '100vh';
-  crypt.style.zIndex = '0';
-  crypt.style.left = '0';
-  crypt.style.top='0';
-  crypt.style.position='absolute';
-
-  var codePhrase = state.active.variables.passcodePhrase;
-  var passcodes = [];
-  for(var k=0; k<codePhrase.length; k+=3){
-    var code = codePhrase.substring(k,k+3).toUpperCase();
-    passcodes.push(code);
-    //passCryptDict[code] = [];
-  }
-  var currPasscode = setup.getCurrentPasscode();
-
-  for(var i=0; i<passcodes.length*5; i++){
-    var div = document.createElement("div");
-
-    var currCodeToDisplay = passcodes[i%(passcodes.length)];
-    var size = (Math.random() * 1)+0.5;
-    var smallest = '10px';
-    var x = (Math.random() * 100);
-    var y = (Math.random() * 100);
-    var delay = (Math.random() * 20)-10;
-    var length = 15;
-    var direction = Math.floor(Math.random() * 4);
-
-
-    var innerText = currCodeToDisplay;
-
-    div.style.fontSize = 'calc('+smallest + ' + '+size +'vw)';
-    div.style.lineHeight = 'calc('+smallest + ' + '+size*4 +'vw)';
-    div.style.letterSpacing = 'calc('+smallest + ' + '+size*2.5 +'vw)';
-    div.style.opacity = '0.2';
-    div.style.overflow = 'hidden';
-    div.className = currCodeToDisplay;
-
-    var wrapper = document.createElement("div");
-    wrapper.className = 'rCodesWrapper';
-    var para = document.createElement("p");
-    para.className = 'rCodesText';
-    wrapper.style.position = 'absolute';
-    wrapper.style.zIndex = '0';
-    wrapper.style.opacity = '0';
-    wrapper.style.overflow = 'hidden';
-
-    wrapper.style.left = x+'vw';
-    wrapper.style.top = y+'vh';
-
-    switch(direction){
-      case 0:
-        wrapper.style.animation = 'moveDown '+length+'s infinite';
-        var newText = innerText[0];
-        for(var j=1;j<innerText.length;j++){
-          newText += '<br>'+innerText[j];
-        }
-        innerText = newText;
-        break;
-      case 1:
-        wrapper.style.animation = 'moveUp '+length+'s infinite';
-        var newText = innerText[0];
-        for(var j=1;j<innerText.length;j++){
-          newText += '<br>'+innerText[j];
-        }
-        innerText = newText;
-        break;
-      case 2:
-        wrapper.style.animation = 'moveLeft '+length+'s infinite';
-        break;
-      case 3:
-        wrapper.style.animation = 'moveRight '+length+'s infinite';
-        break;
-    }
-    wrapper.style.animationDelay = delay+'s';
-    wrapper.style.animationTimingFunction = 'linear';
-
-    para.innerHTML=innerText;
-    wrapper.appendChild(para);
-    div.appendChild(wrapper);
-    crypt.appendChild(div);
-    //passCryptDict[currCodeToDisplay].push(div);
-  }
-  body.appendChild(crypt);
-  updateBackground(passcodes[0],currPasscode);
-}
-
-function updateBackground(prevPasscode, currPasscode){
-
-  var prevCodeDisplays = document.getElementsByClassName(prevPasscode);
-  for(var i=0;i<prevCodeDisplays.length;i++){
-    prevCodeDisplays[i].style.opacity = '0.2';
-  }
-
-  var currCodeDisplays = document.getElementsByClassName(currPasscode);
-  for(var j=0;j<currCodeDisplays.length;j++){
-    currCodeDisplays[j].style.opacity = '0.425';
-  }
-}
-
-// Fit hangman word inside div if too long
-function fitText(longestLine){
-//return;
-  var defaultAdjust = 7; //vw
-  var defaultBig = 60;//px
-  var bigScreenThresh = 800; //px
-
-  //mq = window.matchMedia("(min-width: 800px)");
-    //mq.addListener(WidthChange);
-  //if(currPage == "hangman"){
-    var wordDiv = document.getElementById('hangmanWord');
-    if(longestLine >= 25){
-        //longer than 25
-        // if(mq.matches)
-        //   wordDiv.style.fontSize = "40px";
-        // else
-          wordDiv.style.fontSize = "calc(14px + 1.4vw)";
-    }else if(longestLine >= 20){
-        //longer than 20
-          wordDiv.style.fontSize = "calc(16px + 1.6vw)";
-    }else if(longestLine >= 15){
-          //longer than 15
-          wordDiv.style.fontSize = "calc(18px + 1.8vw)";
-    }else{
-        //shorter than 15
-          wordDiv.style.fontSize = "calc(20px + 2vw)";
-    }
-//  }
-}
-
-// Update scroll on Chat Page
-function updateScroll(element,scrollDiff){
-    //console.log("amount: "+(element.scrollHeight - element.scrollTop) );
-    //console.log("limit: "+(window.screen.height / scrollDiff));
-		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
-    	element.scrollTop = element.scrollHeight;
-		}
-}
-
-// Reveal messages in Chat Page
-function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
-  var toDisplay = scroll.children[scrollIndex];
-  var newIndex = scrollIndex+1;
-  if(toDisplay.className == "chatNotif"){
-    toDisplay.style.display = 'block';
-    updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
-  	if(newIndex < scroll.children.length){
-  		chats = setTimeout(revealMessage, chatNotifWait, scroll, newIndex, textIndex, 0);
-  		loadingChats = true;
-  	}else {
-  		loadingChats = false;
-  	}
-  }else{
-  	var message = fullText[textIndex];
-  	var user = message.charAt(0);
-  	var avatar = toDisplay.children[0];
-  	var avatarImg = avatar.children[0];
-  	var text = toDisplay.children[1];
-  	var username = text.children[0];
-  	var messageText = text.children[1];
-    	switch(user){
-  				//Jax #4E4256
-  				case 'J':
-  					username.children[0].innerHTML = '@blackout';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
-  					toDisplay.style.backgroundColor = '#4E4256';
-  					toDisplay.style.borderColor = '#2C1D36'
-  					break;
-  				//Daeka #425653
-  				case 'D':
-  					username.children[0].innerHTML = '@cyborgrip';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
-  					toDisplay.style.backgroundColor = '#425653';
-  					toDisplay.style.borderColor = '#1D3630'
-  					break;
-  				//Quinn #56424B
-  				case 'Q':
-  					username.children[0].innerHTML = '@calikilly';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
-  				  toDisplay.style.backgroundColor = '#56424B';
-  					toDisplay.style.borderColor = '#361D28';
-  					break;
-  				//Mouse #564C42
-  				case 'M':
-  					username.children[0].innerHTML = '@snakebait';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
-  					toDisplay.style.backgroundColor = '#564C42';
-  					toDisplay.style.borderColor = '#36291D'
-  					break;
-  				default:
-  					username.children[0].innerHTML = '@anonymous';
-  					break;
-  			}
-  	messageText.innerHTML = message.substring(2);
-    messageText.style.margin = '0';
-    messageText.style.wordSpacing = '-.2vw;';
-    messageText.style.lineHeight = 'calc(15px + 0.5vw)';
-    messageText.style.padding = '0.5vw';
-  	toDisplay.style.display = 'flex';
-  	updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
-  	if(newIndex < scroll.children.length){
-  		var mLen = message.substring(2).length;
-  		if(mLen < 10){
-  			mLen = 10;
-  		}
-  		var randTime = Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
-      if(scroll.children[newIndex].className == 'chatNotif'){
-        chats = setTimeout(revealMessage, 600, scroll, newIndex, textIndex+1, randTime);
-      }else{
-    	  chats = setTimeout(revealMessage, randTime, scroll, newIndex, textIndex+1, 0);
-      }
-      loadingChats = true;
-  	}else {
-  		loadingChats = false;
-  	}
-  }
-
-}
 
 function displayFull(){
   if(!messageDisplayed){
@@ -1171,100 +1140,162 @@ function formatMessage(justJax){
 
 }
 
-// allows you to skip before the timeout on the discussion tree pages without response options and the typing out
-function listenForClick(){
-  return;
-		if(delayedLoadSet){
-			 clearTimeout(delayedLoad);
-			 delayedLoad = undefined;
-			 delayedLoadSet = false;
-		}
-		//$('html').on('click', function (ev) {  /* Look for click event */
-		document.body.addEventListener('keyup', function a(e) {
-			//if ((ev.target == $('html')[0]) || ($('#passages')[0].contains(ev.target))) 		{  /* Check click location. */
-			if(e.which == 13){ //enter key
-				if(!messageDisplayed){
-					displayFullMessage = true;
-				}
-				else if(tags().includes('noexit')){
-					currMessage = '';
-					state.display(state.active.variables.nextPassage, this);
-					if(delayedLoadSet){
-						clearTimeout(delayedLoad);
-						delayedLoad = undefined;
-						delayedLoadSet = false;
-					}
-					if(document.getElementsByClassName('responses').length > 0){
-						var x = document.getElementsByClassName('responses')[0];
-						x.style.opacity = 0;
-						x.style.display = 'none';
-					}
-				}
-				if(!tags().includes('noexit')){
-					document.body.removeEventListener('keyup', a);
-					//$('html').off('click');  /* Stop looking for click. */
-				}
 
-		}
-	});
+function clickOption(optionLink){
+  optionLink.click();
 }
 
-// Types out the message on the Jax discussion pages
-function typeText(message, i, currPassage){
-	if(currPassage != state.active.title){
-		return;
+
+// return the current passcode for the Passcode Page
+// function accessible inside the Twine nodes
+setup.getCurrentPasscode = function getCurrentPasscode() {
+	  var normalCodePhrase = state.active.variables.passcodePhrase;
+		var currCodeIndex = state.active.variables.currPassIndex;
+		var normalCode = '';
+	  if(currCodeIndex+3 > normalCodePhrase.length)
+		{
+			normalCode = normalCodePhrase.substring(currCodeIndex);
+			normalCode += normalCodePhrase.substring(0, 3 - (normalCodePhrase.length - currCodeIndex));
+		}
+		else{
+			normalCode = normalCodePhrase.substring(currCodeIndex, currCodeIndex+3);
+		}
+		return normalCode.toUpperCase();
+};
+
+// update the index and therefore passcode for the Passcode Pages
+// called after 3 failed attempts or failed hangman game or failed conversation
+// function accessible inside the Twine nodes
+setup.updateIndex = function updateCurrIndex() {
+	var currCodeIndex= state.active.variables.currPassIndex;
+	var normalCodePhrase = state.active.variables.passcodePhrase;
+	if(currCodeIndex+3 >= normalCodePhrase.length)
+		{
+			state.active.variables.currPassIndex = 3 - (normalCodePhrase.length - currCodeIndex);
+		}
+		else{
+			state.active.variables.currPassIndex = currCodeIndex+3;
+		}
+	console.log(setup.getCurrentPasscode());
+};
+/* twine-user-script #4: "hangman_func.js" */
+// phrases for the hangman page
+var hangmanWords = [
+	'Be gay, do crime',
+	'Anarchy',
+	'Eat the rich',
+	'People, over profits',
+	'Silence is, compliance',
+	'Anonymous',
+	'Abolish, the police',
+	'Vendetta',
+	'Money is, a construct',
+	'All cops, are bastards',
+	'This machine, kills fascists',
+	'Liberation',
+	'No justice, no peace',
+  'Scarcity, is a fallacy'];
+var currHangmanIndex = 0;
+var currHangmanWord = '';
+var finalDisplayWord = '';
+var usedWords = [];
+var mq;
+
+// check for the inputted letter in the hangman phrase and update the user
+// function accessible inside the Twine nodes
+setup.checkHangman = function checkHangman(letterString){
+	var i = 0;
+	var letter = letterString.charAt(0);
+	var word = currHangmanWord.toUpperCase();
+
+	if(word.indexOf(letter) != -1){
+		var displayedWord = document.getElementById('hangmanWord').innerHTML;
+    for(i = 0; i < finalDisplayWord.length; i++)
+		{
+      var currChar = finalDisplayWord.charAt(i);
+      if(currChar == '<'){//skip break <br>
+        i += 3;
+      }
+      else if(currChar == letter){
+    		var temp = displayedWord.substring(0,i) + letter + displayedWord.substring(i+1,displayedWord.length);
+  			displayedWord = temp;
+      }
+		}
+		document.getElementById('hangmanWord').innerHTML = displayedWord;
 	}
-	if(displayFullMessage){
-			// skip to fully typed messsage
-			document.getElementById('messageText').innerHTML = message;
-			i = message.length;
+	else{
+		var feedback = document.getElementById('hangmanFeedback').innerHTML;
+		if(feedback.length > 3){
+			document.getElementById('hangmanFeedback').innerHTML = feedback.substring(0,feedback.length-2);
+		}else{ //Failed
+			document.getElementById('hangmanFeedback').innerHTML = 'FAILED';
+			document.getElementById('hangmanFeedback').style.color = 'crimson';
+			setup.updateIndex();
+			state.active.variables.currentHelper = 2; //coming from puzzle
+			// currHangmanIndex++;
+			// if(currHangmanIndex >= hangmanWords.length){
+			// 	currHangmanIndex = 0;
+			// }
+      //currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length()));
+      //mq.removeListener(WidthChange);
+      setTimeout(state.display, 800, 'Passcode');
+		}
+	}
+	var buttons = document.getElementsByTagName('button');
+	for (i=0; i<buttons.length; i++) {
+		var txt = buttons[i].textContent || buttons[i].innerText;
+    if (txt == letterString){
+			buttons[i].disabled = true;
 		}
 
-	if(i<message.length){
-			// message not fully typed and no skip
-			var punc = message[i];
-			currMessage+=punc;
-			i++;
-			document.getElementById('messageText').innerHTML = currMessage;
-			if(punc == '.' || punc == '?' || punc == '!'){
-				var nextCharIsPunc = false;
-				if(i < message.length){
-					nextCharIsPunc = message[i] == '.' || message[i] == '?' || message[i] == '!';
-				}
-				if(nextCharIsPunc){
-					if(message[i] == '.'){ // for elipses
-						setTimeout(typeText, 200, message, i, currPassage);
-					}
-					else{ //for just multiple question marks or exclamation points
-						setTimeout(typeText, 30, message, i, currPassage);
-					}
-				}
-				else { //pause at end of sentence
-					setTimeout(typeText, 500, message, i, currPassage);
-				}
-			}
-			else if (punc == ','){ //tiny pause at a comma
-				setTimeout(typeText, 300, message, i, currPassage);
-			}
-			else{ //no pause for normal text
-				setTimeout(typeText, 30, message, i, currPassage);
-			}
+  }
 
-	}
-	else {
-		// message is fully typed
-		messageDisplayed = true;
-		if(document.getElementsByClassName('responses').length > 0){
-			fadeInResponse(0, currPassage);
-		}else if(tags().includes('noexit')){
-					//listenForNextPassageClick();
-			delayedLoad = setTimeout(state.display, 1000, state.active.variables.nextPassage);
-			delayedLoadSet = true;
-		}
+	//Word is complete!
+	if(document.getElementById('hangmanWord').innerHTML.indexOf('_') == -1){
+		document.getElementById('hangmanFeedback').innerHTML = 'SUCCESS';
+		document.getElementById('hangmanFeedback').style.color = 'lightgreen';
+		// currHangmanIndex++;
+		// if(currHangmanIndex >= hangmanWords.length){
+		// 	currHangmanIndex = 0;
+		// }
+		numJaxAttempts++;
+    //mq.removeListener(WidthChange);
+		setTimeout(state.display, 800, 'Enter');
 	}
 
+};
+
+
+// Fit hangman word inside div if too long
+function fitText(longestLine){
+//return;
+  var defaultAdjust = 7; //vw
+  var defaultBig = 60;//px
+  var bigScreenThresh = 800; //px
+
+  //mq = window.matchMedia("(min-width: 800px)");
+    //mq.addListener(WidthChange);
+  //if(currPage == "hangman"){
+    var wordDiv = document.getElementById('hangmanWord');
+    if(longestLine >= 25){
+        //longer than 25
+        // if(mq.matches)
+        //   wordDiv.style.fontSize = "40px";
+        // else
+          wordDiv.style.fontSize = "calc(14px + 1.4vw)";
+    }else if(longestLine >= 20){
+        //longer than 20
+          wordDiv.style.fontSize = "calc(16px + 1.6vw)";
+    }else if(longestLine >= 15){
+          //longer than 15
+          wordDiv.style.fontSize = "calc(18px + 1.8vw)";
+    }else{
+        //shorter than 15
+          wordDiv.style.fontSize = "calc(20px + 2vw)";
+    }
+//  }
 }
-
+/* twine-user-script #5: "manifesto_func.js" */
 // Types out the manifesto on the Manifesto Pages
 function manifestoType(message,i){
 	if(displayFullMessage){
@@ -1322,38 +1353,7 @@ function manifestoType(message,i){
 		document.getElementById('exit').style.display = 'block';
 	}
 }
-
-// Fade in the response options to Jax on the discussion tree pages
-function fadeInResponse(j, currPassage){
-	if(currPassage != state.active.title){
-		return;
-	}
-  var x = document.getElementsByClassName('responses')[0];
-	if(j<1){
-		x.style.opacity = j;
-		if (x.style.display == 'none'){
-			x.style.display = 'flex';
-		}
-		j+=0.01;
-		setTimeout(fadeInResponse, 10, j, currPassage);
-	}
-	else{
-    x.style.opacity = 1;
-		responsesDisplayed = true;
-
-    //makes sure clicking on anywhere in the option will click the link, not just the text
-    var options = x.children;
-    for(var i = 0; i < options.length; i++){
-      var optionLink = options[i].children[0];
-      options[i].addEventListener("click", clickOption.bind(this,optionLink));
-    }
-	}
-}
-
-function clickOption(optionLink){
-  optionLink.click();
-}
-
+/* twine-user-script #6: "passcode_func.js" */
 // Check for correct passcode on the Passcode Page
 // function accessible inside the Twine nodes
 setup.checkPasscode = function checkPasscode(){
@@ -1475,588 +1475,112 @@ function revealHelper(helperText, nextMessage){
 	}
 }
 
-// return the current passcode for the Passcode Page
-// function accessible inside the Twine nodes
-setup.getCurrentPasscode = function getCurrentPasscode() {
-	  var normalCodePhrase = state.active.variables.passcodePhrase;
-		var currCodeIndex = state.active.variables.currPassIndex;
-		var normalCode = '';
-	  if(currCodeIndex+3 > normalCodePhrase.length)
-		{
-			normalCode = normalCodePhrase.substring(currCodeIndex);
-			normalCode += normalCodePhrase.substring(0, 3 - (normalCodePhrase.length - currCodeIndex));
-		}
-		else{
-			normalCode = normalCodePhrase.substring(currCodeIndex, currCodeIndex+3);
-		}
-		return normalCode.toUpperCase();
-};
 
-// update the index and therefore passcode for the Passcode Pages
-// called after 3 failed attempts or failed hangman game or failed conversation
-// function accessible inside the Twine nodes
-setup.updateIndex = function updateCurrIndex() {
-	var currCodeIndex= state.active.variables.currPassIndex;
-	var normalCodePhrase = state.active.variables.passcodePhrase;
-	if(currCodeIndex+3 >= normalCodePhrase.length)
-		{
-			state.active.variables.currPassIndex = 3 - (normalCodePhrase.length - currCodeIndex);
-		}
-		else{
-			state.active.variables.currPassIndex = currCodeIndex+3;
-		}
-	console.log(setup.getCurrentPasscode());
-};
+function crypticBackground(){
+  var body = document.getElementById("passcodeBody");
+  var crypt = document.createElement("div");
+  crypt.id = 'cryptic';
+  crypt.style.overflow = 'hidden';
+  crypt.style.width = '100vw';
+  crypt.style.height = '100vh';
+  crypt.style.zIndex = '0';
+  crypt.style.left = '0';
+  crypt.style.top='0';
+  crypt.style.position='absolute';
 
-// check for the inputted letter in the hangman phrase and update the user
-// function accessible inside the Twine nodes
-setup.checkHangman = function checkHangman(letterString){
-	var i = 0;
-	var letter = letterString.charAt(0);
-	var word = currHangmanWord.toUpperCase();
+  var codePhrase = state.active.variables.passcodePhrase;
+  var passcodes = [];
+  for(var k=0; k<codePhrase.length; k+=3){
+    var code = codePhrase.substring(k,k+3).toUpperCase();
+    passcodes.push(code);
+    //passCryptDict[code] = [];
+  }
+  var currPasscode = setup.getCurrentPasscode();
 
-	if(word.indexOf(letter) != -1){
-		var displayedWord = document.getElementById('hangmanWord').innerHTML;
-    for(i = 0; i < finalDisplayWord.length; i++)
-		{
-      var currChar = finalDisplayWord.charAt(i);
-      if(currChar == '<'){//skip break <br>
-        i += 3;
-      }
-      else if(currChar == letter){
-    		var temp = displayedWord.substring(0,i) + letter + displayedWord.substring(i+1,displayedWord.length);
-  			displayedWord = temp;
-      }
-		}
-		document.getElementById('hangmanWord').innerHTML = displayedWord;
-	}
-	else{
-		var feedback = document.getElementById('hangmanFeedback').innerHTML;
-		if(feedback.length > 3){
-			document.getElementById('hangmanFeedback').innerHTML = feedback.substring(0,feedback.length-2);
-		}else{ //Failed
-			document.getElementById('hangmanFeedback').innerHTML = 'FAILED';
-			document.getElementById('hangmanFeedback').style.color = 'crimson';
-			setup.updateIndex();
-			state.active.variables.currentHelper = 2; //coming from puzzle
-			// currHangmanIndex++;
-			// if(currHangmanIndex >= hangmanWords.length){
-			// 	currHangmanIndex = 0;
-			// }
-      //currHangmanIndex = Math.floor(Math.random() * Math.floor(hangmanWords.length()));
-      //mq.removeListener(WidthChange);
-      setTimeout(state.display, 800, 'Passcode');
-		}
-	}
-	var buttons = document.getElementsByTagName('button');
-	for (i=0; i<buttons.length; i++) {
-		var txt = buttons[i].textContent || buttons[i].innerText;
-    if (txt == letterString){
-			buttons[i].disabled = true;
-		}
+  for(var i=0; i<passcodes.length*5; i++){
+    var div = document.createElement("div");
 
+    var currCodeToDisplay = passcodes[i%(passcodes.length)];
+    var size = (Math.random() * 1)+0.5;
+    var smallest = '10px';
+    var x = (Math.random() * 100);
+    var y = (Math.random() * 100);
+    var delay = (Math.random() * 20)-10;
+    var length = 15;
+    var direction = Math.floor(Math.random() * 4);
+
+
+    var innerText = currCodeToDisplay;
+
+    div.style.fontSize = 'calc('+smallest + ' + '+size +'vw)';
+    div.style.lineHeight = 'calc('+smallest + ' + '+size*4 +'vw)';
+    div.style.letterSpacing = 'calc('+smallest + ' + '+size*2.5 +'vw)';
+    div.style.opacity = '0.2';
+    div.style.overflow = 'hidden';
+    div.className = currCodeToDisplay;
+
+    var wrapper = document.createElement("div");
+    wrapper.className = 'rCodesWrapper';
+    var para = document.createElement("p");
+    para.className = 'rCodesText';
+    wrapper.style.position = 'absolute';
+    wrapper.style.zIndex = '0';
+    wrapper.style.opacity = '0';
+    wrapper.style.overflow = 'hidden';
+
+    wrapper.style.left = x+'vw';
+    wrapper.style.top = y+'vh';
+
+    switch(direction){
+      case 0:
+        wrapper.style.animation = 'moveDown '+length+'s infinite';
+        var newText = innerText[0];
+        for(var j=1;j<innerText.length;j++){
+          newText += '<br>'+innerText[j];
+        }
+        innerText = newText;
+        break;
+      case 1:
+        wrapper.style.animation = 'moveUp '+length+'s infinite';
+        var newText = innerText[0];
+        for(var j=1;j<innerText.length;j++){
+          newText += '<br>'+innerText[j];
+        }
+        innerText = newText;
+        break;
+      case 2:
+        wrapper.style.animation = 'moveLeft '+length+'s infinite';
+        break;
+      case 3:
+        wrapper.style.animation = 'moveRight '+length+'s infinite';
+        break;
+    }
+    wrapper.style.animationDelay = delay+'s';
+    wrapper.style.animationTimingFunction = 'linear';
+
+    para.innerHTML=innerText;
+    wrapper.appendChild(para);
+    div.appendChild(wrapper);
+    crypt.appendChild(div);
+    //passCryptDict[currCodeToDisplay].push(div);
+  }
+  body.appendChild(crypt);
+  updateBackground(passcodes[0],currPasscode);
+}
+
+function updateBackground(prevPasscode, currPasscode){
+
+  var prevCodeDisplays = document.getElementsByClassName(prevPasscode);
+  for(var i=0;i<prevCodeDisplays.length;i++){
+    prevCodeDisplays[i].style.opacity = '0.2';
   }
 
-	//Word is complete!
-	if(document.getElementById('hangmanWord').innerHTML.indexOf('_') == -1){
-		document.getElementById('hangmanFeedback').innerHTML = 'SUCCESS';
-		document.getElementById('hangmanFeedback').style.color = 'lightgreen';
-		// currHangmanIndex++;
-		// if(currHangmanIndex >= hangmanWords.length){
-		// 	currHangmanIndex = 0;
-		// }
-		numJaxAttempts++;
-    //mq.removeListener(WidthChange);
-		setTimeout(state.display, 800, 'Enter');
-	}
-
-};
-</script><tw-passagedata pid="1" name="Enter" tags="" position="3029,747" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Oh my, is that a newbie I spy? What are you doing in this corner of the internet?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Am I not supposed to be here?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m not even sure how I got here.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m just looking for answers.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Am I not supposed to be here?" tags="" position="1045,948" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Permission is a tricky thing. It’s hard to know who has it and who doesn’t. So you tell me. Are you supposed to be here?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Yes, I am.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Probably not.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who’s to say, really?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="I’m not even sure how I got here." tags="" position="3032,1051" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;How fortuitous. Bewildered wanderers are my favorite.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Why is that?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who are you, exactly?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I don’t wander.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="I’m just looking for answers." tags="" position="5180,981" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;A noble pursuit. But do you know the right questions?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m not noble.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[There are no right questions.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Would you even answer them if I asked?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Yes, I am." tags="" position="894,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Are you really so sure? Do you even know where you flew into, little bird?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[It’s just a webpage.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Not really. Are you going to tell me?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Obviously. And this is a dumb way to hide it.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Probably not." tags="" position="1045,1098" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Hm, pity. I wanted to play with someone new.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Like me?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[What do you mean, play?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m not as new as you seem to think.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="Who’s to say, really?" tags="" position="1195,1098" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Ha, now that’s an attitude I like. Are you sure you’ve never been here before?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[No, but I’ve been looking for this place.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who can remember such things?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You’re the one who assumed I was a newbie.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="It’s just a webpage." tags="" position="116,1360" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Hm, a pitiful way to view this place. I don’t hang around places that are ‘just’ anything…&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Then what’s so interesting about this place?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[And who are you, exactly?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You’re kind of infuriating.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Not really. Are you going to tell me?" tags="" position="456,1330" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;I could… but that would ruin the fun.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I bet I could guess.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Your fun or mine?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Why so cryptic?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Then what’s so interesting about this place?" tags="noexit" position="0,1530" size="100,100">&lt;&lt;message &quot;Telling you ruins the fun...&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="And who are you, exactly?" tags="noexit" position="101,1530" size="100,100">&lt;&lt;message &quot;If you don’t already know, I have no interest in telling you.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="You’re kind of infuriating." tags="noexit" position="221,1530" size="100,100">&lt;&lt;message &quot;Thank you. I mean to be.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="Come Back" tags="noexit" position="3030,2082" size="100,100">&lt;&lt;message &quot;Come back another time, little bird. You might belong here someday.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Fun Puzzle&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="Leave" tags="noexit" position="3279,2071" size="100,100">&lt;&lt;message &quot;You&#39;re a bore. Get out of here before I make you.&quot;&gt;&gt;
-
-&lt;&lt;script&gt;&gt;setup.updateIndex();&lt;&lt;/script&gt;&gt;
-&lt;&lt;set $nextPassage = &quot;Passcode&quot;&gt;&gt;
-&lt;&lt;set $currentHelper = 3&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="What do you mean, play?" tags="" position="1038,1698" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;What don’t I mean? I’m up for any game, little bird…&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[But only as long as you make the rules?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[How about a game of Guess Who?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[What if I don’t like games?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="Like me?" tags="" position="714,1696" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Maybe. Are you fun to play with?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m not really one for games.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You’re creeping me out.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You tell me.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="I’m not really one for games." tags="noexit" position="580,1850" size="100,100">&lt;&lt;message &quot;God, you really are no fun.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="You’re creeping me out." tags="noexit" position="700,1850" size="100,100">&lt;&lt;message &quot;Ha! Good. I’d hate for you to find me comforting.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="You tell me." tags="noexit" position="820,1850" size="100,100">&lt;&lt;message &quot;I think you might be...&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="No, but I’ve been looking for this place." tags="" position="1199,1327" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Really? And why is that?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I want to know more.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m sick of everywhere else.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You know why.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="Who can remember such things?" tags="" position="1541,1319" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Now you’re just being coy.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[And you’d know all about that, wouldn’t you?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[So what if I am?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[No, my memory is actually terrible.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="You’re the one who assumed I was a newbie." tags="" position="1855,1313" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;An ignorant assumption, it would appear. So what now?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You could let me through.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Make me guess a new passcode. I dare you.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You tell me, oh mysterious one.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="I want to know more." tags="noexit" position="1075,1525" size="100,100">&lt;&lt;message &quot;We all did. And we all paid the price.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="I’m sick of everywhere else." tags="noexit" position="1195,1525" size="100,100">&lt;&lt;message &quot;Ha! Of course you do. That’s their whole game.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="You know why." tags="noexit" position="1308,1525" size="100,100">&lt;&lt;message &quot;Ha! Standard fare. The anarch revenge club.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="Welcome" tags="noexit" position="3514,2068" size="100,100">&lt;&lt;message &quot;Welcome to the NightWeb, little bird.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Manifesto&quot;&gt;&gt;
-&lt;&lt;set $currentHelper = 1&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="Why is that?" tags="" position="2888,1198" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;They stumble on the strangest of places and the most interesting of secrets.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Are you a secret?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[What have I stumbled upon?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Are you a bewildered wanderer?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="Who are you, exactly?" tags="" position="3038,1198" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;That is most definitely the wrong question.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[There are no wrong questions.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[What’s the right one?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I don’t like talking to strangers.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="I don’t wander." tags="" position="3188,1198" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Oh, so this little bird has purpose. Yet you don’t even know how you got here.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I can be lost and have purpose.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Are you making fun of me?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Purpose is overrated.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Are you a secret?" tags="" position="2289,1372" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Only to most. To a few, I’m a documented catastrophe.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Am I supposed to be scared?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You don’t seem dangerous to me.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[That sounds like the dream.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="What have I stumbled upon?" tags="" position="2610,1379" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Just an idea. An idea most people are unwilling to accept.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Why wouldn’t people accept it?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m willing.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You don’t like most people, do you?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="Are you a bewildered wanderer?" tags="" position="2927,1363" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Are you a bewildered wanderer?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[What are your best secrets?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Aren’t secrets dangerous?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Being bewildered is fun. You should try it sometime.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="Am I supposed to be scared?" tags="noexit" position="2139,1522" size="100,100">&lt;&lt;message &quot;That is entirely up to you.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="You don’t seem dangerous to me." tags="noexit" position="2256,1518" size="100,100">&lt;&lt;message &quot;Then I’m not doing my job right.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="That sounds like the dream." tags="noexit" position="2372,1519" size="100,100">&lt;&lt;message &quot;Oh, trust me, it is.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="There are no wrong questions." tags="" position="2673,1664" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Please. You’re surrounded by wrong questions.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Like what?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who’s to say they’re wrong?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I can’t win, can I?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="What’s the right one?" tags="" position="3030,1668" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;What makes you think there’s a right one? &quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Because I keep picking the wrong ones.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You’re making it sound like there isn’t.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You’re impossible.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="I don’t like talking to strangers." tags="" position="3397,1663" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;You’d better get to know me then.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[You don’t exactly make that easy.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Or I could just leave you.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I’m not convinced you’re worth knowing.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Like what?" tags="noexit" position="2555,1810" size="100,100">&lt;&lt;message &quot;If you don’t already know, then you’re wasting my time.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Who’s to say they’re wrong?" tags="noexit" position="2673,1814" size="100,100">&lt;&lt;message &quot;Me, obviously.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="I can’t win, can I?" tags="noexit" position="2795,1818" size="100,100">&lt;&lt;message &quot;Ha! Apparently not.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="I’m not noble." tags="" position="5006,1127" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Good. I don’t have a lot of patience for knightly virtues.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Neither do I.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Why not?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who are you anyway?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="There are no right questions." tags="" position="5180,1131" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Maybe not. So what do you want to know, little bird?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I want to know who you are.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I want to know how you’re such a pain.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[I want to know what you want me to ask.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="Would you even answer them if I asked?" tags="" position="5330,1131" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Perhaps. What are your questions, little bird?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Where am I?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who are you?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[How do I get past you?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="Neither do I." tags="" position="4382,1346" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Then you came to the right place. Tradition is dead here. We make our own rules.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Why make any rules at all?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[That sounds dangerous.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Who is ‘we’?]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="Why not?" tags="" position="4753,1325" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;They’re too concerned with rules and not knowing when to break them.&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Rules can be useful.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[What rules have you broken?]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Rules are a construct.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="Who are you anyway?" tags="" position="5090,1311" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;message &quot;Why would I tell you?&quot;&gt;&gt;
-
-&lt;div class=&quot;responses&quot;&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Because I asked.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[It’s common courtesy.]]
-  &lt;/div&gt;
-  &lt;div class=&quot;option&quot;&gt;
-	  [[Clearly, you wouldn’t.]]
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="Why make any rules at all?" tags="noexit" position="4278,1516" size="100,100">&lt;&lt;message &quot;Ha! Already an anarch I see. We’ve been waiting for you.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="That sounds dangerous." tags="noexit" position="4385,1516" size="100,100">&lt;&lt;message &quot;It should. We’re all dangerous here.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="Who is ‘we’?" tags="noexit" position="4507,1518" size="100,100">&lt;&lt;message &quot;And that is definitely the wrong question.&quot;&gt;&gt;
-
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="Start" tags="passcode" position="2956,617" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;&lt;set $currentHelper = 0&gt;&gt;
-&lt;&lt;set $chatPassword = &quot;JAX&quot;&gt;&gt;
-&lt;&lt;set $passcodePhrase = &quot;Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop&quot;&gt;&gt;
-&lt;&lt;set $currPassIndex = 0&gt;&gt;
-
-&lt;div class=&quot;helper&quot; id=&quot;helper&quot;&gt;
-	&lt;img id=&quot;helperAvatarImg&quot; class=&quot;helperAvatarImg&quot; src=&quot;https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100&quot; alt=&quot;Avatar&quot;&gt;
-	&lt;div class=&quot;allHelperText&quot;&gt;
-		&lt;p class=&quot;chatUsernameP&quot;&gt;&lt;b id=&quot;username&quot;&gt;
-		&lt;/b&gt;&lt;/p&gt;
-		&lt;p class=&quot;helperText&quot; id=&quot;helperText&quot;&gt;
-			This is an alert box.
-		&lt;/p&gt;
-	&lt;/div&gt;
-	&lt;span class=&quot;closebtn&quot; onclick=&quot;this.parentElement.style.display=&#39;none&#39;;&quot;&gt;&amp;times;&lt;/span&gt;
-	&lt;/div&gt;
-
-
-&lt;div id=&quot;passcodeBody&quot; class=&quot;passcodeBody&quot;&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p&gt;&lt;/p&gt;
-	&lt;p class=&quot;passcodeText&quot;&gt;Passcode:&lt;/p&gt;
-	&lt;div class=&quot;codeInput&quot;&gt;
-		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-	&lt;/div&gt;
-	&lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
-	setup.checkPasscode();
-	&lt;&lt;/script&gt;&gt;&lt;&lt;/button&gt;&gt;
-	&lt;p class=“codeFeedback” id=&quot;codeFeedback&quot; style=&quot;color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;&quot;&gt;Invalid&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="Chat" tags="chat" position="3313,811" size="100,100">&lt;&lt;nobr&gt;&gt;
+  var currCodeDisplays = document.getElementsByClassName(currPasscode);
+  for(var j=0;j<currCodeDisplays.length;j++){
+    currCodeDisplays[j].style.opacity = '0.425';
+  }
+}
+</script><tw-passagedata pid="1" name="Chat" tags="chat" position="3313,811" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;set $currentHelper = 4&gt;&gt;
 &lt;div class=&quot;chatPage&quot;&gt;
   &lt;div class=&quot;chatScroll&quot; id=&quot;chatScroll&quot;&gt;
@@ -2143,42 +1667,464 @@ setup.checkHangman = function checkHangman(letterString){
 	&lt;br&gt;
 	[[Exit Chat-&gt;Passcode]]
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="Passcode" tags="passcode" position="3100,619" size="100,100">&lt;&lt;nobr&gt;&gt;
-&lt;div class=&quot;helper&quot; id=&quot;helper&quot;&gt;
-		&lt;img id=&quot;helperAvatarImg&quot; class=&quot;helperAvatarImg&quot; src=&quot;https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100&quot; alt=&quot;Avatar&quot;&gt;
-    &lt;div class=&quot;allHelperText&quot;&gt;
-	  &lt;p class=&quot;chatUsernameP&quot;&gt;&lt;b id=&quot;username&quot;&gt;
-	  &lt;/b&gt;&lt;/p&gt;
-	  &lt;p class=&quot;helperText&quot; id=&quot;helperText&quot;&gt;
-	  This is an alert box.
-	  &lt;/p&gt;
-	&lt;/div&gt;
-  &lt;span class=&quot;closebtn&quot; onclick=&quot;this.parentElement.style.display=&#39;none&#39;;&quot;&gt;&amp;times;&lt;/span&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Enter" tags="" position="3029,747" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Oh my, is that a newbie I spy? What are you doing in this corner of the internet?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Am I not supposed to be here?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m not even sure how I got here.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m just looking for answers.]]
+  &lt;/div&gt;
 &lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Come Back" tags="noexit" position="3030,2082" size="100,100">&lt;&lt;message &quot;Come back another time, little bird. You might belong here someday.&quot;&gt;&gt;
 
+&lt;&lt;set $nextPassage = &quot;Fun Puzzle&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Leave" tags="noexit" position="3279,2071" size="100,100">&lt;&lt;message &quot;You&#39;re a bore. Get out of here before I make you.&quot;&gt;&gt;
 
-&lt;div id=&quot;passcodeBody&quot; class=&quot;passcodeBody&quot;&gt;
-  &lt;p&gt;&lt;/p&gt;
-  &lt;p&gt;&lt;/p&gt;
-  &lt;p class=&quot;passcodeText&quot;&gt;Passcode:&lt;/p&gt;
-  &lt;div class=&quot;codeInput&quot;&gt;
-	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-  &lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
-	&lt;/div&gt;
-	&lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
-  	setup.checkPasscode();
-  &lt;&lt;/script&gt;&gt;&lt;&lt;/button&gt;&gt;
-	&lt;p class=“codeFeedback” id=&quot;codeFeedback&quot; style=&quot;color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;&quot;&gt;Invalid&lt;/p&gt;
+&lt;&lt;script&gt;&gt;setup.updateIndex();&lt;&lt;/script&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Passcode&quot;&gt;&gt;
+&lt;&lt;set $currentHelper = 3&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Welcome" tags="noexit" position="3514,2068" size="100,100">&lt;&lt;message &quot;Welcome to the NightWeb, little bird.&quot;&gt;&gt;
 
+&lt;&lt;set $nextPassage = &quot;Manifesto&quot;&gt;&gt;
+&lt;&lt;set $currentHelper = 1&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Am I not supposed to be here?" tags="" position="1045,948" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Permission is a tricky thing. It’s hard to know who has it and who doesn’t. So you tell me. Are you supposed to be here?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Yes, I am.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Probably not.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who’s to say, really?]]
+  &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="Why wouldn’t people accept it?" tags="noexit" position="2496,1525" size="100,100">&lt;&lt;message &quot;See for yourself...&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="I’m not even sure how I got here." tags="" position="3032,1051" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;How fortuitous. Bewildered wanderers are my favorite.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="I’m willing." tags="noexit" position="2614,1528" size="100,100">&lt;&lt;message &quot;I hope that’s true.&quot;&gt;&gt;
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Why is that?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who are you, exactly?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I don’t wander.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="I’m just looking for answers." tags="" position="5180,981" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;A noble pursuit. But do you know the right questions?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="You don’t like most people, do you?" tags="noexit" position="2732,1530" size="100,100">&lt;&lt;message &quot;Are you saying you do?&quot;&gt;&gt;
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m not noble.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[There are no right questions.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Would you even answer them if I asked?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Yes, I am." tags="" position="894,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Are you really so sure? Do you even know where you flew into, little bird?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="Obviously. And this is a dumb way to hide it." tags="" position="798,1327" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[It’s just a webpage.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Not really. Are you going to tell me?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Obviously. And this is a dumb way to hide it.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Probably not." tags="" position="1045,1098" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Hm, pity. I wanted to play with someone new.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Like me?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[What do you mean, play?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m not as new as you seem to think.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="Who’s to say, really?" tags="" position="1195,1098" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Ha, now that’s an attitude I like. Are you sure you’ve never been here before?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[No, but I’ve been looking for this place.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who can remember such things?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You’re the one who assumed I was a newbie.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="It’s just a webpage." tags="" position="116,1360" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Hm, a pitiful way to view this place. I don’t hang around places that are ‘just’ anything…&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Then what’s so interesting about this place?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[And who are you, exactly?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You’re kind of infuriating.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="Not really. Are you going to tell me?" tags="" position="456,1330" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;I could… but that would ruin the fun.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I bet I could guess.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Your fun or mine?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Why so cryptic?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="Then what’s so interesting about this place?" tags="noexit" position="0,1530" size="100,100">&lt;&lt;message &quot;Telling you ruins the fun...&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="And who are you, exactly?" tags="noexit" position="101,1530" size="100,100">&lt;&lt;message &quot;If you don’t already know, I have no interest in telling you.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="You’re kind of infuriating." tags="noexit" position="221,1530" size="100,100">&lt;&lt;message &quot;Thank you. I mean to be.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="What do you mean, play?" tags="" position="1038,1698" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;What don’t I mean? I’m up for any game, little bird…&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[But only as long as you make the rules?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[How about a game of Guess Who?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[What if I don’t like games?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="Like me?" tags="" position="714,1696" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Maybe. Are you fun to play with?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m not really one for games.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You’re creeping me out.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You tell me.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="I’m not really one for games." tags="noexit" position="580,1850" size="100,100">&lt;&lt;message &quot;God, you really are no fun.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="You’re creeping me out." tags="noexit" position="700,1850" size="100,100">&lt;&lt;message &quot;Ha! Good. I’d hate for you to find me comforting.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="You tell me." tags="noexit" position="820,1850" size="100,100">&lt;&lt;message &quot;I think you might be...&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="No, but I’ve been looking for this place." tags="" position="1199,1327" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Really? And why is that?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I want to know more.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m sick of everywhere else.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You know why.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="Who can remember such things?" tags="" position="1541,1319" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Now you’re just being coy.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[And you’d know all about that, wouldn’t you?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[So what if I am?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[No, my memory is actually terrible.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="You’re the one who assumed I was a newbie." tags="" position="1855,1313" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;An ignorant assumption, it would appear. So what now?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You could let me through.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Make me guess a new passcode. I dare you.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You tell me, oh mysterious one.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="I want to know more." tags="noexit" position="1075,1525" size="100,100">&lt;&lt;message &quot;We all did. And we all paid the price.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="I’m sick of everywhere else." tags="noexit" position="1195,1525" size="100,100">&lt;&lt;message &quot;Ha! Of course you do. That’s their whole game.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="You know why." tags="noexit" position="1308,1525" size="100,100">&lt;&lt;message &quot;Ha! Standard fare. The anarch revenge club.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="Why is that?" tags="" position="2888,1198" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;They stumble on the strangest of places and the most interesting of secrets.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Are you a secret?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[What have I stumbled upon?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Are you a bewildered wanderer?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="Who are you, exactly?" tags="" position="3038,1198" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;That is most definitely the wrong question.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[There are no wrong questions.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[What’s the right one?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I don’t like talking to strangers.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="I don’t wander." tags="" position="3188,1198" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Oh, so this little bird has purpose. Yet you don’t even know how you got here.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I can be lost and have purpose.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Are you making fun of me?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Purpose is overrated.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="Are you a secret?" tags="" position="2289,1372" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Only to most. To a few, I’m a documented catastrophe.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Am I supposed to be scared?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You don’t seem dangerous to me.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[That sounds like the dream.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="What have I stumbled upon?" tags="" position="2610,1379" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Just an idea. An idea most people are unwilling to accept.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Why wouldn’t people accept it?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m willing.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You don’t like most people, do you?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="Are you a bewildered wanderer?" tags="" position="2927,1363" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Are you a bewildered wanderer?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[What are your best secrets?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Aren’t secrets dangerous?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Being bewildered is fun. You should try it sometime.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="Am I supposed to be scared?" tags="noexit" position="2139,1522" size="100,100">&lt;&lt;message &quot;That is entirely up to you.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="You don’t seem dangerous to me." tags="noexit" position="2256,1518" size="100,100">&lt;&lt;message &quot;Then I’m not doing my job right.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="That sounds like the dream." tags="noexit" position="2372,1519" size="100,100">&lt;&lt;message &quot;Oh, trust me, it is.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="There are no wrong questions." tags="" position="2673,1664" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Please. You’re surrounded by wrong questions.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Like what?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who’s to say they’re wrong?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I can’t win, can I?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="What’s the right one?" tags="" position="3030,1668" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;What makes you think there’s a right one? &quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Because I keep picking the wrong ones.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You’re making it sound like there isn’t.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You’re impossible.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="I don’t like talking to strangers." tags="" position="3397,1663" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;You’d better get to know me then.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[You don’t exactly make that easy.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Or I could just leave you.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I’m not convinced you’re worth knowing.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="Like what?" tags="noexit" position="2555,1810" size="100,100">&lt;&lt;message &quot;If you don’t already know, then you’re wasting my time.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="Who’s to say they’re wrong?" tags="noexit" position="2673,1814" size="100,100">&lt;&lt;message &quot;Me, obviously.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="I can’t win, can I?" tags="noexit" position="2795,1818" size="100,100">&lt;&lt;message &quot;Ha! Apparently not.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="I’m not noble." tags="" position="5006,1127" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Good. I don’t have a lot of patience for knightly virtues.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Neither do I.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Why not?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who are you anyway?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="There are no right questions." tags="" position="5180,1131" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Maybe not. So what do you want to know, little bird?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I want to know who you are.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I want to know how you’re such a pain.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[I want to know what you want me to ask.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="Would you even answer them if I asked?" tags="" position="5330,1131" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Perhaps. What are your questions, little bird?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Where am I?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who are you?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[How do I get past you?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="Neither do I." tags="" position="4382,1346" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Then you came to the right place. Tradition is dead here. We make our own rules.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Why make any rules at all?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[That sounds dangerous.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Who is ‘we’?]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="Why not?" tags="" position="4753,1325" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;They’re too concerned with rules and not knowing when to break them.&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Rules can be useful.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[What rules have you broken?]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Rules are a construct.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="Who are you anyway?" tags="" position="5090,1311" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;message &quot;Why would I tell you?&quot;&gt;&gt;
+
+&lt;div class=&quot;responses&quot;&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Because I asked.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[It’s common courtesy.]]
+  &lt;/div&gt;
+  &lt;div class=&quot;option&quot;&gt;
+	  [[Clearly, you wouldn’t.]]
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="Why make any rules at all?" tags="noexit" position="4278,1516" size="100,100">&lt;&lt;message &quot;Ha! Already an anarch I see. We’ve been waiting for you.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="That sounds dangerous." tags="noexit" position="4385,1516" size="100,100">&lt;&lt;message &quot;It should. We’re all dangerous here.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="Who is ‘we’?" tags="noexit" position="4507,1518" size="100,100">&lt;&lt;message &quot;And that is definitely the wrong question.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="Why wouldn’t people accept it?" tags="noexit" position="2496,1525" size="100,100">&lt;&lt;message &quot;See for yourself...&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="I’m willing." tags="noexit" position="2614,1528" size="100,100">&lt;&lt;message &quot;I hope that’s true.&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="You don’t like most people, do you?" tags="noexit" position="2732,1530" size="100,100">&lt;&lt;message &quot;Are you saying you do?&quot;&gt;&gt;
+
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="Obviously. And this is a dumb way to hide it." tags="" position="798,1327" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;What makes you say that?&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2192,7 +2138,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[It shouldn’t be hidden.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="I’m not as new as you seem to think." tags="" position="1377,1696" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="I’m not as new as you seem to think." tags="" position="1377,1696" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;Is that so? And yet you chose the simple passcode…&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2206,61 +2152,61 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[I thought it’d be fun to get through your way.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="I bet I could guess." tags="noexit" position="341,1526" size="100,100">&lt;&lt;message &quot;Such confidence. But how much are you actually willing to bet?&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="I bet I could guess." tags="noexit" position="341,1526" size="100,100">&lt;&lt;message &quot;Such confidence. But how much are you actually willing to bet?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="Your fun or mine?" tags="noexit" position="461,1525" size="100,100">&lt;&lt;message &quot;Obviously mine.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Your fun or mine?" tags="noexit" position="461,1525" size="100,100">&lt;&lt;message &quot;Obviously mine.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Why so cryptic?" tags="noexit" position="581,1528" size="100,100">&lt;&lt;message &quot;Why not? You little birds are so fun to play with.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Why so cryptic?" tags="noexit" position="581,1528" size="100,100">&lt;&lt;message &quot;Why not? You little birds are so fun to play with.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="The passcode is easy." tags="noexit" position="691,1528" size="100,100">&lt;&lt;message &quot;It’s meant to be. I made it a child’s lock for a reason.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="The passcode is easy." tags="noexit" position="691,1528" size="100,100">&lt;&lt;message &quot;It’s meant to be. I made it a child’s lock for a reason.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="These questions are nonsensical." tags="noexit" position="811,1528" size="100,100">&lt;&lt;message &quot;Only because they don’t make sense to you.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="These questions are nonsensical." tags="noexit" position="811,1528" size="100,100">&lt;&lt;message &quot;Only because they don’t make sense to you.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="It shouldn’t be hidden." tags="noexit" position="938,1528" size="100,100">&lt;&lt;message &quot;True. Everyone deserves to know.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="It shouldn’t be hidden." tags="noexit" position="938,1528" size="100,100">&lt;&lt;message &quot;True. Everyone deserves to know.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="And you’d know all about that, wouldn’t you?" tags="noexit" position="1426,1530" size="100,100">&lt;&lt;message &quot;Ha! Yes, I suppose I would.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="And you’d know all about that, wouldn’t you?" tags="noexit" position="1426,1530" size="100,100">&lt;&lt;message &quot;Ha! Yes, I suppose I would.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="So what if I am?" tags="noexit" position="1540,1530" size="100,100">&lt;&lt;message &quot;Ha! Fair enough. You’re entitled to your mysteries.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="So what if I am?" tags="noexit" position="1540,1530" size="100,100">&lt;&lt;message &quot;Ha! Fair enough. You’re entitled to your mysteries.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="No, my memory is actually terrible." tags="noexit" position="1650,1534" size="100,100">&lt;&lt;message &quot;Then you might want to be taking notes.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="No, my memory is actually terrible." tags="noexit" position="1650,1534" size="100,100">&lt;&lt;message &quot;Then you might want to be taking notes.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="You could let me through." tags="noexit" position="1762,1530" size="100,100">&lt;&lt;message &quot;Come on. You know that’s not my style.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="You could let me through." tags="noexit" position="1762,1530" size="100,100">&lt;&lt;message &quot;Come on. You know that’s not my style.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Make me guess a new passcode. I dare you." tags="noexit" position="1877,1530" size="100,100">&lt;&lt;message &quot;As you wish.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="Make me guess a new passcode. I dare you." tags="noexit" position="1877,1530" size="100,100">&lt;&lt;message &quot;As you wish.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="You tell me, oh mysterious one." tags="noexit" position="1990,1526" size="100,100">&lt;&lt;message &quot;Fine. You win.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="You tell me, oh mysterious one." tags="noexit" position="1990,1526" size="100,100">&lt;&lt;message &quot;Fine. You win.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="But only as long as you make the rules?" tags="noexit" position="933,1848" size="100,100">&lt;&lt;message &quot;Now you’re getting it.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="But only as long as you make the rules?" tags="noexit" position="933,1848" size="100,100">&lt;&lt;message &quot;Now you’re getting it.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="How about a game of Guess Who?" tags="noexit" position="1038,1848" size="100,100">&lt;&lt;message &quot;But that’s such an easy game. I already know everything about you, little bird.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="How about a game of Guess Who?" tags="noexit" position="1038,1848" size="100,100">&lt;&lt;message &quot;But that’s such an easy game. I already know everything about you, little bird.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="What if I don’t like games?" tags="noexit" position="1151,1848" size="100,100">&lt;&lt;message &quot;Then you’re not going to be very fun to poke at.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="What if I don’t like games?" tags="noexit" position="1151,1848" size="100,100">&lt;&lt;message &quot;Then you’re not going to be very fun to poke at.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="There’s more than one passcode?" tags="noexit" position="1263,1846" size="100,100">&lt;&lt;message &quot;Wouldn’t you like to know.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="There’s more than one passcode?" tags="noexit" position="1263,1846" size="100,100">&lt;&lt;message &quot;Wouldn’t you like to know.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="They’re both simple, Rumplestiltskin." tags="noexit" position="1385,1846" size="100,100">&lt;&lt;message &quot;Fair dig, if you actually know it. Why don’t you prove your knowledge.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="They’re both simple, Rumplestiltskin." tags="noexit" position="1385,1846" size="100,100">&lt;&lt;message &quot;Fair dig, if you actually know it. Why don’t you prove your knowledge.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Passcode&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="I thought it’d be fun to get through your way." tags="noexit" position="1505,1847" size="100,100">&lt;&lt;message &quot;And get through you shall.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Passcode&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="I thought it’d be fun to get through your way." tags="noexit" position="1505,1847" size="100,100">&lt;&lt;message &quot;And get through you shall.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="What are your best secrets?" tags="noexit" position="2842,1538" size="100,100">&lt;&lt;message &quot;The ones I make myself.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="What are your best secrets?" tags="noexit" position="2842,1538" size="100,100">&lt;&lt;message &quot;The ones I make myself.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="Aren’t secrets dangerous?" tags="noexit" position="2962,1538" size="100,100">&lt;&lt;message &quot;Only if they’re the best kind.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="Aren’t secrets dangerous?" tags="noexit" position="2962,1538" size="100,100">&lt;&lt;message &quot;Only if they’re the best kind.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="Being bewildered is fun. You should try it sometime." tags="noexit" position="3067,1538" size="100,100">&lt;&lt;message &quot;No thanks. I’d rather watch someone wander than wander myself.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="Being bewildered is fun. You should try it sometime." tags="noexit" position="3067,1538" size="100,100">&lt;&lt;message &quot;No thanks. I’d rather watch someone wander than wander myself.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="Because I keep picking the wrong ones." tags="noexit" position="2915,1814" size="100,100">&lt;&lt;message &quot;And yet you’re still here…&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="Because I keep picking the wrong ones." tags="noexit" position="2915,1814" size="100,100">&lt;&lt;message &quot;And yet you’re still here…&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="You’re making it sound like there isn’t." tags="noexit" position="3030,1818" size="100,100">&lt;&lt;message &quot;What would you do if there wasn’t, little bird?&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="You’re making it sound like there isn’t." tags="noexit" position="3030,1818" size="100,100">&lt;&lt;message &quot;What would you do if there wasn’t, little bird?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="You’re impossible." tags="noexit" position="3146,1818" size="100,100">&lt;&lt;message &quot;That might be the point.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="You’re impossible." tags="noexit" position="3146,1818" size="100,100">&lt;&lt;message &quot;That might be the point.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="You don’t exactly make that easy." tags="noexit" position="3270,1813" size="100,100">&lt;&lt;message &quot;I know. It’s nothing personal.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="You don’t exactly make that easy." tags="noexit" position="3270,1813" size="100,100">&lt;&lt;message &quot;I know. It’s nothing personal.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Or I could just leave you." tags="noexit" position="3397,1813" size="100,100">&lt;&lt;message &quot;Do it.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="Or I could just leave you." tags="noexit" position="3397,1813" size="100,100">&lt;&lt;message &quot;Do it.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="I’m not convinced you’re worth knowing." tags="noexit" position="3522,1803" size="100,100">&lt;&lt;message &quot;Then stop trying.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="I’m not convinced you’re worth knowing." tags="noexit" position="3522,1803" size="100,100">&lt;&lt;message &quot;Then stop trying.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="I can be lost and have purpose." tags="" position="3273,1361" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="I can be lost and have purpose." tags="" position="3273,1361" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;Maybe, but you’re admitting you’re rather bad at pursuing that purpose.&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2274,7 +2220,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[What if my purpose was to get lost?]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="Are you making fun of me?" tags="" position="3643,1359" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Are you making fun of me?" tags="" position="3643,1359" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;I might be. Should I not?&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2288,7 +2234,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[Only if I can make fun of you back.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="Purpose is overrated." tags="" position="3919,1353" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Purpose is overrated." tags="" position="3919,1353" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;Interesting… What do you have instead?&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2302,37 +2248,37 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[Chaos.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="That’s kind of rude." tags="noexit" position="3193,1538" size="100,100">&lt;&lt;message &quot;You know I’m right.&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="That’s kind of rude." tags="noexit" position="3193,1538" size="100,100">&lt;&lt;message &quot;You know I’m right.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="What, like you’re so good at pursuing yours?" tags="noexit" position="3313,1538" size="100,100">&lt;&lt;message &quot;This has never been about me.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="What, like you’re so good at pursuing yours?" tags="noexit" position="3313,1538" size="100,100">&lt;&lt;message &quot;This has never been about me.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="What if my purpose was to get lost?" tags="noexit" position="3429,1538" size="100,100">&lt;&lt;message &quot;Then you’re a very interesting creature.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="What if my purpose was to get lost?" tags="noexit" position="3429,1538" size="100,100">&lt;&lt;message &quot;Then you’re a very interesting creature.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="No. It’s rude." tags="noexit" position="3552,1533" size="100,100">&lt;&lt;message &quot;Of course it is.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="90" name="No. It’s rude." tags="noexit" position="3552,1533" size="100,100">&lt;&lt;message &quot;Of course it is.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="I guess you can. I probably deserve it." tags="noexit" position="3668,1532" size="100,100">&lt;&lt;message &quot;Don’t say that. It takes the fun out of it.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="I guess you can. I probably deserve it." tags="noexit" position="3668,1532" size="100,100">&lt;&lt;message &quot;Don’t say that. It takes the fun out of it.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Only if I can make fun of you back." tags="noexit" position="3784,1534" size="100,100">&lt;&lt;message &quot;I wish you would.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="Only if I can make fun of you back." tags="noexit" position="3784,1534" size="100,100">&lt;&lt;message &quot;I wish you would.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="Curiosity." tags="noexit" position="3899,1522" size="100,100">&lt;&lt;message &quot;So more of a cat than a bird, huh? I can work with that.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="Curiosity." tags="noexit" position="3899,1522" size="100,100">&lt;&lt;message &quot;So more of a cat than a bird, huh? I can work with that.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="Peace." tags="noexit" position="4016,1521" size="100,100">&lt;&lt;message &quot;Nice sentiment, but peace was never an option.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="Peace." tags="noexit" position="4016,1521" size="100,100">&lt;&lt;message &quot;Nice sentiment, but peace was never an option.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="Chaos." tags="noexit" position="4143,1518" size="100,100">&lt;&lt;message &quot;You are an anarch after all.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="Chaos." tags="noexit" position="4143,1518" size="100,100">&lt;&lt;message &quot;You are an anarch after all.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="Rules can be useful." tags="noexit" position="4631,1514" size="100,100">&lt;&lt;message &quot;That is so not the point.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="Rules can be useful." tags="noexit" position="4631,1514" size="100,100">&lt;&lt;message &quot;That is so not the point.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="What rules have you broken?" tags="noexit" position="4741,1512" size="100,100">&lt;&lt;message &quot;Who’s to say I’ve ever followed one?&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="What rules have you broken?" tags="noexit" position="4741,1512" size="100,100">&lt;&lt;message &quot;Who’s to say I’ve ever followed one?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="Rules are a construct." tags="noexit" position="4861,1517" size="100,100">&lt;&lt;message &quot;Now that’s the attitude I’m looking for.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="Rules are a construct." tags="noexit" position="4861,1517" size="100,100">&lt;&lt;message &quot;Now that’s the attitude I’m looking for.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="Because I asked." tags="noexit" position="4973,1517" size="100,100">&lt;&lt;message &quot;Maybe ask something else next time. &quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="Because I asked." tags="noexit" position="4973,1517" size="100,100">&lt;&lt;message &quot;Maybe ask something else next time. &quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="It’s common courtesy." tags="noexit" position="5087,1520" size="100,100">&lt;&lt;message &quot;Courtesy’s another virtue I don’t care for.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="It’s common courtesy." tags="noexit" position="5087,1520" size="100,100">&lt;&lt;message &quot;Courtesy’s another virtue I don’t care for.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="Clearly, you wouldn’t." tags="noexit" position="5200,1525" size="100,100">&lt;&lt;message &quot;Now you’re getting it.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="Clearly, you wouldn’t." tags="noexit" position="5200,1525" size="100,100">&lt;&lt;message &quot;Now you’re getting it.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="I want to know who you are." tags="" position="4832,1684" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="I want to know who you are." tags="" position="4832,1684" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;Many do. But none have found out. I like it that way.&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2346,7 +2292,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[I envy your anonymity.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="I want to know how you’re such a pain." tags="" position="5137,1684" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="I want to know how you’re such a pain." tags="" position="5137,1684" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;Years of practice. It’s my most treasured hobby.&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2360,7 +2306,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[Can you teach me sometime?]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="I want to know what you want me to ask." tags="" position="5456,1669" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="I want to know what you want me to ask." tags="" position="5456,1669" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;You can ask whatever you’d like.&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2374,25 +2320,25 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[I’m not even sure what questions I have anymore.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="That sounds lonely." tags="noexit" position="4682,1834" size="100,100">&lt;&lt;message &quot;And you sound needy.&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="That sounds lonely." tags="noexit" position="4682,1834" size="100,100">&lt;&lt;message &quot;And you sound needy.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="Surely someone knows." tags="noexit" position="4802,1834" size="100,100">&lt;&lt;message &quot;Someone might. But that someone is not going to be you.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="Surely someone knows." tags="noexit" position="4802,1834" size="100,100">&lt;&lt;message &quot;Someone might. But that someone is not going to be you.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="I envy your anonymity." tags="noexit" position="4918,1834" size="100,100">&lt;&lt;message &quot;And I treasure it.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="I envy your anonymity." tags="noexit" position="4918,1834" size="100,100">&lt;&lt;message &quot;And I treasure it.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="It’s highly inconvenient." tags="noexit" position="5040,1836" size="100,100">&lt;&lt;message &quot;I must be doing it right then.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="It’s highly inconvenient." tags="noexit" position="5040,1836" size="100,100">&lt;&lt;message &quot;I must be doing it right then.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="You should find a new hobby." tags="noexit" position="5150,1829" size="100,100">&lt;&lt;message &quot;I’m not taking advice from someone who partakes in baffling conversations with a stranger in their free time.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="You should find a new hobby." tags="noexit" position="5150,1829" size="100,100">&lt;&lt;message &quot;I’m not taking advice from someone who partakes in baffling conversations with a stranger in their free time.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="Can you teach me sometime?" tags="noexit" position="5259,1824" size="100,100">&lt;&lt;message &quot;Ha! I would love to. Just do what I do.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="Can you teach me sometime?" tags="noexit" position="5259,1824" size="100,100">&lt;&lt;message &quot;Ha! I would love to. Just do what I do.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="That’s clearly a lie." tags="noexit" position="5379,1819" size="100,100">&lt;&lt;message &quot;Why would I lie to you?&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="That’s clearly a lie." tags="noexit" position="5379,1819" size="100,100">&lt;&lt;message &quot;Why would I lie to you?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="But you never give me the answers I want." tags="noexit" position="5499,1819" size="100,100">&lt;&lt;message &quot;Maybe you should adjust your expectations.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="But you never give me the answers I want." tags="noexit" position="5499,1819" size="100,100">&lt;&lt;message &quot;Maybe you should adjust your expectations.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="I’m not even sure what questions I have anymore." tags="noexit" position="5606,1819" size="100,100">&lt;&lt;message &quot;You’ll do much better if you know where you want to go.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="I’m not even sure what questions I have anymore." tags="noexit" position="5606,1819" size="100,100">&lt;&lt;message &quot;You’ll do much better if you know where you want to go.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Where am I?" tags="" position="5433,1306" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="Where am I?" tags="" position="5433,1306" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;Where do you want to be? &quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2406,7 +2352,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[Where the anarchs live.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="Who are you?" tags="" position="5778,1297" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="Who are you?" tags="" position="5778,1297" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;That I cannot answer.&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2420,7 +2366,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[Of course you can’t.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="How do I get past you?" tags="" position="6150,1291" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="How do I get past you?" tags="" position="6150,1291" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;&lt;message &quot;What makes you think you can?&quot;&gt;&gt;
 
 &lt;div class=&quot;responses&quot;&gt;
@@ -2434,26 +2380,25 @@ setup.checkHangman = function checkHangman(letterString){
 	  [[You are insufferable.]]
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Don’t you know who you are?" tags="noexit" position="5817,1507" size="100,100">&lt;&lt;message &quot;Would it matter if I didn’t?&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="Don’t you know who you are?" tags="noexit" position="5817,1507" size="100,100">&lt;&lt;message &quot;Would it matter if I didn’t?&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="Of course you can’t." tags="noexit" position="5939,1509" size="100,100">&lt;&lt;message &quot;And I never will. So maybe stop asking.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="Of course you can’t." tags="noexit" position="5939,1509" size="100,100">&lt;&lt;message &quot;And I never will. So maybe stop asking.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="And why is that?" tags="noexit" position="5699,1509" size="100,100">&lt;&lt;message &quot;Because it’s a secret, of course.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="And why is that?" tags="noexit" position="5699,1509" size="100,100">&lt;&lt;message &quot;Because it’s a secret, of course.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="Somewhere safe." tags="noexit" position="5328,1509" size="100,100">&lt;&lt;message &quot;Then this is not the place for you.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="Somewhere safe." tags="noexit" position="5328,1509" size="100,100">&lt;&lt;message &quot;Then this is not the place for you.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Somewhere cryptic strangers actually answer my questions." tags="noexit" position="5450,1521" size="100,100">&lt;&lt;message &quot;Ha! It would seem you’re out of luck.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Leave&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="Somewhere cryptic strangers actually answer my questions." tags="noexit" position="5450,1521" size="100,100">&lt;&lt;message &quot;Ha! It would seem you’re out of luck.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="Where the anarchs live." tags="noexit" position="5570,1519" size="100,100">&lt;&lt;message &quot;Now that sounds like a place worth being.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="Where the anarchs live." tags="noexit" position="5570,1519" size="100,100">&lt;&lt;message &quot;Now that sounds like a place worth being.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="There’s got to be some point to this." tags="noexit" position="6048,1499" size="100,100">&lt;&lt;message &quot;Maybe there is. Maybe there isn’t. I guess you’ll just have to find out.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Welcome&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="There’s got to be some point to this." tags="noexit" position="6048,1499" size="100,100">&lt;&lt;message &quot;Maybe there is. Maybe there isn’t. I guess you’ll just have to find out.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="Now I’m worried that I can’t." tags="noexit" position="6163,1491" size="100,100">&lt;&lt;message &quot;Ha! Maybe you should stop trying so hard.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="Now I’m worried that I can’t." tags="noexit" position="6163,1491" size="100,100">&lt;&lt;message &quot;Ha! Maybe you should stop trying so hard.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="You are insufferable." tags="noexit" position="6286,1487" size="100,100">&lt;&lt;message &quot;Thank you. I make an effort to be.&quot;&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="You are insufferable." tags="noexit" position="6286,1487" size="100,100">&lt;&lt;message &quot;Thank you. I make an effort to be.&quot;&gt;&gt;
 
-&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="SPECIAL" tags="other" position="1376,2026" size="100,100">You&#39;ve reached the special page
-[[Passcode]]</tw-passagedata><tw-passagedata pid="129" name="Fun Puzzle" tags="hangman" position="3298,617" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $nextPassage = &quot;Come Back&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="Fun Puzzle" tags="hangman" position="3298,617" size="100,100">&lt;&lt;nobr&gt;&gt;
 	&lt;div class=&quot;hangmanBoard&quot;&gt;
 
 	&lt;p class=&quot;hangmanWord&quot; id=&quot;hangmanWord&quot;&gt;&lt;/p&gt;
@@ -2546,15 +2491,7 @@ setup.checkHangman = function checkHangman(letterString){
 	  &lt;/div&gt;
 		&lt;p class=&quot;hangmanFeedback&quot; id=&quot;hangmanFeedback&quot;&gt; o o o o o o &lt;/p&gt;
 	&lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="Testing Setup" tags="other" position="3214,320" size="100,100">&lt;&lt;set $chatPassword = &quot;JAX&quot;&gt;&gt;
-&lt;&lt;set $passcodePhrase = &quot;Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop&quot;&gt;&gt;
-&lt;&lt;set $currPassIndex = 0&gt;&gt;
-
-[[Fun Puzzle]]
-
-[[Chat]]
-
-[[Welcome]]</tw-passagedata><tw-passagedata pid="131" name="Manifesto" tags="manifesto" position="3512,2303" size="100,100">&lt;div class=&quot;fullManifestoPage&quot;&gt;&lt;h3&gt;The NightWeb&#39;s Manifesto&lt;/h3&gt;&lt;div class=&quot;manifestoText&quot; id=&quot;manifestoText&quot;&gt;&lt;p&gt;If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="Manifesto" tags="manifesto" position="3512,2303" size="100,100">&lt;div class=&quot;fullManifestoPage&quot;&gt;&lt;h3&gt;The NightWeb&#39;s Manifesto&lt;/h3&gt;&lt;div class=&quot;manifestoText&quot; id=&quot;manifestoText&quot;&gt;&lt;p&gt;If anyone still holds the delusion that society’s rules are logical and not simply archaic remnants of wealthy landowners’ hypocritical moral compasses, they would benefit from examining the concept of intrinsic value from the eyes of the universe instead of the eyes of a capitalist.
 
 Productivity is a fallacy fabricated by the bourgeoisie to exhaust the masses beyond the point of revolution. Service is a cruel mockery of altruism that demands the giving tree to cough up its innards to be mashed into soft green bills. Money is a collective illusion that would die like a fairy if everyone stopped believing in it. And corporate faces will never change their tunes of profit or death without a mountain of change falling into their pockets.
 
@@ -2578,7 +2515,80 @@ The NightWeb lies in wait. &lt;/p&gt;&lt;/div&gt;
 	[[Exit-&gt;Passcode]]
 &lt;/div&gt;
 &lt;&lt;/nobr&gt;&gt;
-&lt;/div&gt;</tw-passagedata></tw-storydata>
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="128" name="Passcode" tags="passcode" position="3100,619" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;div class=&quot;helper&quot; id=&quot;helper&quot;&gt;
+		&lt;img id=&quot;helperAvatarImg&quot; class=&quot;helperAvatarImg&quot; src=&quot;https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100&quot; alt=&quot;Avatar&quot;&gt;
+    &lt;div class=&quot;allHelperText&quot;&gt;
+	  &lt;p class=&quot;chatUsernameP&quot;&gt;&lt;b id=&quot;username&quot;&gt;
+	  &lt;/b&gt;&lt;/p&gt;
+	  &lt;p class=&quot;helperText&quot; id=&quot;helperText&quot;&gt;
+	  This is an alert box.
+	  &lt;/p&gt;
+	&lt;/div&gt;
+  &lt;span class=&quot;closebtn&quot; onclick=&quot;this.parentElement.style.display=&#39;none&#39;;&quot;&gt;&amp;times;&lt;/span&gt;
+&lt;/div&gt;
+
+
+&lt;div id=&quot;passcodeBody&quot; class=&quot;passcodeBody&quot;&gt;
+  &lt;p&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;/p&gt;
+  &lt;p class=&quot;passcodeText&quot;&gt;Passcode:&lt;/p&gt;
+  &lt;div class=&quot;codeInput&quot;&gt;
+	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+	&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+  &lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+	&lt;/div&gt;
+	&lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+  	setup.checkPasscode();
+  &lt;&lt;/script&gt;&gt;&lt;&lt;/button&gt;&gt;
+	&lt;p class=“codeFeedback” id=&quot;codeFeedback&quot; style=&quot;color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;&quot;&gt;Invalid&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="StoryAuthor" tags="" position="1100,1600" size="100,100">void</tw-passagedata><tw-passagedata pid="130" name="StorySettings" tags="" position="1225,1600" size="100,100">obfuscate:rot13
+jquery:on</tw-passagedata><tw-passagedata pid="131" name="Start" tags="passcode" position="2956,617" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;set $currentHelper = 0&gt;&gt;
+&lt;&lt;set $chatPassword = &quot;JAX&quot;&gt;&gt;
+&lt;&lt;set $passcodePhrase = &quot;Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop&quot;&gt;&gt;
+&lt;&lt;set $currPassIndex = 0&gt;&gt;
+
+&lt;div class=&quot;helper&quot; id=&quot;helper&quot;&gt;
+	&lt;img id=&quot;helperAvatarImg&quot; class=&quot;helperAvatarImg&quot; src=&quot;https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100&quot; alt=&quot;Avatar&quot;&gt;
+	&lt;div class=&quot;allHelperText&quot;&gt;
+		&lt;p class=&quot;chatUsernameP&quot;&gt;&lt;b id=&quot;username&quot;&gt;
+		&lt;/b&gt;&lt;/p&gt;
+		&lt;p class=&quot;helperText&quot; id=&quot;helperText&quot;&gt;
+			This is an alert box.
+		&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;span class=&quot;closebtn&quot; onclick=&quot;this.parentElement.style.display=&#39;none&#39;;&quot;&gt;&amp;times;&lt;/span&gt;
+	&lt;/div&gt;
+
+
+&lt;div id=&quot;passcodeBody&quot; class=&quot;passcodeBody&quot;&gt;
+	&lt;p&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;/p&gt;
+	&lt;p class=&quot;passcodeText&quot;&gt;Passcode:&lt;/p&gt;
+	&lt;div class=&quot;codeInput&quot;&gt;
+		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-first&quot; name=&quot;textbox-first&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-mid&quot; name=&quot;textbox-mid&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+		&lt;input class=&quot;codeInputBox&quot; id=&quot;textbox-last&quot; name=&quot;textbox-last&quot; type=&quot;text&quot; onfocus=&quot;this.select()&quot; tabindex=&quot;0&quot; class=&quot;macro-textbox&quot; maxlength=&quot;1&quot; style=&quot;text-transform: uppercase&quot;&gt;
+	&lt;/div&gt;
+	&lt;&lt;button &quot;Enter&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+	setup.checkPasscode();
+	&lt;&lt;/script&gt;&gt;&lt;&lt;/button&gt;&gt;
+	&lt;p class=“codeFeedback” id=&quot;codeFeedback&quot; style=&quot;color:firebrick;font-size:calc(15px + 1vw);opacity:0;margin:0;padding:1vw;&quot;&gt;Invalid&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="SPECIAL" tags="other" position="1376,2026" size="100,100">You&#39;ve reached the special page
+[[Passcode]]</tw-passagedata><tw-passagedata pid="133" name="Testing Setup" tags="other" position="3214,320" size="100,100">&lt;&lt;set $chatPassword = &quot;JAX&quot;&gt;&gt;
+&lt;&lt;set $passcodePhrase = &quot;Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop&quot;&gt;&gt;
+&lt;&lt;set $currPassIndex = 0&gt;&gt;
+
+[[Fun Puzzle]]
+
+[[Chat]]
+
+[[Welcome]]</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
 	if(document.documentElement.getAttribute("data-init")==="loading"){!function(window,document,jQuery,undefined){"use strict";function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}var _createClass=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),_slicedToArray=function(){function e(e,t){var r=[],n=!0,a=!1,i=undefined;try{for(var o,s=e[Symbol.iterator]();!(n=(o=s.next()).done)&&(r.push(o.value),!t||r.length!==t);n=!0);}catch(e){a=!0,i=e}finally{try{!n&&s.return&&s.return()}finally{if(a)throw i}}return r}return function(t,r){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,r);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},errorPrologRegExp=/^(?:(?:uncaught\s+(?:exception:\s+)?)?\w*(?:error|exception|_err):\s+)+/i,Alert=function(){function e(e,t,r,n){var a="fatal"===e,i="Apologies! "+(a?"A fatal":"An")+" error has occurred.";i+=a?" Aborting.":" You may be able to continue, but some parts may not work properly.",null==t&&null==r||(i+="\n\nError",null!=t&&(i+=" ["+t+"]"),i+=null!=r?": "+r.replace(errorPrologRegExp,"")+".":": unknown error."),"object"===(void 0===n?"undefined":_typeof(n))&&null!==n&&n.stack&&(i+="\n\nStack Trace:\n"+n.stack),window.alert(i)}function t(t,r,n){e(null,t,r,n)}function r(t,r,n){e("fatal",t,r,n)}return function(e){window.onerror=function(n,a,i,o,s){"complete"===document.readyState?t(null,n,s):(r(null,n,s),window.onerror=e,"function"==typeof window.onerror&&window.onerror.apply(this,arguments))}}(window.onerror),Object.freeze(Object.defineProperties({},{error:{value:t},fatal:{value:r}}))}(),Patterns=function(){var e=function(){var e=new Map([[" ","\\u0020"],["\f","\\f"],["\n","\\n"],["\r","\\r"],["\t","\\t"],["\v","\\v"],[" ","\\u00a0"],[" ","\\u1680"],["᠎","\\u180e"],[" ","\\u2000"],[" ","\\u2001"],[" ","\\u2002"],[" ","\\u2003"],[" ","\\u2004"],[" ","\\u2005"],[" ","\\u2006"],[" ","\\u2007"],[" ","\\u2008"],[" ","\\u2009"],[" ","\\u200a"],["\u2028","\\u2028"],["\u2029","\\u2029"],[" ","\\u202f"],[" ","\\u205f"],["　","\\u3000"],["\ufeff","\\ufeff"]]),t=/^\s$/,r="";return e.forEach(function(e,n){t.test(n)||(r+=e)}),r?"[\\s"+r+"]":"\\s"}(),t="[\\u0020\\f\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]",r="\\s"===e?"\\S":e.replace(/^\[/,"[^"),n="[0-9A-Z_a-z\\-\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff\\u0150\\u0170\\u0151\\u0171]",a=n.replace("\\-",""),i=function(){return"("+n+"+)\\(([^\\)\\|\\n]+)\\):|"+t+"*("+n+"+)"+t+"*:([^;\\|\\n]+);|"+t+"*((?:[#.]"+n+"+"+t+"*)+);"}();return Object.freeze({space:e,spaceNoTerminator:t,lineTerminator:"[\\n\\r\\u2028\\u2029]",notSpace:r,anyChar:"(?:.|[\\n\\r\\u2028\\u2029])",anyLetter:n,anyLetterStrict:a,identifierFirstChar:"[$A-Z_a-z]",identifierNextChar:"[$0-9A-Z_a-z]",identifier:"[$A-Z_a-z][$0-9A-Z_a-z]*",variableSigil:"[$_]",variable:"[$_][$A-Z_a-z][$0-9A-Z_a-z]*",macroName:"[A-Za-z][\\w-]*|[=-]",templateName:"[A-Za-z][\\w-]*",cssIdOrClassSigil:"[#.]",cssImage:"\\[[<>]?[Ii][Mm][Gg]\\[(?:\\s|\\S)*?\\]\\]+",inlineCss:i,url:"(?:file|https?|mailto|ftp|javascript|irc|news|data):[^\\s'\"]+"})}();!function(){function e(e,t){var r=Number.parseInt(e,10)||0;if(r<1)return"";var n=void 0===t?"":String(t);for(""===n&&(n=" ");n.length<r;){var a=n.length,i=r-a;n+=a>i?n.slice(0,i):n}return n.length>r&&(n=n.slice(0,r)),n}var t=function(){function e(e,n){var a=String(e);if(!a)return a;switch(n){case"start":return t.test(a)?a.replace(t,""):a;case"end":return r.test(a)?a.replace(r,""):a;default:throw new Error('_trimString called with incorrect where parameter value: "'+n+'"')}}var t=new RegExp("^"+Patterns.space+Patterns.space+"*"),r=new RegExp(""+Patterns.space+Patterns.space+"*$");return e}();Array.prototype.flat||Object.defineProperty(Array.prototype,"flat",{configurable:!0,writable:!0,value:function(){function e(){if(null==this)throw new TypeError("Array.prototype.flat called on null or undefined");var t=0===arguments.length?1:Number(arguments[0])||0;return t<1?Array.prototype.slice.call(this):Array.prototype.reduce.call(this,function(r,n){return n instanceof Array?r.push.apply(r,_toConsumableArray(e.call(n,t-1))):r.push(n),r},[])}return e}()}),Array.prototype.flatMap||Object.defineProperty(Array.prototype,"flatMap",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatMap called on null or undefined");return Array.prototype.map.apply(this,arguments).flat()}}),Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includes called on null or undefined");if(0===arguments.length)return!1;var e=this.length>>>0;if(0===e)return!1;var t=arguments[0],r=Number(arguments[1])||0;for(r<0&&(r=Math.max(0,e+r));r<e;++r){var n=this[r];if(n===t||n!==n&&t!==t)return!0}return!1}}),Object.entries||Object.defineProperty(Object,"entries",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)throw new TypeError("Object.entries object parameter must be an object");return Object.keys(e).map(function(t){return[t,e[t]]})}}),Object.fromEntries||Object.defineProperty(Object,"fromEntries",{configurable:!0,writable:!0,value:function(e){return Array.from(e).reduce(function(e,t){if(Object(t)!==t)throw new TypeError("Object.fromEntries iterable parameter must yield objects");return t[0]in e?Object.defineProperty(e,t[0],{configurable:!0,enumerable:!0,writable:!0,value:t[1]}):e[t[0]]=t[1],e},{})}}),Object.getOwnPropertyDescriptors||Object.defineProperty(Object,"getOwnPropertyDescriptors",{configurable:!0,writable:!0,value:function(e){if(null==e)throw new TypeError("Object.getOwnPropertyDescriptors object parameter is null or undefined");var t=Object(e);return Reflect.ownKeys(t).reduce(function(e,r){var n=Object.getOwnPropertyDescriptor(t,r);return void 0!==n&&(r in e?Object.defineProperty(e,r,{configurable:!0,enumerable:!0,writable:!0,value:n}):e[r]=n),e},{})}}),Object.values||Object.defineProperty(Object,"values",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)throw new TypeError("Object.values object parameter must be an object");return Object.keys(e).map(function(t){return e[t]})}}),String.prototype.padStart||Object.defineProperty(String.prototype,"padStart",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padStart called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:e(i-a,r)+n}}),String.prototype.padEnd||Object.defineProperty(String.prototype,"padEnd",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padEnd called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:n+e(i-a,r)}}),String.prototype.trimStart||Object.defineProperty(String.prototype,"trimStart",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimStart called on null or undefined");return t(this,"start")}}),String.prototype.trimLeft||Object.defineProperty(String.prototype,"trimLeft",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimLeft called on null or undefined");return t(this,"start")}}),String.prototype.trimEnd||Object.defineProperty(String.prototype,"trimEnd",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimEnd called on null or undefined");return t(this,"end")}}),String.prototype.trimRight||Object.defineProperty(String.prototype,"trimRight",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimRight called on null or undefined");return t(this,"end")}})}(),function(){function _random(){var e=void 0,t=void 0;switch(arguments.length){case 0:throw new Error("_random called with insufficient parameters");case 1:e=0,t=arguments[0];break;default:e=arguments[0],t=arguments[1]}if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.floor(_nativeMathRandom()*(t-e+1))+e}function _randomIndex(e,t){var r=void 0,n=void 0;switch(t.length){case 1:r=0,n=e-1;break;case 2:r=0,n=Math.trunc(t[1]);break;default:r=Math.trunc(t[1]),n=Math.trunc(t[2])}return Number.isNaN(r)?r=0:!Number.isFinite(r)||r>=e?r=e-1:r<0&&(r=e+r)<0&&(r=0),Number.isNaN(n)?n=0:!Number.isFinite(n)||n>=e?n=e-1:n<0&&(n=e+n)<0&&(n=e-1),_random(r,n)}function _getCodePointStartAndEnd(e,t){var r=e.charCodeAt(t);if(Number.isNaN(r))return{char:"",start:-1,end:-1};if(r<55296||r>57343)return{char:e.charAt(t),start:t,end:t};if(r>=55296&&r<=56319){var n=t+1;if(n>=e.length)throw new Error("high surrogate without trailing low surrogate");var a=e.charCodeAt(n);if(a<56320||a>57343)throw new Error("high surrogate without trailing low surrogate");return{char:e.charAt(t)+e.charAt(n),start:t,end:n}}if(0===t)throw new Error("low surrogate without leading high surrogate");var i=t-1,o=e.charCodeAt(i);if(o<55296||o>56319)throw new Error("low surrogate without leading high surrogate");return{char:e.charAt(i)+e.charAt(t),start:i,end:t}}var _nativeMathRandom=Math.random;Object.defineProperty(Array,"random",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e||!Object.prototype.hasOwnProperty.call(e,"length"))throw new TypeError("Array.random array parameter must be an array or array-lke object");var t=e.length>>>0;if(0!==t){return e[0===arguments.length?_random(0,t-1):_randomIndex(t,Array.prototype.slice.call(arguments,1))]}}}),Object.defineProperty(Array.prototype,"concatUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.concatUnique called on null or undefined");var e=Array.from(this);if(0===arguments.length)return e;var t=Array.prototype.reduce.call(arguments,function(e,t){return e.concat(t)},[]),r=t.length;if(0===r)return e;for(var n=Array.prototype.indexOf,a=Array.prototype.push,i=0;i<r;++i){var o=t[i];-1===n.call(e,o)&&a.call(e,o)}return e}}),Object.defineProperty(Array.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.count called on null or undefined");for(var e=Array.prototype.indexOf,t=arguments[0],r=Number(arguments[1])||0,n=0;-1!==(r=e.call(this,t,r));)++n,++r;return n}}),Object.defineProperty(Array.prototype,"delete",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.delete called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.concat.apply([],arguments),r=t.length,n=[],a=0;a<e;++a)for(var i=this[a],o=0;o<r;++o){var s=t[o];if(i===s||i!==i&&s!==s){n.push(a);break}}for(var u=[],l=0,c=n.length;l<c;++l)u[l]=this[n[l]];for(var d=Array.prototype.splice,f=n.length-1;f>=0;--f)d.call(this,n[f],1);return u}}),Object.defineProperty(Array.prototype,"deleteAt",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.deleteAt called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.splice,r=[].concat(_toConsumableArray(new Set(Array.prototype.concat.apply([],arguments).map(function(t){return t<0?Math.max(0,e+t):t})).values())),n=[].concat(_toConsumableArray(r)).sort(function(e,t){return t-e}),a=[],i=0,o=r.length;i<o;++i)a[i]=this[r[i]];for(var s=0,u=n.length;s<u;++s)t.call(this,n[s],1);return a}}),Object.defineProperty(Array.prototype,"deleteWith",{configurable:!0,writable:!0,value:function(e,t){if(null==this)throw new TypeError("Array.prototype.deleteWith called on null or undefined");if("function"!=typeof e)throw new Error("Array.prototype.deleteWith predicate parameter must be a function");var r=this.length>>>0;if(0===r)return[];for(var n=Array.prototype.splice,a=[],i=[],o=0;o<r;++o)e.call(t,this[o],o,this)&&(i.push(this[o]),a.push(o));for(var s=a.length-1;s>=0;--s)n.call(this,a[s],1);return i}}),Object.defineProperty(Array.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.first called on null or undefined");if(0!=this.length>>>0)return this[0]}}),Object.defineProperty(Array.prototype,"includesAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAll called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAll.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(!Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!1;return!0}}),Object.defineProperty(Array.prototype,"includesAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAny called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAny.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!0;return!1}}),Object.defineProperty(Array.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.last called on null or undefined");var e=this.length>>>0;if(0!==e)return this[e-1]}}),Object.defineProperty(Array.prototype,"pluck",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pluck called on null or undefined");var e=this.length>>>0;if(0!==e){var t=0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)));return Array.prototype.splice.call(this,t,1)[0]}}}),Object.defineProperty(Array.prototype,"pluckMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.pluckMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.pluckMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=Array.prototype.splice,a=[],i=t-1;do{a.push(n.call(this,_random(0,i--),1)[0])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"pushUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pushUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.push,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Array.prototype,"random",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.random called on null or undefined");var e=this.length>>>0;if(0!==e){return this[0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)))]}}}),Object.defineProperty(Array.prototype,"randomMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.randomMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.randomMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=new Map,a=[],i=t-1;do{var o=void 0;do{o=_random(0,i)}while(n.has(o));n.set(o,!0),a.push(this[o])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"shuffle",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.shuffle called on null or undefined");var e=this.length>>>0;if(0===e)return this;for(var t=e-1;t>0;--t){var r=Math.floor(_nativeMathRandom()*(t+1));if(t!==r){var n=this[t];this[t]=this[r],this[r]=n}}return this}}),Object.defineProperty(Array.prototype,"unshiftUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.unshiftUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.unshift,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Function.prototype,"partial",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Function.prototype.partial called on null or undefined");var e=Array.prototype.slice,t=this,r=e.call(arguments,0);return function(){for(var n=[],a=0,i=0;i<r.length;++i)n.push(r[i]===undefined?arguments[a++]:r[i]);return t.apply(this,n.concat(e.call(arguments,a)))}}}),Object.defineProperty(Math,"clamp",{configurable:!0,writable:!0,value:function(e,t,r){var n=Number(e);return Number.isNaN(n)?NaN:n.clamp(t,r)}}),Object.defineProperty(Math,"easeInOut",{configurable:!0,writable:!0,value:function(e){return 1-(Math.cos(Number(e)*Math.PI)+1)/2}}),Object.defineProperty(Number.prototype,"clamp",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Number.prototype.clamp called on null or undefined");if(2!==arguments.length)throw new Error("Number.prototype.clamp called with an incorrect number of parameters");var e=Number(arguments[0]),t=Number(arguments[1]);if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.min(Math.max(this,e),t)}}),RegExp.escape||function(){var e=/[\\^$*+?.()|[\]{}]/g,t=new RegExp(e.source);Object.defineProperty(RegExp,"escape",{configurable:!0,writable:!0,value:function(r){var n=String(r);return n&&t.test(n)?n.replace(e,"\\$&"):n}})}(),function(){var e=/{(\d+)(?:,([+-]?\d+))?}/g,t=new RegExp(e.source);Object.defineProperty(String,"format",{configurable:!0,writable:!0,value:function(r){function n(e,t,r){if(!t)return e;var n=Math.abs(t)-e.length;if(n<1)return e;var a=String(r).repeat(n);return t<0?e+a:a+e}if(arguments.length<2)return 0===arguments.length?"":r;var a=2===arguments.length&&Array.isArray(arguments[1])?[].concat(_toConsumableArray(arguments[1])):Array.prototype.slice.call(arguments,1);return 0===a.length?r:t.test(r)?(e.lastIndex=0,r.replace(e,function(e,t,r){var i=a[t];if(null==i)return"";for(;"function"==typeof i;)i=i();switch(void 0===i?"undefined":_typeof(i)){case"string":break;case"object":i=JSON.stringify(i);break;default:i=String(i)}return n(i,r?Number.parseInt(r,10):0," ")})):r}})}(),Object.defineProperty(String.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.contains called on null or undefined");return-1!==String.prototype.indexOf.apply(this,arguments)}}),Object.defineProperty(String.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.count called on null or undefined");var e=String(arguments[0]||"");if(""===e)return 0;for(var t=String.prototype.indexOf,r=e.length,n=Number(arguments[1])||0,a=0;-1!==(n=t.call(this,e,n));)++a,n+=r;return a}}),Object.defineProperty(String.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.first called on null or undefined");return _getCodePointStartAndEnd(String(this),0).char}}),Object.defineProperty(String.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.last called on null or undefined");var e=String(this);return _getCodePointStartAndEnd(e,e.length-1).char}}),Object.defineProperty(String.prototype,"splice",{configurable:!0,writable:!0,value:function(e,t,r){if(null==this)throw new TypeError("String.prototype.splice called on null or undefined");var n=this.length>>>0;if(0===n)return"";var a=Number(e);Number.isSafeInteger(a)?a<0&&(a+=n)<0&&(a=0):a=0,a>n&&(a=n);var i=Number(t);(!Number.isSafeInteger(i)||i<0)&&(i=0);var o=this.slice(0,a);return void 0!==r&&(o+=r),a+i<n&&(o+=this.slice(a+i)),o}}),Object.defineProperty(String.prototype,"splitOrEmpty",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.splitOrEmpty called on null or undefined");return""===String(this)?[]:String.prototype.split.apply(this,arguments)}}),Object.defineProperty(String.prototype,"toLocaleUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toLocaleUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toLocaleUpperCase()+e.slice(n+1)}}),Object.defineProperty(String.prototype,"toUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toUpperCase()+e.slice(n+1)}}),Object.defineProperty(Date.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:date)",this.toISOString()]}}),Object.defineProperty(Function.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)","("+this.toString()+")"]}}),Object.defineProperty(Map.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:map)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(RegExp.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)",this.toString()]}}),Object.defineProperty(Set.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:set)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(JSON,"reviveWrapper",{configurable:!0,writable:!0,value:function(e,t){if("string"!=typeof e)throw new TypeError("JSON.reviveWrapper code parameter must be a string");return["(revive:eval)",[e,t]]}}),Object.defineProperty(JSON,"_real_parse",{value:JSON.parse}),Object.defineProperty(JSON,"parse",{configurable:!0,writable:!0,value:function value(text,reviver){return JSON._real_parse(text,function(key,val){var value=val;if(Array.isArray(value)&&2===value.length)switch(value[0]){case"(revive:set)":value=new Set(value[1]);break;case"(revive:map)":value=new Map(value[1]);break;case"(revive:date)":value=new Date(value[1]);break;case"(revive:eval)":try{if(Array.isArray(value[1])){var $ReviveData$=value[1][1];value=eval(value[1][0])}else value=eval(value[1])}catch(e){}}else if("string"==typeof value&&"@@revive@@"===value.slice(0,10))try{value=eval(value.slice(10))}catch(e){}if("function"==typeof reviver)try{value=reviver(key,value)}catch(e){}return value})}}),Object.defineProperty(Array.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.contains called on null or undefined");return Array.prototype.includes.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAll called on null or undefined");return Array.prototype.includesAll.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAny called on null or undefined");return Array.prototype.includesAny.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"flatten",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatten called on null or undefined");return Array.prototype.flat.call(this,1/0)}}),Object.defineProperty(String.prototype,"readBracketedList",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.readBracketedList called on null or undefined");for(var e=new RegExp("(?:\\[\\[((?:\\s|\\S)*?)\\]\\])|([^\"'\\s]\\S*)","gm"),t=[],r=void 0;null!==(r=e.exec(this));)r[1]?t.push(r[1]):r[2]&&t.push(r[2]);return t}})}();var Browser=function(){var e=navigator.userAgent.toLowerCase(),t=e.includes("windows phone"),r=Object.freeze({Android:!t&&e.includes("android"),BlackBerry:/blackberry|bb10/.test(e),iOS:!t&&/ip(?:hone|ad|od)/.test(e),Opera:!t&&("object"===_typeof(window.operamini)||e.includes("opera mini")),Windows:t||/iemobile|wpdesktop/.test(e),any:function(){return r.Android||r.BlackBerry||r.iOS||r.Opera||r.Windows}}),n=!r.Windows&&!/khtml|trident|edge/.test(e)&&e.includes("gecko"),a=!e.includes("opera")&&/msie|trident/.test(e),i=a?function(){var t=/(?:msie\s+|rv:)(\d+\.\d)/.exec(e);return t?Number(t[1]):0}():null,o=e.includes("opera")||e.includes(" opr/"),s=o?function(){var t=new RegExp((/khtml|chrome/.test(e)?"opr":"version")+"\\/(\\d+\\.\\d+)"),r=t.exec(e);return r?Number(r[1]):0}():null,u=e.includes("vivaldi");return Object.freeze({userAgent:e,isMobile:r,isGecko:n,isIE:a,ieVersion:i,isOpera:o,operaVersion:s,isVivaldi:u})}(),Has=function(){var e=function(){try{return"function"==typeof document.createElement("audio").canPlayType}catch(e){}return!1}(),t=function(){try{return"Blob"in window&&"File"in window&&"FileList"in window&&"FileReader"in window&&!Browser.isMobile.any()&&(!Browser.isOpera||Browser.operaVersion>=15)}catch(e){}return!1}(),r=function(){try{return"geolocation"in navigator&&"function"==typeof navigator.geolocation.getCurrentPosition&&"function"==typeof navigator.geolocation.watchPosition}catch(e){}return!1}(),n=function(){try{return"MutationObserver"in window&&"function"==typeof window.MutationObserver}catch(e){}return!1}(),a=function(){try{return"performance"in window&&"function"==typeof window.performance.now}catch(e){}return!1}(),i=function(){try{return"ontouchstart"in window||!!window.DocumentTouch&&document instanceof window.DocumentTouch||!!navigator.maxTouchPoints||!!navigator.msMaxTouchPoints}catch(e){}return!1}(),o=function(){try{for(var e=new Map([["transition","transitionend"],["MSTransition","msTransitionEnd"],["WebkitTransition","webkitTransitionEnd"],["MozTransition","transitionend"]]),t=[].concat(_toConsumableArray(e.keys())),r=document.createElement("div"),n=0;n<t.length;++n)if(r.style[t[n]]!==undefined)return e.get(t[n])}catch(e){}return!1}();return Object.freeze({audio:e,fileAPI:t,geolocation:r,mutationObserver:n,performance:a,touch:i,transitionEndEvent:o})}(),Visibility=function(){function e(){return a}function t(){return a&&document[a.stateProperty]||"visible"}function r(){return Boolean(a)}function n(){return Boolean(a&&document[a.hiddenProperty])}var a=function(){try{return Object.freeze([{hiddenProperty:"hidden",stateProperty:"visibilityState",changeEvent:"visibilitychange"},{hiddenProperty:"webkitHidden",stateProperty:"webkitVisibilityState",changeEvent:"webkitvisibilitychange"},{hiddenProperty:"mozHidden",stateProperty:"mozVisibilityState",changeEvent:"mozvisibilitychange"},{hiddenProperty:"msHidden",stateProperty:"msVisibilityState",changeEvent:"msvisibilitychange"}].find(function(e){return e.hiddenProperty in document}))}catch(e){}return undefined}();return Object.freeze(Object.defineProperties({},{vendor:{get:e},state:{get:t},isEnabled:{value:r},isHidden:{value:n},hiddenProperty:{value:a&&a.hiddenProperty},stateProperty:{value:a&&a.stateProperty},changeEvent:{value:a&&a.changeEvent}}))}(),Fullscreen=function(){function e(e){var t=e||document.documentElement;return t===document.documentElement&&("msRequestFullscreen"===f.requestFn||Browser.isOpera&&Browser.operaVersion<15)&&(t=document.body),t}function t(){return f}function r(){return(f||null)&&document[f.element]}function n(){return Boolean(f&&document[f.isEnabled])}function a(){return Boolean(f&&document[f.element])}function i(t,r){var n=this;if(!f)return Promise.reject(new Error("fullscreen not supported"));var i=e(r);if("function"!=typeof i[f.requestFn])return Promise.reject(new Error("fullscreen not supported"));if(a())return Promise.resolve();if(p())return i[f.requestFn](t);var o=".Fullscreen_requestFullscreen";return new Promise(function(e,r){jQuery(i).off(o).one(""+f.errorEvent+o+" "+f.changeEvent+o,function(t){jQuery(n).off(o),t.type===f.errorEvent?r(new Error("unknown fullscreen request error")):e()}),i[f.requestFn](t)})}function o(){var e=this;if(!f||"function"!=typeof document[f.exitFn])return Promise.reject(new TypeError("fullscreen not supported"));if(!a())return Promise.reject(new TypeError("fullscreen mode not active"));if(p())return document[f.exitFn]();var t=".Fullscreen_exitFullscreen";return new Promise(function(r,n){jQuery(document).off(t).one(""+f.errorEvent+t+" "+f.changeEvent+t,function(a){jQuery(e).off(t),a.type===f.errorEvent?n(new Error("unknown fullscreen exit error")):r()}),document[f.exitFn]()})}function s(e,t){return a()?o():i(e,t)}function u(t,r){if(f){var n=e(r);$(n).on(f.changeEvent,t)}}function l(t,r){if(f){var n=e(r);t?$(n).off(f.changeEvent,t):$(n).off(f.changeEvent)}}function c(t,r){if(f){var n=e(r);$(n).on(f.errorEvent,t)}}function d(t,r){if(f){var n=e(r);t?$(n).off(f.errorEvent,t):$(n).off(f.errorEvent)}}var f=function(){try{return Object.freeze([{isEnabled:"fullscreenEnabled",element:"fullscreenElement",requestFn:"requestFullscreen",exitFn:"exitFullscreen",changeEvent:"fullscreenchange",errorEvent:"fullscreenerror"},{isEnabled:"webkitFullscreenEnabled",element:"webkitFullscreenElement",requestFn:"webkitRequestFullscreen",exitFn:"webkitExitFullscreen",changeEvent:"webkitfullscreenchange",errorEvent:"webkitfullscreenerror"},{isEnabled:"mozFullScreenEnabled",element:"mozFullScreenElement",requestFn:"mozRequestFullScreen",exitFn:"mozCancelFullScreen",changeEvent:"mozfullscreenchange",errorEvent:"mozfullscreenerror"},{isEnabled:"msFullscreenEnabled",element:"msFullscreenElement",requestFn:"msRequestFullscreen",exitFn:"msExitFullscreen",changeEvent:"MSFullscreenChange",errorEvent:"MSFullscreenError"}].find(function(e){return e.isEnabled in document}))}catch(e){}return undefined}(),p=function(){function e(){if(null!==t)return t;if(t=!1,f)try{var e=document.exitFullscreen();e.catch(function(){}),t=e instanceof Promise}catch(e){}return t}var t=null;return e}();return Object.freeze(Object.defineProperties({},{vendor:{get:t},element:{get:r},isEnabled:{value:n},isFullscreen:{value:a},request:{value:i},exit:{value:o},toggle:{value:s},onChange:{value:u},offChange:{value:l},onError:{value:c},offError:{value:d}}))}(),_ref3=function(){function e(e){for(var t=e.cloneNode(!0),r=document.createDocumentFragment(),n=void 0;null!==(n=t.firstChild);){if(n.nodeType===Node.ELEMENT_NODE)switch(n.nodeName.toUpperCase()){case"BR":case"DIV":case"P":r.appendChild(document.createTextNode(" "))}r.appendChild(n)}return r.textContent}function t(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)return e;if(e instanceof String)return String(e);if(e instanceof Number)return Number(e);if(e instanceof Boolean)return Boolean(e);if("function"==typeof e.clone)return e.clone(!0);if(e.nodeType&&"function"==typeof e.cloneNode)return e.cloneNode(!0);var r=void 0;return e instanceof Array?r=new Array(e.length):e instanceof Date?r=new Date(e.getTime()):e instanceof Map?(r=new Map,e.forEach(function(e,n){return r.set(n,t(e))})):e instanceof RegExp?r=new RegExp(e):e instanceof Set?(r=new Set,e.forEach(function(e){return r.add(t(e))})):r=Object.create(Object.getPrototypeOf(e)),Object.keys(e).forEach(function(n){return r[n]=t(e[n])}),r}function r(e){
