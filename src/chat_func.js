@@ -79,7 +79,7 @@ function revealMessage(scroll, textIndex){
     scroll.appendChild(messageEl);
   	updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
     var waitTime = calcWaitTime(toDisplay.length);
-    S.waiting = setTimeout(showMessageText, waitTime/2, messageText, loading, textIndex, scroll);
+    S.waiting = setTimeout(showMessageText, waitTime, messageText, loading, textIndex, scroll);
 
   }
 

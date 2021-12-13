@@ -2,9 +2,8 @@
 .chatMessage {
 	/* align-items: center; */
 	justify-content: flex-start;
-  background-color: #4E4256;/*#72657B;/*#9C94A2;*/
-	border: 4px solid #dedede;
-  border-color: #2C1D36;/*#483D50; /*#72657B;*/
+  background-color: dimgrey;/*#72657B;/*#9C94A2;*/
+	border: 4px solid darkgrey;
   border-radius: 2vw;
 	color: whitesmoke;
 	display: flex;

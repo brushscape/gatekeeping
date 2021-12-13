@@ -1,12 +1,12 @@
 body {
-		background-color:  #282A2C; 
+		background-color:  #282A2C;
 		color: whitesmoke; /*text color*/
 	  font-family: Courier, Futura, Impact, Helvetica;/*ranked choice list in case browser doesn't have Futura, Impact, etc*/
 	  /*font-size: 7vw;
 
   	/*min-width: 800px;*/
 		width: 95vw;
-		height: 95vh;
+		height: 85vh;
    	/*width: 800px;*/
 }
 
