@@ -1,10 +1,6 @@
 /*PASSCODE PAGE*/
-.passcode{
-	  background-color:  #282A2C;
-	  color: whitesmoke; /*text color*/
-	  text-align: center;
-}
 .passcodeBody{
+		margin-top: 10vh;
 	  display: flex;
 	  flex-direction: column;
 	  align-items: center;
@@ -23,10 +19,15 @@
 	z-index: 1;
 }
 .codeInputBox{
-	margin: calc(1px + 0.5vw);
-	font-size: calc(15px + 1vw);
+	text-transform: uppercase;
+	margin: calc(2px + 0.5vw);
+	font-size: calc(30px + 1vw);
+	width: calc(20px + 1vw);
 	text-align: center;
-	border-color: whitesmoke;
+	color: whitesmoke;
+	border: 1.5px solid darkgrey;
+	border-radius: 4px;
+	background-color: transparent;
 }
 .codeFeedback { /*not working for some reason*/
   color: firebrick;
@@ -35,15 +36,20 @@
 	z-index: 1;
 }
 
-#passages button {
+.enterButt {
+	padding: calc(2px + 1vw);
   background-color: #664180;
-  border-color: #2C1D36;
+  border: 1px solid #2C1D36;
 	font-size: calc(15px + 1vw);
+	color: whitesmoke;
+	border-radius: 4px;
 	z-index: 1;
 }
 
-.enter{
-  background-color: #A5CCEC;
+.enterButt:hover{
+	background-color: #452b57;
+	color: darkgrey;
+	border-color: #8955ad;
 }
 
 @keyframes moveDown {
@@ -109,11 +115,12 @@
   flex-direction: row;
   font-size: calc(10px + 0.7vw);
 	left: 50%; /* centers on x axis */
-	padding: 1vw;
+	padding: 1.5vw;
 	position: fixed;
   text-align: left;
-	transform: translateX(-50%);
+	transform: translate(-50%,-65%);
   width: calc(300px + ((100vw - 300px) * 0.5));
+	height: calc(3*(10px + 0.7vw)+1vh);
 	margin: 1vw;
 	z-index: 2;
 }
@@ -123,6 +130,7 @@
 }
 .allHelperText{
   flex-grow: 3;
+	line-height: calc(15px + 0.5vw);
 }
 .helperAvatarImg {
 	align-self: center;

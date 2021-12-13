@@ -1,8 +1,8 @@
 // Check for correct passcode on the Passcode Page
 // function accessible inside the Twine nodes
-setup.checkPasscode = function checkPasscode(){
-		var specialCode = state.active.variables.chatPassword;
-		var normalCode = setup.getCurrentPasscode();
+function checkPasscode(){
+		var specialCode = S.chatPassword;
+		var normalCode = getCurrentPasscode();
 		var first = document.getElementById('textbox-first');
 		var mid = document.getElementById('textbox-mid');
 		var last = document.getElementById('textbox-last');
@@ -14,9 +14,9 @@ setup.checkPasscode = function checkPasscode(){
        // correct code, proceed to jax discussion tree
 			 document.getElementById('codeFeedback').innerHTML = 'Correct!';
 			 document.getElementById('codeFeedback').style.color = 'lightgreen';
-			 numJaxAttempts++;
-			 clearTimeout(helperTimeout);
-			 state.display('Enter', this);
+			 S.numJaxAttempts++;
+			 //state.display('Enter', this);
+			 goto('Enter')
 
 			return;
 		}
@@ -24,70 +24,63 @@ setup.checkPasscode = function checkPasscode(){
       // correct special code, proceed to secret chat page
 			 document.getElementById('codeFeedback').innerHTML = 'Valid ID';
 			 document.getElementById('codeFeedback').style.color = 'lightblue';
-			 clearTimeout(helperTimeout);
-			 state.display('Chat', this);
+			 //state.display('Chat', this);
+			 goto('Chat')
 			return;
 		}
 		else{
       // invalid code, alert user to try again
-			numFailedAttempts++;
+			S.numFailedAttempts++;
 
-			if(numFailedAttempts%3 == 1){
+			if(S.numFailedAttempts%3 == 1){
 				document.getElementById('codeFeedback').innerHTML = 'Invalid';
 			}
-			else if(numFailedAttempts%3 == 2){
+			else if(S.numFailedAttempts%3 == 2){
 				document.getElementById('codeFeedback').innerHTML = 'Twice Invalid';
-				if(state.active.variables.currentHelper==0){
+				if(S.currentHelper==0){
 					revealHelper('M:they look kind of clueless to me...', false);
-					state.active.variables.currentHelper = -1;
+					S.currentHelper = -1;
 				}
 			}
-			else if(numFailedAttempts%3 == 0 && numFailedAttempts>0){
-				setup.updateIndex();
-        updateBackground(normalCode,setup.getCurrentPasscode());
+			else if(S.numFailedAttempts%3 == 0 && S.numFailedAttempts>0){
+				updateCurrIndex();
+        updateBackground(normalCode,getCurrentPasscode());
 				document.getElementById('codeFeedback').innerHTML = 'Thrice Invalid<br>New Code Chosen';
 			}
-			//document.getElementById('invalid').className ='invalid';
-			//document.getElementById('invalid').style.animation ='flashing 3s linear';
-			/*var element = document.getElementById('invalid');
-			element.classList.remove('animate');
-			void element.offsetWidth; // trigger a DOM reflow
-			element.classList.add('animate');*/
 		}
-		if(numFailedAttempts%4 == 0)
+		if(S.numFailedAttempts%4 == 0)
 		{
-			var helperText = passwordDict[setup.getCurrentPasscode()];
+			var helperText = S.passwordDict[getCurrentPasscode()];
 			revealHelper(helperText,false);
 		}
 };
 
 // Reveal helper popup message on the Passcode Page
 function revealHelper(helperText, nextMessage){
-	//console.log('reveal ' + helperText);
 	var user = helperText.charAt(0);
 	switch(user){
 		//Jax #4E4256
 		case 'J':
 			document.getElementById('username').innerHTML = '@blackout';
-			document.getElementById('helperAvatarImg').src = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
+			document.getElementById('helperAvatarImg').src = S.img['JAX'];
 			document.getElementById('helper').style.backgroundColor = '#4E4256';
 			break;
 		//Daeka #425653
 		case 'D':
 			document.getElementById('username').innerHTML = '@cyborgrip';
-			document.getElementById('helperAvatarImg').src = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
+			document.getElementById('helperAvatarImg').src = S.img['DAE'];
 			document.getElementById('helper').style.backgroundColor = '#425653';
 			break;
 		//Quinn #56424B
 		case 'Q':
 			document.getElementById('username').innerHTML = '@calikilly';
-			document.getElementById('helperAvatarImg').src = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
+			document.getElementById('helperAvatarImg').src = S.img['QUI'];
 			document.getElementById('helper').style.backgroundColor = '#56424B';
 			break;
 		//Mouse #564C42
 		case 'M':
 			document.getElementById('username').innerHTML = '@snakebait';
-			document.getElementById('helperAvatarImg').src = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
+			document.getElementById('helperAvatarImg').src = S.img['MOU'];
 			document.getElementById('helper').style.backgroundColor = '#564C42';
 			break;
 		default:
@@ -98,28 +91,29 @@ function revealHelper(helperText, nextMessage){
 	document.getElementById('helper').style.display = 'flex';
 	if(nextMessage)
 	{
-		//console.log('there is next helperhelper');
-		switch(state.active.variables.currentHelper){
+		switch(S.currentHelper){
 			case 0:
-				var isNext = initIndex < initHelper.length-1;
+				var isNext = S.initIndex < S.initHelper.length-1;
 				var mLen = helperText.length;
 				var randTime = mLen*40 + 500;//+500?
-				helperTimeout = setTimeout(revealHelper, randTime, initHelper[initIndex], isNext);
-				initIndex++;
+				if(randTime<900){randTime=900;}
+			  S.waiting = setTimeout(revealHelper, randTime, S.initHelper[S.initIndex], isNext);
+				S.initIndex++;
 				break;
 			case 1:
-				isNext = successIndex < successHelper.length-1;
+				isNext = S.successIndex < S.successHelper.length-1;
 				mLen = helperText.length;
 				randTime = mLen*40 + 500;//+500?
-				//console.log('time '+randTime);
-				helperTimeout = setTimeout(revealHelper, randTime, successHelper[successIndex], isNext);
-				successIndex++;
+				if(randTime<900){randTime=900;}
+				S.waiting = setTimeout(revealHelper, randTime, S.successHelper[S.successIndex], isNext);
+				S.successIndex++;
 				break;
 		}
 	}
 }
 
 //controls the floating passwords on the passcode page
+//the current passcode is a slightly higher opacity than the others
 function crypticBackground(){
   var body = document.getElementById("passcodeBody");
   var crypt = document.createElement("div");
@@ -132,14 +126,14 @@ function crypticBackground(){
   crypt.style.top='0';
   crypt.style.position='absolute';
 
-  var codePhrase = state.active.variables.passcodePhrase;
+  var codePhrase = S.passcodePhrase;
   var passcodes = [];
   for(var k=0; k<codePhrase.length; k+=3){
     var code = codePhrase.substring(k,k+3).toUpperCase();
     passcodes.push(code);
     //passCryptDict[code] = [];
   }
-  var currPasscode = setup.getCurrentPasscode();
+  var currPasscode = getCurrentPasscode();
 
   for(var i=0; i<passcodes.length*5; i++){
     var div = document.createElement("div");
@@ -212,6 +206,7 @@ function crypticBackground(){
   updateBackground(passcodes[0],currPasscode);
 }
 
+//update the cryptic background to reflect the new passcode selected
 function updateBackground(prevPasscode, currPasscode){
 
   var prevCodeDisplays = document.getElementsByClassName(prevPasscode);

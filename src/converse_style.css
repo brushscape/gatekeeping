@@ -17,7 +17,7 @@
 	border: 3px solid #dedede;
   border-color: #2C1D36;/*#483D50; /*#72657B;*/
 	/*color: whitesmoke;*/
-	border-radius: 5px;
+	border-radius: 3vw;
 
 	display: flex;
 	flex-direction: row;
@@ -25,6 +25,7 @@
 	font-size: calc(8px + 1vw);
 	line-height: calc(12px + 1vw);
 	align-items: center;
+	cursor: pointer;
 }
 
 .textCol{
@@ -39,6 +40,7 @@
 .usernameP{
 	margin-top: 0;
 	margin-bottom: 1vw;
+	font-weight: bold;
 }
 
 .messageText{
@@ -63,7 +65,7 @@
 	flex-direction: column;
 
   margin: 2vw;
-	font-size: calc(9px + 1vw);;
+	font-size: calc(9px + 1vw);
 }
 
 .option {
@@ -78,8 +80,10 @@
 	margin: 1.5vw;
 	height: auto;
 	width: 100%;
+	padding: 1vw;
 }
 .option:hover {
   background-color: #4E4256;/*#9A71B4;*/
   border-color: #2C1D36;
+	cursor: pointer;
 }

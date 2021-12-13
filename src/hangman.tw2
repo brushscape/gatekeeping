@@ -1,0 +1,19 @@
+:: Hangman [hangman] {"position":"3298,617","size":"100,100"}
+<div class="hangmanBoard">
+
+	<p class="hangmanWord" id="hangmanWord"></p>
+
+	  <div class="alphabet">
+		  <div class="alphaLine" id="firstLine">
+				<button class="enterButt" id='templateButton'></button>
+
+		  </div>
+		  <div class="alphaLine" id="secondLine">
+
+		  </div>
+		  <div class="alphaLine" id="thirdLine">
+
+		  </div>
+	  </div>
+		<p class="hangmanFeedback" id="hangmanFeedback"> o o o o o o </p>
+</div>

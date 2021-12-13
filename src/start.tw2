@@ -1,0 +1,32 @@
+::StoryTitle
+Gatekeeping
+
+::StoryAuthor
+void
+
+::StorySettings
+obfuscate:rot13
+jquery:on
+
+::StoryData
+{
+	"ifid": "BE463596-4EA4-4DF3-8BE6-332196447E64",
+	"format": "Snowman",
+	"start": "Passcode"
+}
+
+:: SPECIAL [other] {"position":"1376,2026","size":"100,100"}
+You've reached the special page
+[[Passcode]]
+
+
+:: Testing Setup [other] {"position":"3214,320","size":"100,100"}
+<<set $chatPassword = "JAX">>
+<<set $passcodePhrase = "Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop">>
+<<set $currPassIndex = 0>>
+
+[[Fun Puzzle]]
+
+[[Chat]]
+
+[[Welcome]]

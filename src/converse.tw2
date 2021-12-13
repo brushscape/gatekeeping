@@ -1,0 +1,708 @@
+:: Enter
+<div class='darkMessage' id='darkMessage'>
+  <div class='avatar'><img class='avatarImg' id='avatarImg' src='img/avatar_blackout.JPG' alt='Avatar'></div>
+  <div class='textCol'>
+    <p class='usernameP' id='usernameP'></p>
+    <p id='messageText'></p>
+  </div>
+</div>
+<div class='responses' id='responses'>
+  <div class=option id='option1'></div>
+  <div class=option id='option2'></div>
+  <div class=option id='option3'></div>
+</div>
+
+
+:: First {"position":"3029,747","size":"100,100"}
+Oh my, is that a newbie I spy? What are you doing in this corner of the internet?
+[[Am I not supposed to be here?]]
+[[I’m not even sure how I got here.]]
+[[I’m just looking for answers.]]
+
+:: Come Back [leave toHangman] {"position":"3030,2082","size":"100,100"}
+Come back another time, little bird. You might belong here someday.
+
+
+:: Leave [leave toPasscode] {"position":"3279,2071","size":"100,100"}
+You're a bore. Get out of here before I make you.
+
+
+:: Welcome [leave toManifesto] {"position":"3514,2068","size":"100,100"}
+Welcome to the NightWeb, little bird.
+
+
+
+:: Am I not supposed to be here? {"position":"1045,948","size":"100,100"}
+Permission is a tricky thing. It’s hard to know who has it and who doesn’t. So you tell me. Are you supposed to be here?
+[[Yes, I am.]]
+[[Probably not.]]
+[[Who’s to say, really?]]
+
+
+:: I’m not even sure how I got here. {"position":"3032,1051","size":"100,100"}
+How fortuitous. Bewildered wanderers are my favorite.
+[[Why is that?]]
+[[Who are you, exactly?]]
+[[I don’t wander.]]
+
+
+:: I’m just looking for answers.{"position":"5180,981","size":"100,100"}
+A noble pursuit. But do you know the right questions?
+[[I’m not noble.]]
+[[There are no right questions.]]
+[[Would you even answer them if I asked?]]
+
+
+:: Yes, I am. {"position":"894,1100","size":"100,100"}
+Are you really so sure? Do you even know where you flew into, little bird?
+[[It’s just a webpage.]]
+[[Not really. Are you going to tell me?]]
+[[Obviously. And this is a dumb way to hide it.]]
+
+
+:: Probably not. {"position":"1045,1098","size":"100,100"}
+Hm, pity. I wanted to play with someone new.
+[[Like me?]]
+[[What do you mean, play?]]
+[[I’m not as new as you seem to think.]]
+
+
+:: Who’s to say, really? {"position":"1195,1098","size":"100,100"}
+Ha, now that’s an attitude I like. Are you sure you’ve never been here before?
+[[No, but I’ve been looking for this place.]]
+[[Who can remember such things?]]
+[[You’re the one who assumed I was a newbie.]]
+
+
+:: It’s just a webpage. {"position":"116,1360","size":"100,100"}
+Hm, a pitiful way to view this place. I don’t hang around places that are ‘just’ anything…
+[[Then what’s so interesting about this place?]]
+[[And who are you, exactly?]]
+[[You’re kind of infuriating.]]
+
+
+:: Not really. Are you going to tell me? {"position":"456,1330","size":"100,100"}
+I could… but that would ruin the fun.
+[[I bet I could guess.]]
+[[Your fun or mine?]]
+[[Why so cryptic?]]
+
+
+:: Then what’s so interesting about this place? [noexit toComeback] {"position":"0,1530","size":"100,100"}
+Telling you ruins the fun...
+
+
+
+:: And who are you, exactly? [noexit toLeave] {"position":"101,1530","size":"100,100"}
+If you don’t already know, I have no interest in telling you.
+
+
+
+:: You’re kind of infuriating. [noexit toComeback] {"position":"221,1530","size":"100,100"}
+Thank you. I mean to be.
+
+
+
+:: What do you mean, play? {"position":"1038,1698","size":"100,100"}
+What don’t I mean? I’m up for any game, little bird…
+[[But only as long as you make the rules?]]
+[[How about a game of Guess Who?]]
+[[What if I don’t like games?]]
+
+
+:: Like me? {"position":"714,1696","size":"100,100"}
+Maybe. Are you fun to play with?
+[[I’m not really one for games.]]
+[[You’re creeping me out.]]
+[[You tell me.]]
+
+
+:: I’m not really one for games.[noexit toLeave] {"position":"580,1850","size":"100,100"}
+God, you really are no fun.
+
+
+
+:: You’re creeping me out. [noexit toComeback] {"position":"700,1850","size":"100,100"}
+Ha! Good. I’d hate for you to find me comforting.
+
+
+
+:: You tell me. [noexit toComeback] {"position":"820,1850","size":"100,100"}
+I think you might be...
+
+
+
+:: No, but I’ve been looking for this place. {"position":"1199,1327","size":"100,100"}
+Really? And why is that?
+[[I want to know more.]]
+[[I’m sick of everywhere else.]]
+[[You know why.]]
+
+
+:: Who can remember such things? {"position":"1541,1319","size":"100,100"}
+Now you’re just being coy.
+[[And you’d know all about that, wouldn’t you?]]
+[[So what if I am?]]
+[[No, my memory is actually terrible.]]
+
+
+:: You’re the one who assumed I was a newbie. {"position":"1855,1313","size":"100,100"}
+An ignorant assumption, it would appear. So what now?
+[[You could let me through.]]
+[[Make me guess a new passcode. I dare you.]]
+[[You tell me, oh mysterious one.]]
+
+
+:: I want to know more. [noexit toComeback] {"position":"1075,1525","size":"100,100"}
+We all did. And we all paid the price.
+
+
+
+:: I’m sick of everywhere else. [noexit toComeback] {"position":"1195,1525","size":"100,100"}
+Ha! Of course you do. That’s their whole game.
+
+
+
+:: You know why. [noexit toWelcome] {"position":"1308,1525","size":"100,100"}
+Ha! Standard fare. The anarch revenge club.
+
+
+
+:: Why is that? {"position":"2888,1198","size":"100,100"}
+They stumble on the strangest of places and the most interesting of secrets.
+[[Are you a secret?]]
+[[What have I stumbled upon?]]
+[[Are you a bewildered wanderer?]]
+
+
+:: Who are you, exactly? {"position":"3038,1198","size":"100,100"}
+That is most definitely the wrong question.
+[[There are no wrong questions.]]
+[[What’s the right one?]]
+[[I don’t like talking to strangers.]]
+
+
+:: I don’t wander. {"position":"3188,1198","size":"100,100"}
+Oh, so this little bird has purpose. Yet you don’t even know how you got here.
+[[I can be lost and have purpose.]]
+[[Are you making fun of me?]]
+[[Purpose is overrated.]]
+
+
+:: Are you a secret? {"position":"2289,1372","size":"100,100"}
+Only to most. To a few, I’m a documented catastrophe.
+[[Am I supposed to be scared?]]
+[[You don’t seem dangerous to me.]]
+[[That sounds like the dream.]]
+
+
+:: What have I stumbled upon? {"position":"2610,1379","size":"100,100"}
+Just an idea. An idea most people are unwilling to accept.
+[[Why wouldn’t people accept it?]]
+[[I’m willing.]]
+[[You don’t like most people, do you?]]
+
+
+:: Are you a bewildered wanderer? {"position":"2927,1363","size":"100,100"}
+Are you a bewildered wanderer?
+[[What are your best secrets?]]
+[[Aren’t secrets dangerous?]]
+[[Being bewildered is fun. You should try it sometime.]]
+
+
+:: Am I supposed to be scared? [noexittoComeback] {"position":"2139,1522","size":"100,100"}
+That is entirely up to you.
+
+
+
+:: You don’t seem dangerous to me. [noexit toComeback] {"position":"2256,1518","size":"100,100"}
+Then I’m not doing my job right.
+
+
+
+:: That sounds like the dream. [noexit toWelcome] {"position":"2372,1519","size":"100,100"}
+Oh, trust me, it is.
+
+
+
+:: There are no wrong questions.{"position":"2673,1664","size":"100,100"}
+Please. You’re surrounded by wrong questions.
+[[Like what?]]
+[[Who’s to say they’re wrong?]]
+[[I can’t win, can I?]]
+
+
+:: What’s the right one? {"position":"3030,1668","size":"100,100"}
+What makes you think there’s a right one?
+[[Because I keep picking the wrong ones.]]
+[[You’re making it sound like there isn’t.]]
+[[You’re impossible.]]
+
+
+:: I don’t like talking to strangers.{"position":"3397,1663","size":"100,100"}
+You’d better get to know me then.
+[[You don’t exactly make that easy.]]
+[[Or I could just leave you.]]
+[[I’m not convinced you’re worth knowing.]]
+
+
+:: Like what? [noexit toLeave] {"position":"2555,1810","size":"100,100"}
+If you don’t already know, then you’re wasting my time.
+
+
+
+:: Who’s to say they’re wrong? [noexit toLeave] {"position":"2673,1814","size":"100,100"}
+Me, obviously.
+
+
+
+:: I can’t win, can I? [noexit toComeback] {"position":"2795,1818","size":"100,100"}
+Ha! Apparently not.
+
+
+
+:: I’m not noble. {"position":"5006,1127","size":"100,100"}
+Good. I don’t have a lot of patience for knightly virtues.
+[[Neither do I.]]
+[[Why not?]]
+[[Who are you anyway?]]
+
+
+:: There are no right questions.{"position":"5180,1131","size":"100,100"}
+Maybe not. So what do you want to know, little bird?
+[[I want to know who you are.]]
+[[I want to know how you’re such a pain.]]
+[[I want to know what you want me to ask.]]
+
+
+:: Would you even answer them if I asked? {"position":"5330,1131","size":"100,100"}
+Perhaps. What are your questions, little bird?
+[[Where am I?]]
+[[Who are you?]]
+[[How do I get past you?]]
+
+
+:: Neither do I. {"position":"4382,1346","size":"100,100"}
+Then you came to the right place. Tradition is dead here. We make our own rules.
+[[Why make any rules at all?]]
+[[That sounds dangerous.]]
+[[Who is ‘we’?]]
+
+
+:: Why not? {"position":"4753,1325","size":"100,100"}
+They’re too concerned with rules and not knowing when to break them.
+[[Rules can be useful.]]
+[[What rules have you broken?]]
+[[Rules are a construct.]]
+
+
+:: Who are you anyway? {"position":"5090,1311","size":"100,100"}
+Why would I tell you?
+[[Because I asked.]]
+[[It’s common courtesy.]]
+[[Clearly, you wouldn’t.]]
+
+
+:: Why make any rules at all? [noexit toWelcome] {"position":"4278,1516","size":"100,100"}
+Ha! Already an anarch I see. We’ve been waiting for you.
+
+
+
+:: That sounds dangerous.[noexit toComeback] {"position":"4385,1516","size":"100,100"}
+It should. We’re all dangerous here.
+
+
+
+:: Who is ‘we’? [noexit toLeave] {"position":"4507,1518","size":"100,100"}
+And that is definitely the wrong question.
+
+
+
+:: Why wouldn’t people accept it? [noexit toWelcome] {"position":"2496,1525","size":"100,100"}
+See for yourself...
+
+
+
+:: I’m willing. [noexit toWelcome] {"position":"2614,1528","size":"100,100"}
+I hope that’s true.
+
+
+
+:: You don’t like most people, do you? [noexit toComeback] {"position":"2732,1530","size":"100,100"}
+Are you saying you do?
+
+
+
+:: Obviously. And this is a dumb way to hide it. {"position":"798,1327","size":"100,100"}
+What makes you say that?
+[[The passcode is easy.]]
+[[These questions are nonsensical.]]
+[[It shouldn’t be hidden.]]
+
+
+:: I’m not as new as you seem to think. {"position":"1377,1696","size":"100,100"}
+Is that so? And yet you chose the simple passcode…
+[[There’s more than one passcode?]]
+[[They’re both simple, Rumplestiltskin.]]
+[[I thought it’d be fun to get through your way.]]
+
+
+:: I bet I could guess.[noexit toComeback] {"position":"341,1526","size":"100,100"}
+Such confidence. But how much are you actually willing to bet?
+
+
+
+:: Your fun or mine? [noexit toComeback] {"position":"461,1525","size":"100,100"}
+Obviously mine.
+
+
+
+:: Why so cryptic? [noexit toComeback] {"position":"581,1528","size":"100,100"}
+Why not? You little birds are so fun to play with.
+
+
+
+:: The passcode is easy. [noexit toLeave] {"position":"691,1528","size":"100,100"}
+It’s meant to be. I made it a child’s lock for a reason.
+
+
+
+:: These questions are nonsensical. [noexit toComeback] {"position":"811,1528","size":"100,100"}
+Only because they don’t make sense to you.
+
+
+
+:: It shouldn’t be hidden. [noexit toWelcome] {"position":"938,1528","size":"100,100"}
+True. Everyone deserves to know.
+
+
+
+:: And you’d know all about that, wouldn’t you? [noexit toWelcome] {"position":"1426,1530","size":"100,100"}
+Ha! Yes, I suppose I would.
+
+
+
+:: So what if I am? [noexit toComeback] {"position":"1540,1530","size":"100,100"}
+Ha! Fair enough. You’re entitled to your mysteries.>>
+
+
+
+:: No, my memory is actually terrible. [noexit toComeback] {"position":"1650,1534","size":"100,100"}
+Then you might want to be taking notes.
+
+
+
+:: You could let me through. [noexit toComeback] {"position":"1762,1530","size":"100,100"}
+Come on. You know that’s not my style.
+
+
+
+:: Make me guess a new passcode. I dare you. [noexit toLeave] {"position":"1877,1530","size":"100,100"}
+As you wish.
+
+
+
+:: You tell me, oh mysterious one. [noexit toWelcome] {"position":"1990,1526","size":"100,100"}
+Fine. You win.
+
+
+
+:: But only as long as you make the rules? [noexit toComeback] {"position":"933,1848","size":"100,100"}
+Now you’re getting it.
+
+
+
+:: How about a game of Guess Who? [noexit toComeback] {"position":"1038,1848","size":"100,100"}
+But that’s such an easy game. I already know everything about you, little bird.
+
+
+
+:: What if I don’t like games? [noexit toLeave] {"position":"1151,1848","size":"100,100"}
+Then you’re not going to be very fun to poke at.
+
+
+
+:: There’s more than one passcode? [noexit toComeback] {"position":"1263,1846","size":"100,100"}
+Wouldn’t you like to know.
+
+
+
+:: They’re both simple, Rumplestiltskin. [leave toPasscode rumple] {"position":"1385,1846","size":"100,100"}
+Fair dig, if you actually know it. Why don’t you prove your knowledge.
+
+
+:: I thought it’d be fun to get through your way. [noexit toWelcome] {"position":"1505,1847","size":"100,100"}
+And get through you shall.
+
+
+
+:: What are your best secrets? [noexit toComeback] {"position":"2842,1538","size":"100,100"}
+The ones I make myself.
+
+
+
+:: Aren’t secrets dangerous? [noexit toComeback] {"position":"2962,1538","size":"100,100"}
+Only if they’re the best kind.
+
+
+
+:: Being bewildered is fun. You should try it sometime. [noexit toComeback] {"position":"3067,1538","size":"100,100"}
+No thanks. I’d rather watch someone wander than wander myself.
+
+
+
+:: Because I keep picking the wrong ones.[noexit toComeback] {"position":"2915,1814","size":"100,100"}
+And yet you’re still here…
+
+
+
+:: You’re making it sound like there isn’t. [noexit toComeback] {"position":"3030,1818","size":"100,100"}
+What would you do if there wasn’t, little bird?
+
+
+
+:: You’re impossible. [noexit toComeback] {"position":"3146,1818","size":"100,100"}
+That might be the point.
+
+
+
+:: You don’t exactly make that easy. [noexit toComeback] {"position":"3270,1813","size":"100,100"}
+I know. It’s nothing personal.
+
+
+
+:: Or I could just leave you. [noexit toLeave] {"position":"3397,1813","size":"100,100"}
+Do it.
+
+
+
+:: I’m not convinced you’re worth knowing. [noexit toLeave] {"position":"3522,1803","size":"100,100"}
+Then stop trying.
+
+
+
+:: I can be lost and have purpose. {"position":"3273,1361","size":"100,100"}
+Maybe, but you’re admitting you’re rather bad at pursuing that purpose.
+[[That’s kind of rude.]]
+[[What, like you’re so good at pursuing yours?]]
+[[What if my purpose was to get lost?]]
+
+
+:: Are you making fun of me? {"position":"3643,1359","size":"100,100"}
+I might be. Should I not?
+[[No. It’s rude.]]
+[[I guess you can. I probably deserve it.]]
+[[Only if I can make fun of you back.]]
+
+
+:: Purpose is overrated. {"position":"3919,1353","size":"100,100"}
+Interesting… What do you have instead?
+[[Curiosity.]]
+[[Peace.]]
+[[Chaos.]]
+
+
+:: That’s kind of rude. [noexit toComeback] {"position":"3193,1538","size":"100,100"}
+You know I’m right.
+
+
+
+:: What, like you’re so good at pursuing yours? [noexit toLeave] {"position":"3313,1538","size":"100,100"}
+This has never been about me.
+
+
+
+:: What if my purpose was to get lost? [noexit toComeback] {"position":"3429,1538","size":"100,100"}
+Then you’re a very interesting creature.
+
+
+
+:: No. It’s rude. [noexit toLeave] {"position":"3552,1533","size":"100,100"}
+Of course it is.
+
+
+
+:: I guess you can. I probably deserve it. [noexit toComeback] {"position":"3668,1532","size":"100,100"}
+Don’t say that. It takes the fun out of it.
+
+
+
+:: Only if I can make fun of you back. [noexit toComeback] {"position":"3784,1534","size":"100,100"}
+I wish you would.
+
+
+
+:: Curiosity. [noexit toWelcome] {"position":"3899,1522","size":"100,100"}
+So more of a cat than a bird, huh? I can work with that.
+
+
+
+:: Peace. [noexit toComeback] {"position":"4016,1521","size":"100,100"}
+Nice sentiment, but peace was never an option.
+
+
+
+:: Chaos.[noexit toWelcome] {"position":"4143,1518","size":"100,100"}
+You are an anarch after all.
+
+
+
+:: Rules can be useful. [noexit toLeave] {"position":"4631,1514","size":"100,100"}
+That is so not the point.
+
+
+
+:: What rules have you broken? [noexit toComeback] {"position":"4741,1512","size":"100,100"}
+Who’s to say I’ve ever followed one?
+
+
+
+:: Rules are a construct. [noexit toWelcome] {"position":"4861,1517","size":"100,100"}
+Now that’s the attitude I’m looking for.
+
+
+
+:: Because I asked. [noexit toComeback] {"position":"4973,1517","size":"100,100"}
+Maybe ask something else next time.
+
+
+
+:: It’s common courtesy. [noexit toLeave] {"position":"5087,1520","size":"100,100"}
+Courtesy’s another virtue I don’t care for.
+
+
+
+:: Clearly, you wouldn’t. [noexit toComeback] {"position":"5200,1525","size":"100,100"}
+Now you’re getting it.
+
+
+
+:: I want to know who you are. {"position":"4832,1684","size":"100,100"}
+Many do. But none have found out. I like it that way.
+[[That sounds lonely.]]
+[[Surely someone knows.]]
+[[I envy your anonymity.]]
+
+
+:: I want to know how you’re such a pain. {"position":"5137,1684","size":"100,100"}
+Years of practice. It’s my most treasured hobby.
+[[It’s highly inconvenient.]]
+[[You should find a new hobby.]]
+[[Can you teach me sometime?]]
+
+
+:: I want to know what you want me to ask. {"position":"5456,1669","size":"100,100"}
+You can ask whatever you’d like.
+[[That’s clearly a lie.]]
+[[But you never give me the answers I want.]]
+[[I’m not even sure what questions I have anymore.]]
+
+
+:: That sounds lonely. [noexit toLeave] {"position":"4682,1834","size":"100,100"}
+And you sound needy.
+
+
+
+:: Surely someone knows.[noexit toLeave] {"position":"4802,1834","size":"100,100"}
+Someone might. But that someone is not going to be you.
+
+
+
+:: I envy your anonymity. [noexit toComeback] {"position":"4918,1834","size":"100,100"}
+And I treasure it.
+
+
+
+:: It’s highly inconvenient. [noexit toComeback] {"position":"5040,1836","size":"100,100"}
+I must be doing it right then.
+
+
+
+:: You should find a new hobby. [noexit toLeave] {"position":"5150,1829","size":"100,100"}
+I’m not taking advice from someone who partakes in baffling conversations with a stranger in their free time.
+
+
+
+:: Can you teach me sometime? [noexit toComeback] {"position":"5259,1824","size":"100,100"}
+Ha! I would love to. Just do what I do.
+
+
+
+:: That’s clearly a lie. [noexit toComeback] {"position":"5379,1819","size":"100,100"}
+Why would I lie to you?
+
+
+
+:: But you never give me the answers I want. [noexit toLeave] {"position":"5499,1819","size":"100,100"}
+Maybe you should adjust your expectations.
+
+
+
+:: I’m not even sure what questions I have anymore. [noexit toComeback] {"position":"5606,1819","size":"100,100"}
+You’ll do much better if you know where you want to go.
+
+
+
+:: Where am I? {"position":"5433,1306","size":"100,100"}
+Where do you want to be?
+[[Somewhere safe.]]
+[[Somewhere cryptic strangers actually answer my questions.]]
+[[Where the anarchs live.]]
+
+
+:: Who are you? {"position":"5778,1297","size":"100,100"}
+That I cannot answer.
+[[And why is that?]]
+[[Don’t you know who you are?]]
+[[Of course you can’t.]]
+
+
+:: How do I get past you? {"position":"6150,1291","size":"100,100"}
+What makes you think you can?
+[[There’s got to be some point to this.]]
+[[Now I’m worried that I can’t.]]
+[[You are insufferable.]]
+
+
+:: Don’t you know who you are? [noexit toLeave] {"position":"5817,1507","size":"100,100"}
+Would it matter if I didn’t?
+
+
+
+:: Of course you can’t. [noexit toComeback] {"position":"5939,1509","size":"100,100"}
+And I never will. So maybe stop asking.
+
+
+
+:: And why is that? [noexit toComeback] {"position":"5699,1509","size":"100,100"}
+Because it’s a secret, of course.
+
+
+
+:: Somewhere safe. [noexit toLeave] {"position":"5328,1509","size":"100,100"}
+Then this is not the place for you.
+
+
+
+:: Somewhere cryptic strangers actually answer my questions.[noexit toComeback] {"position":"5450,1521","size":"100,100"}
+Ha! It would seem you’re out of luck.
+
+
+
+:: Where the anarchs live. [noexit toWelcome] {"position":"5570,1519","size":"100,100"}
+Now that sounds like a place worth being.
+
+
+
+:: There’s got to be some point to this.[noexit toComeback] {"position":"6048,1499","size":"100,100"}
+Maybe there is. Maybe there isn’t. I guess you’ll just have to find out.
+
+
+
+:: Now I’m worried that I can’t. [noexit toComeback] {"position":"6163,1491","size":"100,100"}
+Ha! Maybe you should stop trying so hard.
+
+
+
+:: You are insufferable. [noexit toComeback] {"position":"6286,1487","size":"100,100"}
+Thank you. I make an effort to be.

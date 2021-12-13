@@ -1,87 +1,117 @@
+
+function startChat(){
+  var chatScroll = document.getElementById('chatScroll');
+  document.getElementById('exitButton').onclick = function(){
+    goto('Passcode');
+  }
+  document.getElementById('chatMessage').style.display = 'none';
+  S.chats = revealMessage(chatScroll,0,0);
+  S.loadingChats = false;//true;
+}
+
 // Reveal messages in Chat Page
-function revealMessage(scroll, scrollIndex, textIndex, chatNotifWait){
-  var toDisplay = scroll.children[scrollIndex];
-  var newIndex = scrollIndex+1;
-  if(toDisplay.className == "chatNotif"){
-    toDisplay.style.display = 'block';
-    updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
-  	if(newIndex < scroll.children.length){
-  		chats = setTimeout(revealMessage, chatNotifWait, scroll, newIndex, textIndex, 0);
-  		loadingChats = true;
+function revealMessage(scroll, textIndex){
+  if(textIndex >= S.messageArray.length){return;}
+
+  var messageEl = document.getElementById('chatMessage').cloneNode(true);
+  var notifEl = document.getElementById('chatNotif').cloneNode(true);
+
+  var toDisplay = S.messageArray[textIndex];
+  //var newIndex = scrollIndex+1;
+  if(toDisplay.charAt(0) == "@"){ //if chat notif
+    notifEl.innerHTML = toDisplay;
+    scroll.appendChild(notifEl);
+
+    updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
+  	if(textIndex+1 < S.messageArray.length){
+  		S.waiting = setTimeout(revealMessage, S.chatNotifWait, scroll, textIndex+1);
+  		S.loadingChats = true;
   	}else {
-  		loadingChats = false;
+  		S.loadingChats = false;
   	}
   }else{
-  	var message = fullText[textIndex];
-  	var user = message.charAt(0);
-  	var avatar = toDisplay.children[0];
+  	//var message = S.fullText[textIndex];
+  	var user = toDisplay.charAt(0);
+  	var avatar = messageEl.children[0];
   	var avatarImg = avatar.children[0];
-  	var text = toDisplay.children[1];
+  	var text = messageEl.children[1];
   	var username = text.children[0];
   	var messageText = text.children[1];
+    messageText.style.margin = 0;
+    var loading = text.children[2];
     	switch(user){
   				//Jax #4E4256
   				case 'J':
-  					username.children[0].innerHTML = '@blackout';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=large';
-  					toDisplay.style.backgroundColor = '#4E4256';
-  					toDisplay.style.borderColor = '#2C1D36'
+  					username.innerHTML = '@blackout';
+  					avatarImg.src = S.img['JAX'];
+  					messageEl.style.backgroundColor = '#4E4256';
+  					messageEl.style.borderColor = '#2C1D36'
   					break;
   				//Daeka #425653
   				case 'D':
-  					username.children[0].innerHTML = '@cyborgrip';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=large';
-  					toDisplay.style.backgroundColor = '#425653';
-  					toDisplay.style.borderColor = '#1D3630'
+  					username.innerHTML = '@cyborgrip';
+  					avatarImg.src = S.img['DAE'];
+  					messageEl.style.backgroundColor = '#425653';
+  					messageEl.style.borderColor = '#1D3630'
   					break;
   				//Quinn #56424B
   				case 'Q':
-  					username.children[0].innerHTML = '@calikilly';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=large';
-  				  toDisplay.style.backgroundColor = '#56424B';
-  					toDisplay.style.borderColor = '#361D28';
+  					username.innerHTML = '@calikilly';
+  					avatarImg.src = S.img['QUI'];
+  				  messageEl.style.backgroundColor = '#56424B';
+  					messageEl.style.borderColor = '#361D28';
   					break;
   				//Mouse #564C42
   				case 'M':
-  					username.children[0].innerHTML = '@snakebait';
-  					avatarImg.src = 'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=large';
-  					toDisplay.style.backgroundColor = '#564C42';
-  					toDisplay.style.borderColor = '#36291D'
+  					username.innerHTML = '@snakebait';
+  					avatarImg.src = S.img['MOU'];
+  					messageEl.style.backgroundColor = '#564C42';
+  					messageEl.style.borderColor = '#36291D'
   					break;
   				default:
-  					username.children[0].innerHTML = '@anonymous';
+  					username.innerHTML = '@anonymous';
+            avatarImg.src = S.img['ANON'];
+            messageEl.style.backgroundColor = 'darkgrey';
+  					messageEl.style.borderColor = 'dimgrey'
   					break;
   			}
-  	messageText.innerHTML = message.substring(2);
-    messageText.style.margin = '0';
-    messageText.style.wordSpacing = '-.2vw;';
-    messageText.style.lineHeight = 'calc(15px + 0.5vw)';
-    messageText.style.padding = '0.5vw';
-  	toDisplay.style.display = 'flex';
-  	updateScroll(document.getElementById('chatScroll'),chatScrollDiff);
-  	if(newIndex < scroll.children.length){
-  		var mLen = message.substring(2).length;
-  		if(mLen < 10){
-  			mLen = 10;
-  		}
-  		var randTime = Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
-      if(scroll.children[newIndex].className == 'chatNotif'){
-        chats = setTimeout(revealMessage, 600, scroll, newIndex, textIndex+1, randTime);
-      }else{
-    	  chats = setTimeout(revealMessage, randTime, scroll, newIndex, textIndex+1, 0);
-      }
-      loadingChats = true;
-  	}else {
-  		loadingChats = false;
-  	}
+  	messageEl.style.display = 'flex';
+    scroll.appendChild(messageEl);
+  	updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
+    var waitTime = calcWaitTime(toDisplay.length);
+    S.waiting = setTimeout(showMessageText, waitTime/2, messageText, loading, textIndex, scroll);
+
   }
 
 }
 
+function calcWaitTime(givenLength){
+  var mLen = givenLength;
+  if(mLen < 20){
+    mLen = 20;
+  }
+  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
+}
+
+function showMessageText(textEl, loadingEl, textIndex, scroll){
+  loadingEl.style.display = 'none';
+  textEl.innerHTML = S.messageArray[textIndex].substring(2);
+
+  if(textIndex+1 < S.messageArray.length){
+    if(S.messageArray[textIndex+1].charAt(0) == '@'){ //next message is a chat notif
+      S.waiting = setTimeout(revealMessage, S.chatNotifWait, scroll, textIndex+1);
+    }else{
+      var randTime = calcWaitTime(S.messageArray[textIndex].length);
+      S.waiting = setTimeout(revealMessage, randTime/2, scroll, textIndex+1);
+    }
+    S.loadingChats = true;
+  }else {
+    S.loadingChats = false;
+  }
+}
+
 // Update scroll on Chat Page
 function updateScroll(element,scrollDiff){
-    //console.log("amount: "+(element.scrollHeight - element.scrollTop) );
-    //console.log("limit: "+(window.screen.height / scrollDiff));
 		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
     	element.scrollTop = element.scrollHeight;
 		}

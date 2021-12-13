@@ -1,0 +1,19 @@
+:: Chat [chat] {"position":"3313,811","size":"100,100"}
+<div class="chatPage">
+  <button class='exitButt' id='exitButton'><<</button>
+  <div class="chatScroll" id="chatScroll">
+  	<p class="chatNotif" id="chatNotif">@anonymousbird has entered the chat</p>
+    <div class='chatMessage' id='chatMessage'>
+      <div class='chatAvatar'><img class='avatarImg' id='avatarImg' src='img/avatar_blackout.JPG' alt='Avatar'></div>
+      <div class='chatTextCol'>
+        <p class='chatUsernameP' id='chatUsernameP'></p>
+        <p id='chatMessageText'></p>
+        <div class="loader" id='loading'>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

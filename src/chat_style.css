@@ -1,17 +1,18 @@
 /* CHAT PAGE */
 .chatMessage {
-	align-items: center;
+	/* align-items: center; */
 	justify-content: flex-start;
   background-color: #4E4256;/*#72657B;/*#9C94A2;*/
 	border: 4px solid #dedede;
   border-color: #2C1D36;/*#483D50; /*#72657B;*/
-  border-radius: 3px;
+  border-radius: 2vw;
 	color: whitesmoke;
 	display: flex;
 	flex-direction: row;
-  margin: 2vw 0;
-	padding: 1vw;
+  margin: 1vw 0;
+	padding: calc(5px + 0.5vw);/*1vw;*/
 	font-size: calc(10px + 0.5vw);
+	line-height: calc(12px + 0.5vw);
 	text-align: justify;
 	width:inherit;
 }
@@ -31,30 +32,84 @@
 }
 
 .chatUsernameP{
-	margin: 0;
+	margin: 0 0 5px 0;
+	font-weight: bold;
 }
 
 .chatAvatar {
-  display: block;
+	/* align-self: center; */
+  border-radius: 50%;
+	display: block;
   float: left;
 	height: calc(25px + 5vw);/*100px*/
   margin-right: 1.8vw;/*20px*/
   width: calc(25px + 5vw);/*100px*/
 	flex: none;
 }
-
+.avatarImg {
+	border-radius: 50%;
+	height: 100%;
+	width: 100%;
+}
 .chatPage{
 	font-size: calc(9px + 0.5vw);
 }
 
 .chatScroll{
-  height: 85vh;
+  height: 80vh;
   overflow-y: auto;
   text-align: center;
+	margin: 2vw;
 }
 
 .chatNotif{
   color: darkgrey;
 	margin-left: 1vw;
 	opacity: 0.8;
+}
+
+.exitButt {
+	margin: 0 0 0 2vw;
+	padding: calc(2px + 1vw);
+  background-color: #282A2C;
+	border-radius: 50%;
+  border: 1px solid darkgrey;
+	font-size: calc(10px + 1vw);
+	color: darkgrey;
+}
+
+.exitButt:hover{
+	background-color: darkgrey;
+	color: dimgrey;
+	/* border-color: black; */
+}
+
+/*below loading animation adapted from https://codepen.io/typ90/pen/vgEbvN*/
+.loader {
+    text-align: center;
+}
+.loader span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    background: whitesmoke;
+    border-radius: 10px;
+    animation: loader 0.4s infinite alternate;
+}
+.loader span:nth-of-type(2) {
+    animation-delay: 0.1s;
+}
+.loader span:nth-of-type(3) {
+    animation-delay: 0.3s;
+}
+@keyframes loader {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
 }
