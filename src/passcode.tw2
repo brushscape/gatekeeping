@@ -1,6 +1,6 @@
 :: Passcode [passcode] {"position":"3100,619","size":"100,100"}
 <div class="helper" id="helper">
-		<img id="helperAvatarImg" class="helperAvatarImg" src="img/avatar_anon.JPG" alt="Avatar">
+		<img id="helperAvatarImg" class="helperAvatarImg" alt="Avatar">
     <div class="allHelperText">
 	  <p class="chatUsernameP"><b id="username">
 	  </b></p>
