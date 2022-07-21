@@ -53,9 +53,9 @@
   border-radius: 50%;
 	display: block;
   float: left;
-	height: calc(25px + 5vw);/*100px*/
+	height: calc(25px + 4vw);/*100px*/
   margin-right: 1.8vw;/*20px*/
-  width: calc(25px + 5vw);/*100px*/
+  width: calc(25px + 4vw);/*100px*/
 	flex: none;
 }
 .avatarImg {
@@ -68,7 +68,7 @@
 }
 
 .chatScroll{
-  height: 80vh;
+  height: 75vh;
   overflow-y: auto;
   text-align: center;
 	margin: 2vw;
@@ -310,7 +310,7 @@ button[disabled]{
 }
 
 .manifestoText{
-	font-size: calc(10px + 1.3vw);
+	font-size: calc(10px + 1vw);
 	height: 80vh;
   overflow-y: auto;
 }
@@ -497,12 +497,15 @@ function revealMessage(scroll, textIndex){
 
   var messageEl = document.getElementById('chatMessage').cloneNode(true);
   var notifEl = document.getElementById('chatNotif').cloneNode(true);
+  var loading = document.getElementById('loading');
 
   var toDisplay = S.messageArray[textIndex];
   //var newIndex = scrollIndex+1;
   if(toDisplay.charAt(0) == "@"){ //if chat notif
     notifEl.innerHTML = toDisplay;
     scroll.appendChild(notifEl);
+    //scroll.replaceChild(notifEl,loading);
+    //scroll.appendChild(loading);
 
     updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
   	if(textIndex+1 < S.messageArray.length){
@@ -520,7 +523,7 @@ function revealMessage(scroll, textIndex){
   	var username = text.children[0];
   	var messageText = text.children[1];
     messageText.style.margin = 0;
-    var loading = text.children[2];
+    //var loading = text.children[2];
     	switch(user){
   				//Jax #4E4256
   				case 'J':
@@ -550,6 +553,12 @@ function revealMessage(scroll, textIndex){
   					messageEl.style.backgroundColor = '#564C42';
   					messageEl.style.borderColor = '#36291D'
   					break;
+          case 'E':
+    				username.innerHTML = '@nightemissary';
+    				avatarImg.src = S.img['EMI'];
+    				messageEl.style.backgroundColor = '#495642';
+    				messageEl.style.borderColor = '#2A361D'
+    				break;
   				default:
   					username.innerHTML = '@anonymous';
             avatarImg.src = S.img['ANON'];
@@ -557,11 +566,13 @@ function revealMessage(scroll, textIndex){
   					messageEl.style.borderColor = 'dimgrey'
   					break;
   			}
-  	messageEl.style.display = 'flex';
-    scroll.appendChild(messageEl);
-  	updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
+  	//messageEl.style.display = 'flex';
+    //scroll.replaceChild(messageEl,loading);
+    //scroll.appendChild(loading);
+    updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
     var waitTime = calcWaitTime(toDisplay.length);
-    S.waiting = setTimeout(showMessageText, waitTime, messageText, loading, textIndex, scroll);
+    loading.style.display='block';
+    S.waiting = setTimeout(showMessageText, waitTime, messageEl, messageText, loading, textIndex, scroll);
 
   }
 
@@ -572,11 +583,14 @@ function calcWaitTime(givenLength){
   if(mLen < 20){
     mLen = 20;
   }
-  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
+  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40) + mLen*30);
 }
 
-function showMessageText(textEl, loadingEl, textIndex, scroll){
+function showMessageText(messEl,textEl, loadingEl, textIndex, scroll){
+  scroll.appendChild(messEl);
   loadingEl.style.display = 'none';
+  messEl.style.display='flex';
+  updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
   textEl.innerHTML = S.messageArray[textIndex].substring(2);
 
   if(textIndex+1 < S.messageArray.length){
@@ -798,27 +812,30 @@ if (typeof S == "undefined") {
 		currPage: "",
 
     //helper popup messages on the passcode page to help the user
-    initHelper:["D:Oh, hey, check it out. We've attracted a newby."],
+    initHelper:["D:check it out. they've attracted another one"],
     successHelper:
       [
-        "Q:so... is that it?",
+				"E:Congrats on your success",
+        "Q:...tat it.?",
         "M:I can't believe they thought that would be a worthwhile reward.",
-        "D:If you want to complain, take it to the chat."
+        "D:if you want to complain, take it to the chat"
       ],
     comeHelper:
       [
-        "Q:guess ur a terrible speller, huh",
-        "D:Better luck next time, I guess",
-        "M:that phrase not to your liking?"
+				"M:That phrase not to your liking?",
+        "Q:badd spellr",
+        "D:better luck next time, I guess",
+				"E:If it helps, the phrases follow a theme"
       ],
     leaveHelper:
       [
-        "M:don't take it personally. they're just an asshole.",
-        "D:If you were trying to ask them personal questions... maybe don't",
-        "Q:someone pissed them off... "
+				"D:if you were trying to ask them personal questions... maybe dont",
+        "M:Don't take it personally. They're just an asshole.",
+				"E:Don't worry. They don't hold a grudge. You can always try again",
+        "Q:pisssed em off XD"
       ],
-    chatHelper: "J:You just found the biggest secret. Are you satisfied?",
-		rumpleHelper: "J:Your move, little bird. What's my name?",
+    chatHelper: "J:You just found the biggest secret. are you satisfied?",
+		rumpleHelper: "J:Your move, little bird. what's my name?",
 
     // global counters for the helper popup message arrays above
     initIndex: 0,
@@ -839,25 +856,25 @@ if (typeof S == "undefined") {
     // dictionary for the passcodes and their corresponding helper messages
     passwordDict:
       {
-        THO: "D:I <i>tho</i>ught it would go faster",
-        UGH: "Q:<i>ugh</i> ur not very good at this r u",
-    		THE: "M:I didnt think <i>the</i> code would be this hard",
-    		RIC: "D:Can't you see the t<i>ric</i>k",
-    		HAR: "M:how <i>har</i>d are you going to make me <i>har</i>p on you",
-    		EDR: "Q:this has last<i>ed r</i>eally long",
-    		UNK: "D:You seem to be in a f<i>unk</i>",
-    		ONM: "M:at this rate you’ll have to put in a t<i>on m</i>ore",
-    		ONE: "D:Maybe try <i>one</i> more time",
-    		YYO: "D:There's no need to do this b<i>y yo</i>urself",
-    		URP: "M:we're not here to console yo<i>ur p</i>itiful ego",
-    		ARC: "M:if you dont get this soon, I'm m<i>arc</i>hing out of here",
-    		HED: "Q:i wanna s<i>hed</i> my promise to be here",
-    	  LIP: "M:you'd better be giving them <i>lip</i> in there",
-    		SWO: "D:I wish I wasn't <i>swo</i>rn to secrecy",
-    		NTT: "M:I ca<i>nt t</i>ell you hints forever",
-    		AST: "M:it's <i>a st</i>rain to come up with these sentences",
-    		EAD: "M:why did I agree to this? they didnt even pl<i>ead</i>",
-    		ROP: "D:I'm not sure how I was <i>rop</i>ed into this either"
+        THO: "D:I <b>tho</b>ught this would go faster",
+        UGH: "Q:<b>ugh</b> nott gud at tis r u",
+    		THE: "M:I honestly didn't think <b>the</b> code would be this difficult.",
+    		RIC: "E:Look around. Can't you see t<b>ric</b>k?",
+    		HAR: "M:How <b>har</b>d are you going to make me <b>har</b>p on you?",
+    		EDR: "Q:evr gess<b>ed r</b>ight?",
+    		UNK: "E:You seem to be in a f<b>unk</b>",
+    		ONM: "M:At this rate, you’ll have to put in a shitt<b>on m</b>ore.",
+    		ONE: "D:maybe try <b>one</b> more time",
+    		YYO: "E:There's no need to do this b<b>y yo</b>urself",
+    		URP: "M:We're not here to console yo<b>ur p</b>itiful ego.",
+    		ARC: "M:If you don't get this soon, I'm m<b>arc</b>hing out of here.",
+    		HED: "D:I'm dying to s<b>hed</b> my promise to be here",
+    	  LIP: "E:I'm sorry if it seems like we're giving you <b>lip</b>",
+    		SWO: "D:I'd be more direct if I wasnt <b>swo</b>rn to secrecy",
+    		NTT: "Q:ca<b>nt t</b>elll hints frevr",
+    		AST: "M:It's <b>a st</b>rain to come up with these sentences",
+    		EAD: "M:Why did I agree to this? They didn't even pl<b>ead</b>.",
+    		ROP: "D:I didn't ask to get <b>rop</b>ed into this either"
       },
     currMessage: '',
     displayFullMessage: false,
@@ -886,12 +903,12 @@ if (typeof S == "undefined") {
       	'Silence is, compliance',
       	'Anonymous',
       	'Vendetta',
-      	'Money is, a construct',
-      	'All cops, are bastards',
       	'This machine, kills fascists',
-      	'Liberation',
-      	'No justice, no peace',
-        'Scarcity, is a fallacy'
+      	'Leeches for, Liberation',
+        'Scarcity, is a fallacy',
+				'Bite the hand, that feeds on you',
+				'Fuck the, Ouroboros',
+				'Dare to keep, your body yours',
       ],
     currHangmanIndex: 0,
     currHangmanWord: '',
@@ -901,84 +918,111 @@ if (typeof S == "undefined") {
 
 		messageArray:
 		[
-		  "M:this was an obnoxious way to spread a manifesto",
-		  "D:I doubt that was the main purpose of this...",
-		  "M:I bet they just wanted a powertrip",
-		  "Q:this is a boring powertrip",
+		  "M:This was an obnoxious way to spread a manifesto.",
+		  "D:I doubt that was the main purpose of this",
+		  "M:Who wants to bet they just wanted a powertrip?",
+		  "Q:borring powrtip",
 		  "J:Maybe to you",
-		  "M:the hell is that supposed to mean?",
+		  "M:What the hell is that supposed to mean?",
 		  "J:I added anyone who played to my botnet. The game gives me time to upload the virus &#128521",
-		  "D:Well shit. How many did you add?",
+		  "D:well shit. how many did you add?",
 		  "J:Wouldn't you like to know &#128527",
-		  "D:I don't know why I expected a straight answer...",
-		  "Q:whats a botnet",
-		  "D:It's basically when you zombifying people's computers so you can steal computing power",
-		  "Q:oh shit!! jax is makin zombies?!",
-		  "M:it's not as cool as it sounds",
+		  "D:I dont know why I expected a straight answer...",
+		  "E:What's a botnet?",
+		  "D:Its basically when you zombifying people's computers so you can steal computing power",
+		  "Q:shitt!! mske zombies?!",
+		  "M:It's not as cool as it sounds.",
 		  "J:It is exactly as cool as it sounds. You just don't give a shit about computers",
-		  "M:why should I? we have enough reclusive circuit nuts without me caring about motherboards",
+		  "M:Why should I? We have enough reclusive circuit nuts without me caring about motherboards.",
 		  "J:Those were some cute buzzwords, facer. &#128527 Want to see how they're actually used?",
 		  "D:Jax...",
 		  "J:What?! What's a little demonstration amongst friends &#128521",
-		  "M:**comrades. at best.",
-		  "D:Ouch",
+		  "M:**Comrades. At best.",
+		  "D:ouch",
 		  "J:Damn, this little mouse bites &#128556 You show those teeth to your followers?",
-		  "Q:and here i thought facers needed to be likable",
-		  "M:i don't need to waste my charisma on you &#128405",
+		  "M:I don't need to waste my charisma on you &#128405",
 		  "J:Tell that to your stream. Cuz you just went live &#128526&#128073&#128073",
-		  "M:WTF JAX GET OFF MY COMPUTER",
-		  "D:...what is happening?",
-		  "M:you are so goddamn lucky that was still on test mode. I would have killed you if that had gone public",
+		  "M:Get off my FUCKING interface, you annoying little shit.",
+		  "E:What is happening?",
+		  "M:You are so damn lucky that was still on test mode. I would have killed you if that had gone public.",
 		  "J:HA! You should have seen the look on your face tho &#128514&#128514&#128514",
-		  "Q:no fair! i wanna see mouse lookin stupid",
+		  "Q:lol wanna seee mouse look stupid",
 		  "M:&#128405",
-		  "D:How do you even have access to Mouse's account?",
-		  "J:Dude, they are trivial to hack. They use the same password for everything smh",
-		  "D:And their camera?",
+			"D:Quinn, be nice",
+			"Q:no",
+			"J:A kitty after my own heart",
+		  "D:that was way too fast. are you just always in their camera?",
 		  "J:How else am I supposed to keep an eye on you guys &#128521",
-		  "M:um, you're not???",
-		  "D:Guess it's time to comb my OS for Jax-shaped viruses again &#128579",
+		  "M:You're not, invasive prick.",
+		  "D:guess its time to comb my OS for Jax-shaped viruses again &#128579",
 		  "J:It's cute you think you can get rid of me &#128536",
-		  "Q:when r u gonna teach me how to mess with mouse like that",
+		  "Q:wen teach me how fuck w mouse",
 		  "J:Oh easy. Running <u>this</u> gets you into their camera and <u>this</u> uploads screenshots to their feed",
 		  "J:I'm sure you can figure out how to give them a heartattack from there &#128521",
-		  "Q:nice",
+		  "Q:yee",
 		  "M:JAX",
-		  "D:Quinn, don't touch that link! Don't be a script kiddie!",
+			"E:Jax...",
+		  "D:Quinn, dont touch that link! dont be a script kiddie",
 		  "J:**script kitty &#128514&#128514&#128514",
 		  "D:Jax stfu",
-		  "Q:like this?",
-		  "M:QUINN GET OFF MY FUCKING COMPUTER",
+		  "M:QUINN GET OFF MY FUCKING INTERFACE",
 		  "J:good kitty &#128527",
-		  "Q:dammit! daeka broke my link",
+		  "Q:f u dae",
+			"E:What did you do?",
+			"D:I broke their link. youre welcome",
 		  "J:Come on, Daeka &#128553 You're spoiling the fun &#128548",
-		  "D:Harassing Mouse is not 'fun'",
+		  "D:harassing Mouse is not 'fun'",
 		  "J:Isn't it though? &#128527",
 		  "Q:lol",
-		  "M:do you want me to start harassing you back, you cocky egotistical embodiment of a god-complex?",
-		  "J:It's cute you think you can hurt me &#128536",
-		  "M:Do you even care about radicalizing these people?",
+		  "M:Do you want me to start harassing you back, you cocky egotistical embodiment of a god-complex?",
+		  "J:Do I? &#129397",
+		  "M:You're insufferable. Do you even care about radicalizing these people?",
 		  "J:I thought that was your job &#128533",
 		  "D:It's all our jobs? That's kind of the point???",
-		  "Q:i thought the point was eating the rich",
-		  "M:that's a metaphor, dumbass",
-		  "J:Is it?",
-		  "D:Mostly. Though I'm not really expecting Quinn to be invested in theology",
+			"E:We're comrades :)",
+		  "Q:thot we eat rich",
+		  "E:That's a figure of speach",
+		  "J:Is it, Emis?",
+		  "D:mostly. though I'm not really expecting Quinn to be invested in theology",
 		  "J:They're just here to maul some corporates &#128520",
-		  "Q:damn right i am",
+		  "Q:nom",
 		  "D:sigh I need to separate you two",
 		  "M:good luck. you're better off separating yourself &#9996&#128405",
-		  "@snakebait has left the chat",
-		  "J:lol poor baby got their feelings hurt",
+		  "@snakebait has left the chat room",
+		  "J:No, wait, come back!",
+			"E:I really don't know what you were expecting",
+			"J:I was just playing around!",
 		  "D:One of these days you're going to do something they won't forgive you for",
-		  "J:¯\\_(ツ)_/¯ cross that bridge and all that &#128521",
-		  "D:Don't say I didn't warn you",
-		  "@cyborgrip has left the chat",
-		  "J:You leaving too, you little traitor?",
-		  "Q:u know me &#128520",
-		  "@calikilly has left the chat",
-		  "J:all too well...",
-		  "@blackout has left the chat"
+		  "J:Psh, please, I'm too cute to stay mad at",
+			"E:Sigh don't I know it",
+			"J:Love you bb &#128536",
+			"E:I love you too",
+			"Q:bleh",
+			"D:haha I concur",
+			"E:Lol I'll spare you any more romantics",
+			"@nightemissary has left the chat room",
+			"J:Aww, now both my loves got scared away",
+			"D:dont let Mouse hear you calling them that",
+			"J:You gonna be a snitch?",
+			"Q:ya",
+			"J:&#128551 you wouldn't",
+			"Q:wud",
+			"J:Daeka! I think your cat might be feral",
+			"D:you taught them to be like this. I take no responsibility",
+			"J:&#128514 yeah that's fair.",
+			"J:Hey Quinn, I'll trade ya 10g for your discretion",
+			"Q:hehe deel",
+		  "D:who said you were allowed to get them high??",
+			"J:They're not real drugs, Daeka. Catnip doesn't count",
+			"D:for them?? yes it does!",
+			"Q:no count",
+			"D:you dont get a say in this",
+			"Q:cant stawp mee",
+			"@calikilly has left the chat room",
+			"D:you are the worst influence on them, I swear",
+		  "@cyborgrip has left the chat room",
+		  "J:Only when I want to be",
+		  "@blackout has left the chat room"
 		],
 		chatNotifWait: 600,
 
@@ -988,6 +1032,7 @@ if (typeof S == "undefined") {
         'DAE': 'img/avatar_cyborgrip.JPG',//'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
         'QUI': 'img/avatar_calikilly.JPG',//'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
         'MOU': 'img/avatar_snakebait.JPG',//'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
+				'EMI': 'img/avatar_nightemis.JPG',
 				'ANON': 'img/avatar_anon.JPG'
 			},
     imgLoaded: false,
@@ -1453,12 +1498,12 @@ function checkPasscode(){
 			S.numFailedAttempts++;
 
 			if(S.numFailedAttempts%3 == 1){
-				document.getElementById('codeFeedback').innerHTML = 'Invalid';
+				document.getElementById('codeFeedback').innerHTML = 'Once Invalid';
 			}
 			else if(S.numFailedAttempts%3 == 2){
 				document.getElementById('codeFeedback').innerHTML = 'Twice Invalid';
 				if(S.currentHelper==0){
-					revealHelper('M:they look kind of clueless to me...', false);
+					revealHelper('M:They look rather clueless to me.', false);
 					S.currentHelper = -1;
 				}
 			}
@@ -1502,6 +1547,12 @@ function revealHelper(helperText, nextMessage){
 			document.getElementById('username').innerHTML = '@snakebait';
 			document.getElementById('helperAvatarImg').src = S.img['MOU'];
 			document.getElementById('helper').style.backgroundColor = '#564C42';
+			break;
+		//Emis
+		case 'E':
+			document.getElementById('username').innerHTML = '@nightemissary';
+			document.getElementById('helperAvatarImg').src = S.img['EMI'];
+			document.getElementById('helper').style.backgroundColor = '#495642';
 			break;
 		default:
 			document.getElementById('username').innerHTML = '@anonymous';
@@ -1648,13 +1699,13 @@ function updateBackground(prevPasscode, currPasscode){
       &lt;div class=&#39;chatTextCol&#39;&gt;
         &lt;p class=&#39;chatUsernameP&#39; id=&#39;chatUsernameP&#39;&gt;&lt;/p&gt;
         &lt;p id=&#39;chatMessageText&#39;&gt;&lt;/p&gt;
-        &lt;div class=&quot;loader&quot; id=&#39;loading&#39;&gt;
-          &lt;span&gt;&lt;/span&gt;
-          &lt;span&gt;&lt;/span&gt;
-          &lt;span&gt;&lt;/span&gt;
-        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;loader&quot; id=&#39;loading&#39;&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Enter" tags="" position="225,100" size="100,100">&lt;div class=&#39;darkMessage&#39; id=&#39;darkMessage&#39;&gt;
   &lt;div class=&#39;avatar&#39;&gt;&lt;img class=&#39;avatarImg&#39; id=&#39;avatarImg&#39; src=&#39;img/avatar_blackout.JPG&#39; alt=&#39;Avatar&#39;&gt;&lt;/div&gt;
@@ -1700,7 +1751,7 @@ function updateBackground(prevPasscode, currPasscode){
 [[What if I don’t like games?]]</tw-passagedata><tw-passagedata pid="19" name="Like me?" tags="" position="714,1696" size="100,100">Maybe. Are you fun to play with?
 [[I’m not really one for games.]]
 [[You’re creeping me out.]]
-[[You tell me.]]</tw-passagedata><tw-passagedata pid="20" name="I’m not really one for games." tags="noexit toLeave" position="580,1850" size="100,100">God, you really are no fun.</tw-passagedata><tw-passagedata pid="21" name="You’re creeping me out." tags="noexit toComeback" position="700,1850" size="100,100">Ha! Good. I’d hate for you to find me comforting.</tw-passagedata><tw-passagedata pid="22" name="You tell me." tags="noexit toComeback" position="820,1850" size="100,100">I think you might be...</tw-passagedata><tw-passagedata pid="23" name="No, but I’ve been looking for this place." tags="" position="1199,1327" size="100,100">Really? And why is that?
+[[You tell me.]]</tw-passagedata><tw-passagedata pid="20" name="I’m not really one for games." tags="noexit toLeave" position="580,1850" size="100,100">Venus, you really are no fun.</tw-passagedata><tw-passagedata pid="21" name="You’re creeping me out." tags="noexit toComeback" position="700,1850" size="100,100">Ha! Good. I’d hate for you to find me comforting.</tw-passagedata><tw-passagedata pid="22" name="You tell me." tags="noexit toComeback" position="820,1850" size="100,100">I think you might be...</tw-passagedata><tw-passagedata pid="23" name="No, but I’ve been looking for this place." tags="" position="1199,1327" size="100,100">Really? And why is that?
 [[I want to know more.]]
 [[I’m sick of everywhere else.]]
 [[You know why.]]</tw-passagedata><tw-passagedata pid="24" name="Who can remember such things?" tags="" position="1541,1319" size="100,100">Now you’re just being coy.
@@ -1727,7 +1778,7 @@ function updateBackground(prevPasscode, currPasscode){
 [[You don’t like most people, do you?]]</tw-passagedata><tw-passagedata pid="34" name="Are you a bewildered wanderer?" tags="" position="2927,1363" size="100,100">Are you a bewildered wanderer?
 [[What are your best secrets?]]
 [[Aren’t secrets dangerous?]]
-[[Being bewildered is fun. You should try it sometime.]]</tw-passagedata><tw-passagedata pid="35" name="Am I supposed to be scared?" tags="noexittoComeback" position="2139,1522" size="100,100">That is entirely up to you.</tw-passagedata><tw-passagedata pid="36" name="You don’t seem dangerous to me." tags="noexit toComeback" position="2256,1518" size="100,100">Then I’m not doing my job right.</tw-passagedata><tw-passagedata pid="37" name="That sounds like the dream." tags="noexit toWelcome" position="2372,1519" size="100,100">Oh, trust me, it is.</tw-passagedata><tw-passagedata pid="38" name="There are no wrong questions." tags="" position="2673,1664" size="100,100">Please. You’re surrounded by wrong questions.
+[[Being bewildered is fun. You should try it sometime.]]</tw-passagedata><tw-passagedata pid="35" name="Am I supposed to be scared?" tags="noexit toComeback" position="2139,1522" size="100,100">That is entirely up to you.</tw-passagedata><tw-passagedata pid="36" name="You don’t seem dangerous to me." tags="noexit toComeback" position="2256,1518" size="100,100">Then I’m not doing my job right.</tw-passagedata><tw-passagedata pid="37" name="That sounds like the dream." tags="noexit toWelcome" position="2372,1519" size="100,100">Oh, trust me, it is.</tw-passagedata><tw-passagedata pid="38" name="There are no wrong questions." tags="" position="2673,1664" size="100,100">Please. You’re surrounded by wrong questions.
 [[Like what?]]
 [[Who’s to say they’re wrong?]]
 [[I can’t win, can I?]]</tw-passagedata><tw-passagedata pid="39" name="What’s the right one?" tags="" position="3030,1668" size="100,100">What makes you think there’s a right one?
@@ -1845,7 +1896,7 @@ function updateBackground(prevPasscode, currPasscode){
 		&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="129" name="Passcode" tags="passcode" position="3100,619" size="100,100">&lt;div class=&quot;helper&quot; id=&quot;helper&quot;&gt;
-		&lt;img id=&quot;helperAvatarImg&quot; class=&quot;helperAvatarImg&quot; src=&quot;https://lh3.googleusercontent.com/a-/AOh14GibTygcrxkLD6_NEEqOis8LbZ0qWsvUdLaM5PqqKQ=s192-c-rg-br100&quot; alt=&quot;Avatar&quot;&gt;
+		&lt;img id=&quot;helperAvatarImg&quot; class=&quot;helperAvatarImg&quot; src=&quot;img/avatar_anon.JPG&quot; alt=&quot;Avatar&quot;&gt;
     &lt;div class=&quot;allHelperText&quot;&gt;
 	  &lt;p class=&quot;chatUsernameP&quot;&gt;&lt;b id=&quot;username&quot;&gt;
 	  &lt;/b&gt;&lt;/p&gt;

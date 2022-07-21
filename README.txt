@@ -13,4 +13,4 @@ Installing Tweego on MacOS https://gist.github.com/jsoma/5ef3045b2004a610455f371
 
 Getting setup with Tweego https://dev.to/lazerwalker/a-modern-developer-s-workflow-for-twine-4imp
 
-Compile javascript, css, and twee file together with: tweego -f sugarcube-2 -o story.html src
+Compile javascript, css, and twee file together with: tweego -f snowman-2 -o story.html src

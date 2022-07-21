@@ -8,12 +8,12 @@
       <div class='chatTextCol'>
         <p class='chatUsernameP' id='chatUsernameP'></p>
         <p id='chatMessageText'></p>
-        <div class="loader" id='loading'>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </div>
     </div>
+  </div>
+  <div class="loader" id='loading'>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 </div>

@@ -6,7 +6,7 @@
 }
 
 .manifestoText{
-	font-size: calc(10px + 1.3vw);
+	font-size: calc(10px + 1vw);
 	height: 80vh;
   overflow-y: auto;
 }

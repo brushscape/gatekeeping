@@ -33,12 +33,12 @@ function checkPasscode(){
 			S.numFailedAttempts++;
 
 			if(S.numFailedAttempts%3 == 1){
-				document.getElementById('codeFeedback').innerHTML = 'Invalid';
+				document.getElementById('codeFeedback').innerHTML = 'Once Invalid';
 			}
 			else if(S.numFailedAttempts%3 == 2){
 				document.getElementById('codeFeedback').innerHTML = 'Twice Invalid';
 				if(S.currentHelper==0){
-					revealHelper('M:they look kind of clueless to me...', false);
+					revealHelper('M:They look rather clueless to me.', false);
 					S.currentHelper = -1;
 				}
 			}
@@ -82,6 +82,12 @@ function revealHelper(helperText, nextMessage){
 			document.getElementById('username').innerHTML = '@snakebait';
 			document.getElementById('helperAvatarImg').src = S.img['MOU'];
 			document.getElementById('helper').style.backgroundColor = '#564C42';
+			break;
+		//Emis
+		case 'E':
+			document.getElementById('username').innerHTML = '@nightemissary';
+			document.getElementById('helperAvatarImg').src = S.img['EMI'];
+			document.getElementById('helper').style.backgroundColor = '#495642';
 			break;
 		default:
 			document.getElementById('username').innerHTML = '@anonymous';

@@ -15,12 +15,15 @@ function revealMessage(scroll, textIndex){
 
   var messageEl = document.getElementById('chatMessage').cloneNode(true);
   var notifEl = document.getElementById('chatNotif').cloneNode(true);
+  var loading = document.getElementById('loading');
 
   var toDisplay = S.messageArray[textIndex];
   //var newIndex = scrollIndex+1;
   if(toDisplay.charAt(0) == "@"){ //if chat notif
     notifEl.innerHTML = toDisplay;
     scroll.appendChild(notifEl);
+    //scroll.replaceChild(notifEl,loading);
+    //scroll.appendChild(loading);
 
     updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
   	if(textIndex+1 < S.messageArray.length){
@@ -38,7 +41,7 @@ function revealMessage(scroll, textIndex){
   	var username = text.children[0];
   	var messageText = text.children[1];
     messageText.style.margin = 0;
-    var loading = text.children[2];
+    //var loading = text.children[2];
     	switch(user){
   				//Jax #4E4256
   				case 'J':
@@ -68,6 +71,12 @@ function revealMessage(scroll, textIndex){
   					messageEl.style.backgroundColor = '#564C42';
   					messageEl.style.borderColor = '#36291D'
   					break;
+          case 'E':
+    				username.innerHTML = '@nightemissary';
+    				avatarImg.src = S.img['EMI'];
+    				messageEl.style.backgroundColor = '#495642';
+    				messageEl.style.borderColor = '#2A361D'
+    				break;
   				default:
   					username.innerHTML = '@anonymous';
             avatarImg.src = S.img['ANON'];
@@ -75,11 +84,13 @@ function revealMessage(scroll, textIndex){
   					messageEl.style.borderColor = 'dimgrey'
   					break;
   			}
-  	messageEl.style.display = 'flex';
-    scroll.appendChild(messageEl);
-  	updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
+  	//messageEl.style.display = 'flex';
+    //scroll.replaceChild(messageEl,loading);
+    //scroll.appendChild(loading);
+    updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
     var waitTime = calcWaitTime(toDisplay.length);
-    S.waiting = setTimeout(showMessageText, waitTime, messageText, loading, textIndex, scroll);
+    loading.style.display='block';
+    S.waiting = setTimeout(showMessageText, waitTime, messageEl, messageText, loading, textIndex, scroll);
 
   }
 
@@ -90,11 +101,14 @@ function calcWaitTime(givenLength){
   if(mLen < 20){
     mLen = 20;
   }
-  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40 + 1) + mLen*40);
+  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40) + mLen*30);
 }
 
-function showMessageText(textEl, loadingEl, textIndex, scroll){
+function showMessageText(messEl,textEl, loadingEl, textIndex, scroll){
+  scroll.appendChild(messEl);
   loadingEl.style.display = 'none';
+  messEl.style.display='flex';
+  updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
   textEl.innerHTML = S.messageArray[textIndex].substring(2);
 
   if(textIndex+1 < S.messageArray.length){

@@ -118,7 +118,7 @@ Maybe. Are you fun to play with?
 
 
 :: I’m not really one for games.[noexit toLeave] {"position":"580,1850","size":"100,100"}
-God, you really are no fun.
+Venus, you really are no fun.
 
 
 
@@ -210,7 +210,7 @@ Are you a bewildered wanderer?
 [[Being bewildered is fun. You should try it sometime.]]
 
 
-:: Am I supposed to be scared? [noexittoComeback] {"position":"2139,1522","size":"100,100"}
+:: Am I supposed to be scared? [noexit toComeback] {"position":"2139,1522","size":"100,100"}
 That is entirely up to you.
 
 

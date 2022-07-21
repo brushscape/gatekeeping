@@ -40,9 +40,9 @@
   border-radius: 50%;
 	display: block;
   float: left;
-	height: calc(25px + 5vw);/*100px*/
+	height: calc(25px + 4vw);/*100px*/
   margin-right: 1.8vw;/*20px*/
-  width: calc(25px + 5vw);/*100px*/
+  width: calc(25px + 4vw);/*100px*/
 	flex: none;
 }
 .avatarImg {
@@ -55,7 +55,7 @@
 }
 
 .chatScroll{
-  height: 80vh;
+  height: 75vh;
   overflow-y: auto;
   text-align: center;
 	margin: 2vw;
