@@ -5,7 +5,7 @@ if (typeof S == "undefined") {
 		currPage: "",
 
     //helper popup messages on the passcode page to help the user
-    initHelper:["D:check it out. they've attracted another one"],
+    initHelper:["T:check it out. they've attracted another one"],
     successHelper:
       [
 				"E:Congrats on your success",
@@ -28,7 +28,7 @@ if (typeof S == "undefined") {
 				"E:Don't worry. They don't hold a grudge. You can always try again",
         "K:pisssed em off XD"
       ],
-    chatHelper: "J:You just found the biggest secret. are you satisfied?",
+    chatHelper: "J:You just found the biggest secret. Are you satisfied?",
 		rumpleHelper: "J:Your move, little bird. Give it thrice",
 
     // global counters for the helper popup message arrays above
