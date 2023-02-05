@@ -66,13 +66,13 @@ function revealHelper(helperText, nextMessage){
 			document.getElementById('helper').style.backgroundColor = '#4E4256';
 			break;
 		//Teika #425653
-		case 'D':
+		case 'T':
 			document.getElementById('username').innerHTML = '@cyborgrip';
 			document.getElementById('helperAvatarImg').src = S.img['TEI'];
 			document.getElementById('helper').style.backgroundColor = '#425653';
 			break;
 		//Kiko #56424B
-		case 'Q':
+		case 'K':
 			document.getElementById('username').innerHTML = '@calikilly';
 			document.getElementById('helperAvatarImg').src = S.img['KIK'];
 			document.getElementById('helper').style.backgroundColor = '#56424B';
