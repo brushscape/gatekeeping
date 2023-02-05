@@ -43,24 +43,24 @@ function revealMessage(scroll, textIndex){
     messageText.style.margin = 0;
     //var loading = text.children[2];
     	switch(user){
-  				//Jax #4E4256
+  				//JEY #4E4256
   				case 'J':
   					username.innerHTML = '@blackout';
-  					avatarImg.src = S.img['JAX'];
+  					avatarImg.src = S.img['JEY'];
   					messageEl.style.backgroundColor = '#4E4256';
   					messageEl.style.borderColor = '#2C1D36'
   					break;
-  				//Daeka #425653
-  				case 'D':
+  				//TEIka #425653
+  				case 'T':
   					username.innerHTML = '@cyborgrip';
-  					avatarImg.src = S.img['DAE'];
+  					avatarImg.src = S.img['TEI'];
   					messageEl.style.backgroundColor = '#425653';
   					messageEl.style.borderColor = '#1D3630'
   					break;
-  				//Quinn #56424B
-  				case 'Q':
+  				//KIKnn #56424B
+  				case 'K':
   					username.innerHTML = '@calikilly';
-  					avatarImg.src = S.img['QUI'];
+  					avatarImg.src = S.img['KIK'];
   				  messageEl.style.backgroundColor = '#56424B';
   					messageEl.style.borderColor = '#361D28';
   					break;

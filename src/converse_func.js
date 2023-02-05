@@ -44,7 +44,7 @@ function parsePassage(passName){
 
 }
 
-function showJaxMessage(){
+function showJMessage(){
 	if(document.getElementById('responses')){
 		document.getElementById('responses').style.display = 'none';
 	}
@@ -75,7 +75,7 @@ function showJaxMessage(){
 }
 
 
-// Types out the message on the Jax discussion pages
+// Types out the message on the J discussion pages
 function typeText(message, i, responses){
 	if(S.displayFullMessage){
 			// skip to fully typed messsage
@@ -127,7 +127,7 @@ function typeText(message, i, responses){
 			}else{
 				console.log('Error: invalid noexit destination');
 			}
-			S.waiting = setTimeout(showJaxMessage, 1000);
+			S.waiting = setTimeout(showJMessage, 1000);
 		}else if(window.story.passage(S.currPassage).tags.includes('leave')){
 			//leave conversation
 			var passage = S.currPassage;
@@ -157,7 +157,7 @@ function typeText(message, i, responses){
 
 }
 
-// Fade in the response options to Jax on the discussion tree pages
+// Fade in the response options to J on the discussion tree pages
 function fadeInResponse(j){
   var x = document.getElementsByClassName('responses')[0];
 	if(j<1){ // if opacity is not opaque yet
@@ -187,5 +187,5 @@ function clickOption(i){
 	el.style.pointerEvents = "none";
   S.currPassage = el.innerHTML;
 	el.removeEventListener("click", clickOption, true);
-	S.waiting = setTimeout(showJaxMessage, 10);
+	S.waiting = setTimeout(showJMessage, 10);
 }

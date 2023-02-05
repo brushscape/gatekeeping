@@ -11,10 +11,10 @@ function checkPasscode(){
     document.getElementById('codeFeedback').style.opacity = 1;
 
 		if(normalCode == currCode.toUpperCase()){
-       // correct code, proceed to jax discussion tree
+       // correct code, proceed to J discussion tree
 			 document.getElementById('codeFeedback').innerHTML = 'Correct!';
 			 document.getElementById('codeFeedback').style.color = 'lightgreen';
-			 S.numJaxAttempts++;
+			 S.numJAttempts++;
 			 //state.display('Enter', this);
 			 goto('Enter')
 
@@ -59,22 +59,22 @@ function checkPasscode(){
 function revealHelper(helperText, nextMessage){
 	var user = helperText.charAt(0);
 	switch(user){
-		//Jax #4E4256
+		//J #4E4256
 		case 'J':
 			document.getElementById('username').innerHTML = '@blackout';
-			document.getElementById('helperAvatarImg').src = S.img['JAX'];
+			document.getElementById('helperAvatarImg').src = S.img['JEY'];
 			document.getElementById('helper').style.backgroundColor = '#4E4256';
 			break;
-		//Daeka #425653
+		//Teika #425653
 		case 'D':
 			document.getElementById('username').innerHTML = '@cyborgrip';
-			document.getElementById('helperAvatarImg').src = S.img['DAE'];
+			document.getElementById('helperAvatarImg').src = S.img['TEI'];
 			document.getElementById('helper').style.backgroundColor = '#425653';
 			break;
-		//Quinn #56424B
+		//Kiko #56424B
 		case 'Q':
 			document.getElementById('username').innerHTML = '@calikilly';
-			document.getElementById('helperAvatarImg').src = S.img['QUI'];
+			document.getElementById('helperAvatarImg').src = S.img['KIK'];
 			document.getElementById('helper').style.backgroundColor = '#56424B';
 			break;
 		//Mouse #564C42
