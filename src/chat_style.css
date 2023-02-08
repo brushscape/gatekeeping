@@ -86,6 +86,8 @@
 /*below loading animation adapted from https://codepen.io/typ90/pen/vgEbvN*/
 .loader {
     text-align: center;
+		opacity:1;
+		display: block;
 }
 .loader span {
     display: inline-block;

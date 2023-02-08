@@ -17,6 +17,8 @@ function revealMessage(scroll, textIndex){
   var notifEl = document.getElementById('chatNotif').cloneNode(true);
   var loading = document.getElementById('loading');
 
+
+
   var toDisplay = S.messageArray[textIndex];
   //var newIndex = scrollIndex+1;
   if(toDisplay.charAt(0) == "@"){ //if chat notif
@@ -88,8 +90,14 @@ function revealMessage(scroll, textIndex){
     //scroll.replaceChild(messageEl,loading);
     //scroll.appendChild(loading);
     updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
-    var waitTime = calcWaitTime(toDisplay.length);
-    loading.style.display='block';
+    loading.style.opacity=1;
+    var length1;
+    if(textIndex == 0){
+      length1 = 0;
+    }else{
+      length1 = S.messageArray[textIndex-1].length;
+    }
+    var waitTime = calcWaitTime(length1);
     S.waiting = setTimeout(showMessageText, waitTime, messageEl, messageText, loading, textIndex, scroll);
 
   }
@@ -98,15 +106,17 @@ function revealMessage(scroll, textIndex){
 
 function calcWaitTime(givenLength){
   var mLen = givenLength;
-  if(mLen < 20){
-    mLen = 20;
+  if(mLen == 0){
+    mLen = 5;
+  }else if(mLen < 30){
+    mLen = 30;
   }
-  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40) + mLen*30);
+  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40) + mLen*25);
 }
 
 function showMessageText(messEl,textEl, loadingEl, textIndex, scroll){
   scroll.appendChild(messEl);
-  loadingEl.style.display = 'none';
+  loadingEl.style.opacity = 0;
   messEl.style.display='flex';
   updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
   textEl.innerHTML = S.messageArray[textIndex].substring(2);
