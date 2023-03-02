@@ -52,10 +52,10 @@ function revealMessage(scroll, textIndex){
   					messageEl.style.backgroundColor = '#4E4256';
   					messageEl.style.borderColor = '#2C1D36'
   					break;
-  				//TEIka #425653
+  				//TEYka #425653
   				case 'T':
   					username.innerHTML = '@cyborgrip';
-  					avatarImg.src = S.img['TEI'];
+  					avatarImg.src = S.img['TEY'];
   					messageEl.style.backgroundColor = '#425653';
   					messageEl.style.borderColor = '#1D3630'
   					break;

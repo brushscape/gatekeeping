@@ -65,10 +65,10 @@ function revealHelper(helperText, nextMessage){
 			document.getElementById('helperAvatarImg').src = S.img['JEY'];
 			document.getElementById('helper').style.backgroundColor = '#4E4256';
 			break;
-		//Teika #425653
+		//Teyka #425653
 		case 'T':
 			document.getElementById('username').innerHTML = '@cyborgrip';
-			document.getElementById('helperAvatarImg').src = S.img['TEI'];
+			document.getElementById('helperAvatarImg').src = S.img['TEY'];
 			document.getElementById('helper').style.backgroundColor = '#425653';
 			break;
 		//Kiko #56424B
