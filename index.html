@@ -482,373 +482,403 @@ button[disabled]{
   color: black;
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "chat_func.js" */
-
-function startChat(){
-  var chatScroll = document.getElementById('chatScroll');
-  document.getElementById('exitButton').onclick = function(){
-    goto('Passcode');
-  }
-  document.getElementById('chatMessage').style.display = 'none';
-  S.chats = revealMessage(chatScroll,0,0);
-  S.loadingChats = false;//true;
+function startChat() {
+  var chatScroll = document.getElementById("chatScroll");
+  document.getElementById("exitButton").onclick = function () {
+    goto("Passcode");
+  };
+  document.getElementById("chatMessage").style.display = "none";
+  S.chats = revealMessage(chatScroll, 0, 0);
+  S.loadingChats = false; //true;
 }
 
 // Reveal messages in Chat Page
-function revealMessage(scroll, textIndex){
-  if(textIndex >= S.messageArray.length){return;}
+function revealMessage(scroll, textIndex) {
+  if (textIndex >= S.messageArray.length) {
+    return;
+  }
 
-  var messageEl = document.getElementById('chatMessage').cloneNode(true);
-  var notifEl = document.getElementById('chatNotif').cloneNode(true);
-  var loading = document.getElementById('loading');
-
-
+  var messageEl = document.getElementById("chatMessage").cloneNode(true);
+  var notifEl = document.getElementById("chatNotif").cloneNode(true);
+  var loading = document.getElementById("loading");
 
   var toDisplay = S.messageArray[textIndex];
   //var newIndex = scrollIndex+1;
-  if(toDisplay.charAt(0) == "@"){ //if chat notif
+  if (toDisplay.charAt(0) == "@") {
+    //if chat notif
     notifEl.innerHTML = toDisplay;
     scroll.appendChild(notifEl);
     //scroll.replaceChild(notifEl,loading);
     //scroll.appendChild(loading);
 
-    updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
-  	if(textIndex+1 < S.messageArray.length){
-  		S.waiting = setTimeout(revealMessage, S.chatNotifWait, scroll, textIndex+1);
-  		S.loadingChats = true;
-  	}else {
-  		S.loadingChats = false;
-  	}
-  }else{
-  	//var message = S.fullText[textIndex];
-  	var user = toDisplay.charAt(0);
-  	var avatar = messageEl.children[0];
-  	var avatarImg = avatar.children[0];
-  	var text = messageEl.children[1];
-  	var username = text.children[0];
-  	var messageText = text.children[1];
+    updateScroll(document.getElementById("chatScroll"), S.chatScrollDiff);
+    if (textIndex + 1 < S.messageArray.length) {
+      S.waiting = setTimeout(
+        revealMessage,
+        S.chatNotifWait,
+        scroll,
+        textIndex + 1,
+      );
+      S.loadingChats = true;
+    } else {
+      S.loadingChats = false;
+    }
+  } else {
+    //var message = S.fullText[textIndex];
+    var user = toDisplay.charAt(0);
+    var avatar = messageEl.children[0];
+    var avatarImg = avatar.children[0];
+    var text = messageEl.children[1];
+    var username = text.children[0];
+    var messageText = text.children[1];
     messageText.style.margin = 0;
     //var loading = text.children[2];
-    	switch(user){
-  				//JEY #4E4256
-  				case 'J':
-  					username.innerHTML = '@blackout';
-  					avatarImg.src = S.img['JEY'];
-  					messageEl.style.backgroundColor = '#4E4256';
-  					messageEl.style.borderColor = '#2C1D36'
-  					break;
-  				//TEYka #425653
-  				case 'T':
-  					username.innerHTML = '@cyborgrip';
-  					avatarImg.src = S.img['TEY'];
-  					messageEl.style.backgroundColor = '#425653';
-  					messageEl.style.borderColor = '#1D3630'
-  					break;
-  				//KIKnn #56424B
-  				case 'K':
-  					username.innerHTML = '@calikilly';
-  					avatarImg.src = S.img['KIK'];
-  				  messageEl.style.backgroundColor = '#56424B';
-  					messageEl.style.borderColor = '#361D28';
-  					break;
-  				//Mouse #564C42
-  				case 'M':
-  					username.innerHTML = '@snakebait';
-  					avatarImg.src = S.img['MOU'];
-  					messageEl.style.backgroundColor = '#564C42';
-  					messageEl.style.borderColor = '#36291D'
-  					break;
-          case 'E':
-    				username.innerHTML = '@nightemissary';
-    				avatarImg.src = S.img['EMI'];
-    				messageEl.style.backgroundColor = '#495642';
-    				messageEl.style.borderColor = '#2A361D'
-    				break;
-  				default:
-  					username.innerHTML = '@anonymous';
-            avatarImg.src = S.img['ANON'];
-            messageEl.style.backgroundColor = 'darkgrey';
-  					messageEl.style.borderColor = 'dimgrey'
-  					break;
-  			}
-  	//messageEl.style.display = 'flex';
+    switch (user) {
+      //XEY #4E4256
+      case "X":
+        username.innerHTML = "@blackout";
+        avatarImg.src = S.img["XEY"];
+        messageEl.style.backgroundColor = "#4E4256";
+        messageEl.style.borderColor = "#2C1D36";
+        break;
+      //TEYka #425653
+      case "T":
+        username.innerHTML = "@cyborgrip";
+        avatarImg.src = S.img["TEY"];
+        messageEl.style.backgroundColor = "#425653";
+        messageEl.style.borderColor = "#1D3630";
+        break;
+      //KIKnn #56424B
+      case "K":
+        username.innerHTML = "@calikilly";
+        avatarImg.src = S.img["KIK"];
+        messageEl.style.backgroundColor = "#56424B";
+        messageEl.style.borderColor = "#361D28";
+        break;
+      //Mouse #564C42
+      case "M":
+        username.innerHTML = "@snakebait";
+        avatarImg.src = S.img["MOU"];
+        messageEl.style.backgroundColor = "#564C42";
+        messageEl.style.borderColor = "#36291D";
+        break;
+      case "E":
+        username.innerHTML = "@nightemissary";
+        avatarImg.src = S.img["EMI"];
+        messageEl.style.backgroundColor = "#495642";
+        messageEl.style.borderColor = "#2A361D";
+        break;
+      default:
+        username.innerHTML = "@anonymous";
+        avatarImg.src = S.img["ANON"];
+        messageEl.style.backgroundColor = "darkgrey";
+        messageEl.style.borderColor = "dimgrey";
+        break;
+    }
+    //messageEl.style.display = 'flex';
     //scroll.replaceChild(messageEl,loading);
     //scroll.appendChild(loading);
-    updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
-    loading.style.opacity=1;
+    updateScroll(document.getElementById("chatScroll"), S.chatScrollDiff);
+    loading.style.opacity = 1;
     var length1;
-    if(textIndex == 0){
+    if (textIndex == 0) {
       length1 = 0;
-    }else{
-      length1 = S.messageArray[textIndex-1].length;
+    } else {
+      length1 = S.messageArray[textIndex - 1].length;
     }
     var waitTime = calcWaitTime(length1);
-    S.waiting = setTimeout(showMessageText, waitTime, messageEl, messageText, loading, textIndex, scroll);
-
+    S.waiting = setTimeout(
+      showMessageText,
+      waitTime,
+      messageEl,
+      messageText,
+      loading,
+      textIndex,
+      scroll,
+    );
   }
-
 }
 
-function calcWaitTime(givenLength){
+function calcWaitTime(givenLength) {
   var mLen = givenLength;
-  if(mLen == 0){
+  if (mLen == 0) {
     mLen = 5;
-  }else if(mLen < 30){
+  } else if (mLen < 30) {
     mLen = 30;
   }
-  return Math.floor(Math.random() * ((mLen*40+500) - mLen*40) + mLen*25);
+  return Math.floor(Math.random() * (mLen * 40 + 500 - mLen * 40) + mLen * 25);
 }
 
-function showMessageText(messEl,textEl, loadingEl, textIndex, scroll){
+function showMessageText(messEl, textEl, loadingEl, textIndex, scroll) {
   scroll.appendChild(messEl);
   loadingEl.style.opacity = 0;
-  messEl.style.display='flex';
-  updateScroll(document.getElementById('chatScroll'),S.chatScrollDiff);
+  messEl.style.display = "flex";
+  updateScroll(document.getElementById("chatScroll"), S.chatScrollDiff);
   textEl.innerHTML = S.messageArray[textIndex].substring(2);
 
-  if(textIndex+1 < S.messageArray.length){
-    if(S.messageArray[textIndex+1].charAt(0) == '@'){ //next message is a chat notif
-      S.waiting = setTimeout(revealMessage, S.chatNotifWait, scroll, textIndex+1);
-    }else{
+  if (textIndex + 1 < S.messageArray.length) {
+    if (S.messageArray[textIndex + 1].charAt(0) == "@") {
+      //next message is a chat notif
+      S.waiting = setTimeout(
+        revealMessage,
+        S.chatNotifWait,
+        scroll,
+        textIndex + 1,
+      );
+    } else {
       var randTime = calcWaitTime(S.messageArray[textIndex].length);
-      S.waiting = setTimeout(revealMessage, randTime/2, scroll, textIndex+1);
+      S.waiting = setTimeout(
+        revealMessage,
+        randTime / 2,
+        scroll,
+        textIndex + 1,
+      );
     }
     S.loadingChats = true;
-  }else {
+  } else {
     S.loadingChats = false;
   }
 }
 
 // Update scroll on Chat Page
-function updateScroll(element,scrollDiff){
-		if(element.scrollHeight - element.scrollTop <= (window.screen.height / scrollDiff)){
-    	element.scrollTop = element.scrollHeight;
-		}
+function updateScroll(element, scrollDiff) {
+  if (
+    element.scrollHeight - element.scrollTop <=
+    window.screen.height / scrollDiff
+  ) {
+    element.scrollTop = element.scrollHeight;
+  }
 }
 /* twine-user-script #2: "converse_func.js" */
 //read the dialogue tree by parsing each node
-function parsePassage(passName){
-	var message = '';
-	var responses = [];
+function parsePassage(passName) {
+  var message = "";
+  var responses = [];
   var toprint = window.story.passage(passName).source; //all the text from the passage
 
-	while(toprint.length > 0){
-		//get one line from the text
-    var find = toprint.indexOf('\n');
-		var curr = '';
-		if(find == -1){
-			curr = toprint;
-			toprint = '';
-		}else{
-	    curr = toprint.substring(0,find);
-	    var newstring = toprint.substring(find+1);
-	    toprint = newstring;
-		}
+  while (toprint.length > 0) {
+    //get one line from the text
+    var find = toprint.indexOf("\n");
+    var curr = "";
+    if (find == -1) {
+      curr = toprint;
+      toprint = "";
+    } else {
+      curr = toprint.substring(0, find);
+      var newstring = toprint.substring(find + 1);
+      toprint = newstring;
+    }
 
-		//find any code in there
-		if(curr.indexOf('<%') != -1){
-			var chop = curr;
-			curr = 	chop.substring( 0, chop.indexOf('<%') ) +
-									chop.substring( chop.indexOf('%>')+2 );
-			chop = chop.slice( chop.indexOf('<%')+2, chop.indexOf('%>') );
-			setTimeout(chop,1); //execute the code
-		}
+    //find any code in there
+    if (curr.indexOf("<%") != -1) {
+      var chop = curr;
+      curr =
+        chop.substring(0, chop.indexOf("<%")) +
+        chop.substring(chop.indexOf("%>") + 2);
+      chop = chop.slice(chop.indexOf("<%") + 2, chop.indexOf("%>"));
+      setTimeout(chop, 1); //execute the code
+    }
 
-		//parse the line
-    if(curr.length > 1){
-			if(curr.substring(0,2) == '[[')
-			{//line is a response
-				var res = curr.substring(2,curr.length-2);
-				responses.push(res);
-			}
-			else
-			{//line is the message
-				message = curr;
+    //parse the line
+    if (curr.length > 1) {
+      if (curr.substring(0, 2) == "[[") {
+        //line is a response
+        var res = curr.substring(2, curr.length - 2);
+        responses.push(res);
+      } else {
+        //line is the message
+        message = curr;
       }
-		}
-
+    }
   }
-	return [message,responses];
-
+  return [message, responses];
 }
 
-function showJMessage(){
-	if(document.getElementById('responses')){
-		document.getElementById('responses').style.display = 'none';
-	}
-	document.getElementById('messageText').innerHTML='';
-	S.displayFullMessage = false;
-	S.currMessage = "";
-	clearTimeout(S.waiting);
+function showJMessage() {
+  if (document.getElementById("responses")) {
+    document.getElementById("responses").style.display = "none";
+  }
+  document.getElementById("messageText").innerHTML = "";
+  S.displayFullMessage = false;
+  S.currMessage = "";
+  clearTimeout(S.waiting);
 
-	var content = parsePassage(S.currPassage);
-	if(S.responseListeners.length > 0){
-		document.getElementById('option1').removeEventListener("click", clickOption, true);
-		document.getElementById('option1').removeEventListener("click", clickOption, true);
-		document.getElementById('option1').removeEventListener("click", clickOption, true);
-		S.responseListeners = [];
-	}
-	if(content[1].length > 0){
-		document.getElementById('option1').innerHTML = content[1][0];
-		document.getElementById('option1').style.pointerEvents = "auto";
-		document.getElementById('option2').innerHTML = content[1][1];
-		document.getElementById('option2').style.pointerEvents = "auto";
-		document.getElementById('option3').innerHTML = content[1][2];
-		document.getElementById('option3').style.pointerEvents = "auto";
-	}else if(document.getElementById('responses')){
-		document.getElementById('responses').remove();
-	}
-	typeText(content[0],0,content[1]);
-
+  var content = parsePassage(S.currPassage);
+  if (S.responseListeners.length > 0) {
+    document
+      .getElementById("option1")
+      .removeEventListener("click", clickOption, true);
+    document
+      .getElementById("option1")
+      .removeEventListener("click", clickOption, true);
+    document
+      .getElementById("option1")
+      .removeEventListener("click", clickOption, true);
+    S.responseListeners = [];
+  }
+  if (content[1].length > 0) {
+    document.getElementById("option1").innerHTML = content[1][0];
+    document.getElementById("option1").style.pointerEvents = "auto";
+    document.getElementById("option2").innerHTML = content[1][1];
+    document.getElementById("option2").style.pointerEvents = "auto";
+    document.getElementById("option3").innerHTML = content[1][2];
+    document.getElementById("option3").style.pointerEvents = "auto";
+  } else if (document.getElementById("responses")) {
+    document.getElementById("responses").remove();
+  }
+  typeText(content[0], 0, content[1]);
 }
-
 
 // Types out the message on the J discussion pages
-function typeText(message, i, responses){
-	if(S.displayFullMessage){
-			// skip to fully typed messsage
-			document.getElementById('messageText').innerHTML = message;
-			i = message.length;
-		}
-	if(i<message.length){
-			// message not fully typed and no skip
-			var punc = message[i]; //pick a character
-			S.currMessage+=punc;
-			i++;
-			document.getElementById('messageText').innerHTML = S.currMessage;
-			if(punc == '.' || punc == '?' || punc == '!'){
-				var nextCharIsPunc = false;
-				if(i < message.length){
-					nextCharIsPunc = message[i] == '.' || message[i] == '?' || message[i] == '!';
-				}
-				if(nextCharIsPunc){
-					if(message[i] == '.'){ // for elipses
-						S.waiting = setTimeout(typeText, 200, message, i);
-					}
-					else{ //for just multiple question marks or exclamation points
-						S.waiting = setTimeout(typeText, 30, message, i);
-					}
-				}
-				else { //pause at end of sentence
-					S.waiting = setTimeout(typeText, 500, message, i);
-				}
-			}
-			else if (punc == ','){ //tiny pause at a comma
-				S.waiting = setTimeout(typeText, 300, message, i);
-			}
-			else{ //no pause for normal text
-				S.waiting = setTimeout(typeText, 30, message, i);
-			}
-
-	}
-	else {
-		// message is fully typed
-		S.messageDisplayed = true;
-		if(window.story.passage(S.currPassage).tags.includes('noexit')){
-			//skip to next message without responses
-			if(window.story.passage(S.currPassage).tags.includes('toLeave')){
-				S.currPassage = "Leave";
-			}else if(window.story.passage(S.currPassage).tags.includes('toComeback')){
-				S.currPassage = "Come Back";
-			}else if(window.story.passage(S.currPassage).tags.includes('toWelcome')){
-				S.currPassage = "Welcome";
-			}else{
-				console.log('Error: invalid noexit destination');
-			}
-			S.waiting = setTimeout(showJMessage, 1000);
-		}else if(window.story.passage(S.currPassage).tags.includes('leave')){
-			//leave conversation
-			var passage = S.currPassage;
-			S.currPassage = "First";
-			if(window.story.passage(passage).tags.includes('toPasscode')){
-				if(window.story.passage(passage).tags.includes('rumple')){
-					S.currentHelper = 5;
-				}else{
-					S.currentHelper = 3;
-				}
-				S.waiting = setTimeout(goto, 1000, "Passcode");
-			}
-			else if(window.story.passage(passage).tags.includes('toHangman')){
-				S.waiting = setTimeout(goto, 1000, "Hangman");
-			}
-			else if(window.story.passage(passage).tags.includes('toManifesto')){
-				S.currentHelper = 1;
-				S.waiting = setTimeout(goto, 1000, "Manifesto");
-			}
-			else{
-				console.log('Error: invalid leave destination');
-			}
-		}else{ // show responses
-			fadeInResponse(0);
-		}
-	}
-
+function typeText(message, i, responses) {
+  if (S.displayFullMessage) {
+    // skip to fully typed messsage
+    document.getElementById("messageText").innerHTML = message;
+    i = message.length;
+  }
+  if (i < message.length) {
+    // message not fully typed and no skip
+    var punc = message[i]; //pick a character
+    S.currMessage += punc;
+    i++;
+    if (document.getElementById("messageText")) {
+      document.getElementById("messageText").innerHTML = S.currMessage;
+    }
+    if (punc == "." || punc == "?" || punc == "!") {
+      var nextCharIsPunc = false;
+      if (i < message.length) {
+        nextCharIsPunc =
+          message[i] == "." || message[i] == "?" || message[i] == "!";
+      }
+      if (nextCharIsPunc) {
+        if (message[i] == ".") {
+          // for elipses
+          S.waiting = setTimeout(typeText, 200, message, i);
+        } else {
+          //for just multiple question marks or exclamation points
+          S.waiting = setTimeout(typeText, 30, message, i);
+        }
+      } else {
+        //pause at end of sentence
+        S.waiting = setTimeout(typeText, 500, message, i);
+      }
+    } else if (punc == ",") {
+      //tiny pause at a comma
+      S.waiting = setTimeout(typeText, 300, message, i);
+    } else {
+      //no pause for normal text
+      S.waiting = setTimeout(typeText, 30, message, i);
+    }
+  } else {
+    // message is fully typed
+    S.messageDisplayed = true;
+    if (window.story.passage(S.currPassage).tags.includes("noexit")) {
+      //skip to next message without responses
+      if (window.story.passage(S.currPassage).tags.includes("toLeave")) {
+        S.currPassage = "Leave";
+      } else if (
+        window.story.passage(S.currPassage).tags.includes("toComeback")
+      ) {
+        S.currPassage = "Come Back";
+      } else if (
+        window.story.passage(S.currPassage).tags.includes("toWelcome")
+      ) {
+        S.currPassage = "Welcome";
+      } else {
+        console.log("Error: invalid noexit destination");
+      }
+      S.waiting = setTimeout(showJMessage, 1000);
+    } else if (window.story.passage(S.currPassage).tags.includes("leave")) {
+      //leave conversation
+      var passage = S.currPassage;
+      S.currPassage = "First";
+      if (window.story.passage(passage).tags.includes("toPasscode")) {
+        if (window.story.passage(passage).tags.includes("rumple")) {
+          S.currentHelper = 5;
+        } else {
+          S.currentHelper = 3;
+        }
+        S.waiting = setTimeout(goto, 1000, "Passcode");
+      } else if (window.story.passage(passage).tags.includes("toHangman")) {
+        S.waiting = setTimeout(goto, 1000, "Hangman");
+      } else if (window.story.passage(passage).tags.includes("toManifesto")) {
+        S.currentHelper = 1;
+        S.waiting = setTimeout(goto, 1000, "Manifesto");
+      } else {
+        console.log("Error: invalid leave destination");
+      }
+    } else {
+      // show responses
+      fadeInResponse(0);
+    }
+  }
 }
 
 // Fade in the response options to J on the discussion tree pages
-function fadeInResponse(j){
-  var x = document.getElementsByClassName('responses')[0];
-	if(j<1){ // if opacity is not opaque yet
-		x.style.opacity = j;
-		if (x.style.display == 'none'){
-			x.style.display = 'flex';
-		}
-		j+=0.01;
-		S.waiting = setTimeout(fadeInResponse, 10, j);
-	}
-	else{
+function fadeInResponse(j) {
+  var x = document.getElementsByClassName("responses")[0];
+  if (j < 1) {
+    // if opacity is not opaque yet
+    x.style.opacity = j;
+    if (x.style.display == "none") {
+      x.style.display = "flex";
+    }
+    j += 0.01;
+    S.waiting = setTimeout(fadeInResponse, 10, j);
+  } else {
     x.style.opacity = 1;
-		S.responsesDisplayed = true;
+    S.responsesDisplayed = true;
 
     //makes sure clicking on anywhere in the option will click the link, not just the text
     var options = x.children;
-    for(var i = 0; i < options.length; i++){
-			var text = options[i].innerHTML;
-      S.responseListeners[i] = options[i].addEventListener("click", clickOption.bind(this, i), true );
+    for (var i = 0; i < options.length; i++) {
+      var text = options[i].innerHTML;
+      S.responseListeners[i] = options[i].addEventListener(
+        "click",
+        clickOption.bind(this, i),
+        true,
+      );
     }
-	}
+  }
 }
 
-
-function clickOption(i){
-	var el = document.getElementById("responses").children[i];
-	el.style.pointerEvents = "none";
+function clickOption(i) {
+  var el = document.getElementById("responses").children[i];
+  el.style.pointerEvents = "none";
   S.currPassage = el.innerHTML;
-	el.removeEventListener("click", clickOption, true);
-	S.waiting = setTimeout(showJMessage, 10);
+  el.removeEventListener("click", clickOption, true);
+  S.waiting = setTimeout(showJMessage, 10);
 }
 /* twine-user-script #3: "general_func.js" */
 //setup global variables
 if (typeof S == "undefined") {
-	var S = {
-		aaa:0,
-		currPage: "",
+  var S = {
+    aaa: 0,
+    currPage: "",
 
     //helper popup messages on the passcode page to help the user
-    initHelper:["T:check it out. they've attracted another one"],
-    successHelper:
-      [
-				"E:Congrats on your success",
-        "K:...tat it.?",
-        "M:I can't believe they thought that would be a worthwhile reward.",
-        "T:if you want to complain, take it to the chat",
-				"J:&#127925 Colored like the Earthly sky, oh cousin crow of mine; guess the name my friends call I. The letter, root of nine. &#127925"
-      ],
-    comeHelper:
-      [
-				"M:That phrase not to your liking?",
-        "K:badd spellr",
-        "T:better luck next time, I guess",
-				"E:If it helps, the phrases follow a theme"
-      ],
-    leaveHelper:
-      [
-				"T:if you were trying to ask them personal questions... maybe dont",
-        "M:Don't take it personally. They're just an asshole.",
-				"E:Don't worry. They don't hold a grudge. You can always try again",
-        "K:pisssed em off XD"
-      ],
-    chatHelper: "J:You just found the biggest secret. Are you satisfied?",
-		rumpleHelper: "J:Your move, little bird. Give it thrice",
+    initHelper: ["T:check it out. they've attracted another one"],
+    successHelper: [
+      "E:Congrats on your success",
+      "K:...tat it.?",
+      "M:I can't believe they thought that would be a worthwhile reward.",
+      "T:if you want to complain, take it to the chat",
+      "X:&#127925 Two paths cross to plea your silence in a sign; guess the name my friends call me and say it thrice in line. &#127925",
+    ],
+    comeHelper: [
+      "M:That phrase not to your liking?",
+      "K:badd spellr",
+      "T:better luck next time, I guess",
+      "E:If it helps, the phrases follow a theme",
+    ],
+    leaveHelper: [
+      "T:if you were trying to ask them personal questions... maybe dont",
+      "M:Don't take it personally. They're just an asshole.",
+      "E:Don't worry. They don't hold a grudge. You can always try again",
+      "K:pisssed em off XD",
+    ],
+    chatHelper: "X:You just found the biggest secret. Are you satisfied?",
+    rumpleHelper: "X:Your move, little bird. Give it thrice",
 
     // global counters for the helper popup message arrays above
     initIndex: 0,
@@ -861,38 +891,37 @@ if (typeof S == "undefined") {
 
     //initial state of passcode page variables
     currentHelper: 0,
-    chatPassword: "JJJ",
+    chatPassword: "XXX",
     passcodePhrase: "Thoughthericharedrunkonmoneyyourparchedlipswonttasteadrop",
     currPassIndex: 0,
 
     // though the rich are drunk on money, your parched lips won't taste a drop
     // dictionary for the passcodes and their corresponding helper messages
-    passwordDict:
-      {
-        THO: "T:I <b>tho</b>ught this would go faster",
-        UGH: "K:<b>ugh</b> nott gud at tis r u",
-    		THE: "M:I honestly didn't think <b>the</b> code would be this difficult.",
-    		RIC: "E:Look around. Can't you see t<b>ric</b>k?",
-    		HAR: "M:How <b>har</b>d are you going to make me <b>har</b>p on you?",
-    		EDR: "K:evr gess<b>ed r</b>ight?",
-    		UNK: "E:You seem to be in a f<b>unk</b>",
-    		ONM: "M:At this rate, you’ll have to put in a shitt<b>on m</b>ore.",
-    		ONE: "T:maybe try <b>one</b> more time",
-    		YYO: "E:There's no need to do this b<b>y yo</b>urself",
-    		URP: "M:We're not here to console yo<b>ur p</b>itiful ego.",
-    		ARC: "M:If you don't get this soon, I'm m<b>arc</b>hing out of here.",
-    		HED: "T:I'm dying to s<b>hed</b> my promise to be here",
-    	  LIP: "E:I'm sorry if it seems like we're giving you <b>lip</b>",
-    		SWO: "T:I'd be more direct if I wasnt <b>swo</b>rn to secrecy",
-    		NTT: "K:ca<b>nt t</b>elll hints frevr",
-    		AST: "M:It's <b>a st</b>rain to come up with these sentences",
-    		EAD: "M:Why did I agree to this? They didn't even pl<b>ead</b>.",
-    		ROP: "T:I didn't ask to get <b>rop</b>ed into this either"
-      },
-    currMessage: '',
+    passwordDict: {
+      THO: "T:I <b>tho</b>ught this would go faster",
+      UGH: "K:<b>ugh</b> nott gud at tis r u",
+      THE: "M:I honestly didn't think <b>the</b> code would be this difficult.",
+      RIC: "E:Look around. Can't you see t<b>ric</b>k?",
+      HAR: "M:How <b>har</b>d are you going to make me <b>har</b>p on you?",
+      EDR: "K:evr gess<b>ed r</b>ight?",
+      UNK: "E:You seem to be in a f<b>unk</b>",
+      ONM: "M:At this rate, you’ll have to put in a shitt<b>on m</b>ore.",
+      ONE: "T:maybe try <b>one</b> more time",
+      YYO: "E:There's no need to do this b<b>y yo</b>urself",
+      URP: "M:We're not here to console yo<b>ur p</b>itiful ego.",
+      ARC: "M:If you don't get this soon, I'm m<b>arc</b>hing out of here.",
+      HED: "T:I'm dying to s<b>hed</b> my promise to be here",
+      LIP: "E:I'm sorry if it seems like we're giving you <b>lip</b>",
+      SWO: "T:I'd be more direct if I wasnt <b>swo</b>rn to secrecy",
+      NTT: "K:ca<b>nt t</b>elll hints frevr",
+      AST: "M:It's <b>a st</b>rain to come up with these sentences",
+      EAD: "M:Why did I agree to this? They didn't even pl<b>ead</b>.",
+      ROP: "T:I didn't ask to get <b>rop</b>ed into this either",
+    },
+    currMessage: "",
     displayFullMessage: false,
     messageDisplayed: true,
-    responsesDisplayed:  true,
+    responsesDisplayed: true,
     delayedLoad: undefined,
     delayedLoadSet: false,
     numFailedAttempts: 0,
@@ -901,376 +930,398 @@ if (typeof S == "undefined") {
     fullText: [],
     chatScrollDiff: 0.95,
     manifScrollDiff: 1,
-		nextPassage: "",
-		currPassage: "First",
-		leavePassage: "",
-		responseListeners:[],
+    nextPassage: "",
+    currPassage: "First",
+    leavePassage: "",
+    responseListeners: [],
 
     //hangman variables
-    hangmanWords:
-      [
-      	'Be gay, do crime',
-      	'Anarchy',
-      	'Eat the rich',
-      	'People, over profits',
-      	'Silence is, compliance',
-      	'Anonymous, Vendetta',
-      	'This machine, kills fascists',
-      	'Leeches for, Liberation',
-        'Scarcity, is a fallacy',
-				'Bite the hand, that feeds on you',
-				'Fuck the, Ouroboros',
-				'Dare to keep, your body yours',
-      ],
+    hangmanWords: [
+      "Be gay, do crime",
+      "Anarchy",
+      "Eat the rich",
+      "People, over profits",
+      "Silence is, compliance",
+      "Anonymous, Vendetta",
+      "This machine, kills fascists",
+      "Leeches for, Liberation",
+      "Scarcity, is a fallacy",
+      "Bite the hand, that feeds on you",
+      "Fuck the Oros",
+      "Dare to keep, your body yours",
+    ],
     currHangmanIndex: 0,
-    currHangmanWord: '',
-    finalDisplayWord: '',
+    currHangmanWord: "",
+    finalDisplayWord: "",
     usedWords: [],
     mq: undefined,
 
-		messageArray:
-		[
-		  "M:This was an obnoxious way to spread a manifesto.",
-		  "T:I doubt that was the main purpose of this",
-		  "M:I bet they just wanted a powertrip.",
-		  "K:borring powrtip",
-		  "J:Maybe to you",
-		  "M:Oh? Enlighten us then. Why the fuck would you bother with this?",
-		  "J:I added anyone who played to my botnet. The game gives me time to upload the virus &#128521",
-		  "T:well shit. how many did you add?",
-		  "J:Wouldn't you like to know &#128527",
-		  "T:I dont know why I expected a straight answer...",
-		  "E:What's a botnet?",
-		  "T:Its basically when you zombifying people's computers so you can steal computing power",
-		  "K:shitt!! mske zombies?!",
-		  "M:It's not as cool as it sounds.",
-		  "J:It is exactly as cool as it sounds. You just don't give a shit about computers",
-		  "M:Why should I? We have enough reclusive circuit nuts without me caring about motherboards.",
-		  "J:Those were some cute buzzwords, facer. &#128527 Wanna see how they're actually used?",
-		  "E:J...",
-		  "J:What?! What's a little demonstration amongst friends &#128521",
-		  "M:**Comrades. At best.",
-		  "T:ouch",
-		  "J:Damn, this little mouse bites &#128556 You show those teeth to your followers?",
-		  "M:I don't need to waste my charisma on you &#128405 Do you even care about radicalizing these people?",
-		  "J:I thought that was your job &#128533",
-		  "T:It's all our jobs. That's kind of the point?",
-			"E:We're comrades :)",
-		  "K:thot we eat rich",
-		  "E:That's a figure of speach",
-		  "J:Is it?",
-		  "T:mostly. though I'm not really expecting Kiko to be invested in theology",
-		  "J:They're just here to maul some corporates &#128520",
-		  "K:nom",
-		  "T:sigh I need to separate you two",
-			"J:&#128514 Come on, it'd be hilarious. I could make a fancam of the carnage. I bet even Mouse would enjoy it",
-			"M:Don't count on it.",
-			"J:Please, I know you have the stomach for a little blood &#128527",
-			"M:Don't.",
-			"J:Don't what? I was just talking about all the horror movies they like &#129402",
-			"M:I could strangle you",
-			"J:Promise &#129397",
-			"T:can you guys flirt in a private chat, please?",
-			"M:We're not fucking flirting.",
-			"T:uh huh",
-			"E:J, you were going to show us something?",
-			"J:Oh right! But I'm going to need an assistant...",
-			"M:I told you what would happen if you ever got into my feeds again.",
-		  "J:Oh I'd never dream of it, Eykura. I was gonna show on Teyka &#128527",
-			"T:what?",
-			"T:WHAT THE SHIT",
-			"J:This, my lovelies, is called a ghost shutdown. With the flick of a finger from anywhere on Venus, I can make Teyka's arm go dead &#128518",
-		  "T:J!",
-			"K:hahha",
-			"E:Was that really necessary, hera?",
-			"J:What?! I'm pen testing! I thought they'd wanna know they're vulnerable &#129402",
-			"T:if you really cared about that, you'd just help me with the programming",
-			"J:You don't like when I help you cuz I find all your bugs",
-			"T:what, like this one? The one I fixed ages ago?",
-			"J:Eh, you kinda fixed it",
-			"T:fucking hell",
-			"K:i wanna ghost shut",
-			"J:A kitty after my own heart",
-			"K:teach",
-			"J:Lmao easy. Running <u>this</u> gets you into their nervous system and <u>this</u> kills the connection",
-		  "J:I'm sure you can figure out how to mess with them from there &#128521",
-		  "K:yee",
-		  "T:J!",
-			"E:J...",
-		  "T:Kiko, do NOT touch that link! dont be a script kiddie",
-		  "J:**script kitty &#128514&#128514&#128514",
-		  "T:stfu",
-			"M:Remind me never to get stuck in a room with the two of you.",
-			"E:They're honestly worse when they're unsupervised. I'd recommend staying",
-			"T:DAMMIT KIKO STOP",
-		  "J:good kitty &#128527",
-		  "K:noooooo teykaaaaaaaaaaaaa",
-			"E:Did you fix it?",
-			"T:please, I can't debug that fast. I just broke their link",
-		  "J:Come on, Teyka &#128553 You're spoiling the fun &#128548",
-		  "T:harassing me is not 'fun'",
-		  "J:Isn't it though? &#128527",
-		  "K:lol",
-			"E:J...",
-			"J:Sorry, sorry, it was funny though &#129315 Shoulda seen the look on their face",
-			"E:I saw, hera. I'm sitting right next to them",
-			"M:You're not there with them today?",
-			"J:Nah, I had some shit to get done for blackout, but I always spare a feed to keep on eye on you guys &#128521",
-			"E:That's what we get for living in a surveillance state",
-		  "M:Invasive prick.",
-		  "T:guess its time to comb my system for J-shaped viruses again &#128579",
-		  "J:It's cute you think you can get rid of me &#128536",
-			"E:Speaking of, are you coming home tonight?",
-			"J:I can! If you want me to &#129392",
-			"E:I always want you to <3",
-			"J:&#128525&#129402&#128536 I'll be back then &#129392",
-			"J:&#128536&#128536&#128536",
-			"T:what did I say about flirting?",
-			"J:But they're being cute &#129402",
-			"M:And you're being excessive. Show some restraint.",
-			"J:&#128527 You're just jealous I'm not flirting with you anymore",
-			"M:We Weren't. Fucking. Flirting.",
-			"J:Weren't we?",
-			"M:I'm going to kill you if you don't shut up.",
-			"J:Now, now, Eykura, you know how flustered I get when you threaten my life...",
-		  "@snakebait has left the chat room",
-		  "J:No, wait, come back!",
-			"E:I really don't know what you were expecting",
-			"J:I was just playing around!",
-		  "T:and playing with fire. it's a wonder they put up with you",
-		  "J:Psh, please, I'm too cute to stay mad at",
-			"E:Sigh don't I know it",
-			"J:Love you, hera &#128536",
-			"E:I love you too",
-			"K:bleh",
-			"T:Yeah, that's strike three for you",
-			"J:What?! Ily's don't count as flirting!",
-			"E:Haha respect the space, hera. We can keep it private <3",
-			"@nightemissary has left the chat room",
-			"J:Aww, now both my loves got scared away",
-			"T:dont let Mouse hear you calling them that",
-			"J:You gonna be a snitch?",
-			"K:ya",
-			"J:&#128551 you wouldn't",
-			"K:wud",
-			"J:Teyka! I think your cat might be feral",
-			"T:you taught them to be like this. I take no responsibility",
-			"J:&#128514 yeah that's fair.",
-			"J:Hey Kiko, I'll trade ya 10g for your discretion",
-			"K:hehe deel",
-		  "T:who said you were allowed to get them high??",
-			"J:They're not real drugs, Teyka. Catnip doesn't count",
-			"T:for them?? yes it does!",
-			"K:no count",
-			"T:you dont get a say in this",
-			"K:cant stawp mee",
-			"@calikilly has left the chat room",
-			"T:you are the worst influence on them, I swear",
-		  "@cyborgrip has left the chat room",
-		  "J:Only when I want to be",
-		  "@blackout has left the chat room"
-		],
-		chatNotifWait: 600,
+    messageArray: [
+      "M:This was an obnoxious way to spread a manifesto.",
+      "T:I doubt that was the main purpose of this",
+      "M:It was probably just a powertrip.",
+      "K:borring powrtip",
+      "X:Maybe to you",
+      "M:Oh? Enlighten us then. Why the fuck would you bother with this?",
+      "X:I added anyone who played to my botnet. The game gives me time to upload the virus &#128521",
+      "T:well shit. how many did you add?",
+      "X:Wouldn't you like to know &#128527",
+      "T:I dont know why I expected a straight answer...",
+      "E:What's a botnet?",
+      "T:Its basically when you zombifying people's computers so you can steal computing power",
+      "K:shitt!! mske zombies?!",
+      "M:It's not as cool as it sounds.",
+      "X:It is exactly as cool as it sounds. You just don't give a shit about computers",
+      "M:Why should I? We have enough reclusive circuit nuts without me caring about motherboards.",
+      "X:Those were some cute buzzwords, facer. &#128527 Wanna see how they're actually used?",
+      "E:X...",
+      "X:What?! What's a little demonstration amongst friends &#128521",
+      "M:**Comrades. At best.",
+      "T:ouch",
+      "X:Damn, this little mouse bites &#128556 You show those teeth to your followers?",
+      "M:I don't need to waste my charisma on you &#128405 You don't even care about outreach.",
+      "X:I thought that was your job &#128533",
+      "T:it's all our jobs unforunately",
+      "E:We're comrades :)",
+      "K:thot we eat rich",
+      "E:That's a figure of speach",
+      "X:Is it?",
+      "T:mostly. though I'm not really expecting Kiko to be invested in theology",
+      "X:They're just here to maul some corporates &#128520",
+      "K:nom",
+      "T:sigh I need to separate you two",
+      "X:&#128514 Come on, it'd be hilarious. I could make a fancam of the carnage. I bet even Mouse would enjoy it",
+      "M:Don't count on it.",
+      "X:Please, I know you have the stomach for a little blood &#128527",
+      "M:Don't.",
+      "X:Don't what? I was just talking about all the horror movies they like &#129402",
+      "M:I could strangle you",
+      "X:Promise &#129397",
+      "T:can you guys flirt in a private chat, please?",
+      "M:We're not fucking flirting.",
+      "T:uh huh",
+      "E:X, you were going to show us something?",
+      "X:Oh right! But I'm going to need an assistant...",
+      "M:I told you what would happen if you ever got into my feeds again.",
+      "X:Oh I'd never dream of it, Ekura. I was gonna use Teyka &#128527",
+      "T:what?",
+      "T:WHAT THE SHIT",
+      "X:This, my lovelies, is called a ghost shutdown. With the flick of a finger from anywhere on Venus, I can make Teyka's arm go dead &#128518",
+      "T:X!",
+      "K:hahha",
+      "E:Was that really necessary, hera?",
+      "X:What?! I'm pen testing! I thought they'd wanna know they're vulnerable &#129402",
+      "T:if you really cared about that, you'd just help me with the programming",
+      "X:You don't like when I help you cuz I find all your bugs",
+      "T:what, like this one? The one I fixed ages ago?",
+      "X:Eh, you kinda fixed it",
+      "T:fucking hell",
+      "K:i wanna ghost shut",
+      "X:A kitty after my own heart",
+      "K:teach",
+      "X:Lmao easy. Running <u>this</u> gets you into their nervous system and <u>this</u> kills the connection",
+      "X:I'm sure you can figure out how to mess with them from there &#128521",
+      "K:yee",
+      "T:X!",
+      "E:X...",
+      "T:Kiko, do NOT touch that link! dont be a script kiddie",
+      "X:**script kitty &#128514&#128514&#128514",
+      "T:stfu",
+      "M:Remind me never to get stuck in a room with the two of you.",
+      "E:They're honestly worse when they're unsupervised. I'd recommend staying",
+      "T:DAMMIT KIKO STOP",
+      "X:good kitty &#128527",
+      "K:noooooo teykaaaaaaaaaaaaa",
+      "E:Did you fix it?",
+      "T:please, I can't debug that fast. I just broke their link",
+      "X:Come on, Teyka &#128553 You're spoiling the fun &#128548",
+      "T:harassing me is not 'fun'",
+      "X:Isn't it though? &#128527",
+      "K:lol",
+      "E:X...",
+      "X:Sorry, sorry, it was funny though &#129315 Shoulda seen the look on their face",
+      "E:I saw, hera. I'm sitting right next to them",
+      "M:You're not there with them today?",
+      "X:Nah, I had some shit to get done for blackout, but I always spare a feed to keep on eye on you guys &#128521",
+      "E:That's what we get for living in a surveillance state",
+      "M:Invasive prick.",
+      "T:guess its time to comb my system for X-shaped viruses again &#128579",
+      "X:It's cute you think you can get rid of me &#128536",
+      "E:Speaking of, are you coming home tonight?",
+      "X:I can! If you want me to &#129392",
+      "E:I always want you to <3",
+      "X:&#128525&#129402&#128536 I'll be back then &#129392",
+      "X:&#128536&#128536&#128536",
+      "T:what did I say about flirting?",
+      "X:But they're being cute &#129402",
+      "M:And you're being excessive. Show some restraint.",
+      "X:&#128527 Aw does Ekura want some attention too?",
+      "M:I'm going to kill you if you don't shut up.",
+      "X:Now, now, Eykura, you know how flustered I get when you threaten my life...",
+      "@snakebait has left the chat room",
+      "X:No, wait, come back!",
+      "E:I really don't know what you were expecting",
+      "X:I was just playing around!",
+      "T:and playing with fire. it's a wonder they put up with you",
+      "X:Psh, please, I'm too cute to stay mad at",
+      "E:Sigh don't I know it",
+      "X:Love you, hera &#128536",
+      "E:I love you too",
+      "K:bleh",
+      "T:Yeah, that's strike three for you",
+      "X:What?! Ily's don't count as flirting!",
+      "E:Haha respect the space, hera. We can keep it private <3",
+      "@nightemissary has left the chat room",
+      "X:Aww, now both my loves got scared away",
+      "T:dont let Mouse hear you calling them that",
+      "X:You gonna be a snitch?",
+      "K:ya",
+      "X:&#128551 you wouldn't",
+      "K:wud",
+      "X:Teyka! I think your cat might be feral",
+      "T:you taught them to be like this. I take no responsibility",
+      "X:&#128514 yeah that's fair.",
+      "X:Hey Kiko, I'll trade ya 10g for your discretion",
+      "K:hehe deel",
+      "T:who said you were allowed to get them high??",
+      "X:They're not real drugs, Teyka. Catnip doesn't count",
+      "T:for them?? yes it does!",
+      "K:no count",
+      "T:you dont get a say in this",
+      "K:cant stawp mee",
+      "@calikilly has left the chat room",
+      "T:you are the worst influence on them, I swear",
+      "@cyborgrip has left the chat room",
+      "X:Only when I want to be",
+      "@blackout has left the chat room",
+    ],
+    chatNotifWait: 600,
 
-    img:
-      {
-        'JEY': 'img/avatar_blackout.JPG',//'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small',
-        'TEY': 'img/avatar_cyborgrip.JPG',//'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
-        'KIK': 'img/avatar_calikilly.JPG',//'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
-        'MOU': 'img/avatar_snakebait.JPG',//'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
-				'EMI': 'img/avatar_nightemis.JPG',
-				'ANON': 'img/avatar_anon.JPG'
-			},
+    img: {
+      XEY: "img/avatar_blackout.JPG", //'https://pbs.twimg.com/media/ElNEt_9WMAMZPZ-?format=jpg&name=small',
+      TEY: "img/avatar_cyborgrip.JPG", //'https://pbs.twimg.com/media/ElNEuAHXYAcIVuW?format=jpg&name=small',
+      KIK: "img/avatar_calikilly.JPG", //'https://pbs.twimg.com/media/ElNEuEcX0AEXp44?format=jpg&name=small',
+      MOU: "img/avatar_snakebait.JPG", //'https://pbs.twimg.com/media/ElNEuBuX0AUtitq?format=jpg&name=small'
+      EMI: "img/avatar_nightemis.JPG",
+      ANON: "img/avatar_anon.JPG",
+    },
     imgLoaded: false,
-		waiting: undefined,
-  }
+    waiting: undefined,
+  };
 }
 
 function preload() {
-    for (var i = 0; i < arguments.length; i++) {
-        images[i] = new Image();
-        images[i].src = preload.arguments[i];
-    }
+  for (var i = 0; i < arguments.length; i++) {
+    images[i] = new Image();
+    images[i].src = preload.arguments[i];
+  }
 }
 
 // currentHelper: Variable defined in the Twine passages
 //		0 is initial, 1 is sucess, 2 is come, 3 is leave,
 //		4 is coming back from chat, 5 is a special case from the convo
-$(window).on('sm.passage.shown', function(event, passage) {
-	S.fullText = [];
-	//$(this.output).wiki("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
-	if(!S.imgLoaded){
-		preload();
-		S.imgLoaded = true;
-	}
+$(window).on("sm.passage.shown", function (event, passage) {
+  S.fullText = [];
+  //$(this.output).wiki("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+  if (!S.imgLoaded) {
+    preload();
+    S.imgLoaded = true;
+  }
 
-	// Setup for the Passcode Page
-	if (window.passage.tags.includes('passcode')) {
-		var button = document.getElementById('enterButton');
-		button.onclick = function (){ checkPasscode(); };
+  // Setup for the Passcode Page
+  if (window.passage.tags.includes("passcode")) {
+    var button = document.getElementById("enterButton");
+    button.onclick = function () {
+      checkPasscode();
+    };
 
-		console.log('at the passcode');
+    console.log("at the passcode");
     $(".codeInputBox").keyup(function () {
-        if (this.value.length == this.maxLength) {
-          if($(this).next('.codeInputBox').length){
-            $(this).next('.codeInputBox').focus();
-          }else{
-            $( ":button" ).focus();
-          }
+      if (this.value.length == this.maxLength) {
+        if ($(this).next(".codeInputBox").length) {
+          $(this).next(".codeInputBox").focus();
+        } else {
+          $(":button").focus();
         }
+      }
     });
-    S.currPage="passcode";
+    S.currPage = "passcode";
     crypticBackground();
-		switch(S.currentHelper){
-			case 0: // initial
-				S.initIndex = 0;
-				var isNext = S.initIndex<S.initHelper.length-1;
-				S.helperTimeout = setTimeout(revealHelper, 1000, S.initHelper[S.initIndex], isNext);
-				S.initIndex++;
-				break;
-			case 1: // coming from Success State
-				S.successIndex = 0;
-				S.helperTimeout = setTimeout(revealHelper, 700, S.successHelper[S.successIndex], true);
-				S.successIndex++;
-				break;
-			case 2: // coming from Come Back State
+    switch (S.currentHelper) {
+      case 0: // initial
+        S.initIndex = 0;
+        var isNext = S.initIndex < S.initHelper.length - 1;
+        S.helperTimeout = setTimeout(
+          revealHelper,
+          1000,
+          S.initHelper[S.initIndex],
+          isNext,
+        );
+        S.initIndex++;
+        break;
+      case 1: // coming from Success State
+        S.successIndex = 0;
+        S.helperTimeout = setTimeout(
+          revealHelper,
+          700,
+          S.successHelper[S.successIndex],
+          true,
+        );
+        S.successIndex++;
+        break;
+      case 2: // coming from Come Back State
         S.comeIndex++;
-        if(S.comeIndex >= S.comeHelper.length){
+        if (S.comeIndex >= S.comeHelper.length) {
           S.comeIndex = 0;
         }
-				S.helperTimeout = setTimeout(revealHelper, 700, S.comeHelper[S.comeIndex], false);
-				break;
-			case 3: // coming from Leave State
+        S.helperTimeout = setTimeout(
+          revealHelper,
+          700,
+          S.comeHelper[S.comeIndex],
+          false,
+        );
+        break;
+      case 3: // coming from Leave State
         S.leaveIndex++;
-        if(S.leaveIndex >= S.leaveHelper.length){
+        if (S.leaveIndex >= S.leaveHelper.length) {
           S.leaveIndex = 0;
         }
-				S.helperTimeout = setTimeout(revealHelper, 700, S.leaveHelper[S.leaveIndex], false);
-				break;
-			case 4: // coming from Secret Chat State
-				S.helperTimeout = setTimeout(revealHelper, 700, S.chatHelper, false);
-				break;
-			case 5: // coming from Secret Chat State
-				S.helperTimeout = setTimeout(revealHelper, 700, S.rumpleHelper, false);
-				break;
-		}
+        S.helperTimeout = setTimeout(
+          revealHelper,
+          700,
+          S.leaveHelper[S.leaveIndex],
+          false,
+        );
+        break;
+      case 4: // coming from Secret Chat State
+        S.helperTimeout = setTimeout(revealHelper, 700, S.chatHelper, false);
+        break;
+      case 5: // coming from Secret Chat State
+        S.helperTimeout = setTimeout(revealHelper, 700, S.rumpleHelper, false);
+        break;
+    }
 
-		var currentPass = getCurrentPasscode();
-		console.log('which is ' + currentPass + ' by the way');
+    var currentPass = getCurrentPasscode();
+    console.log("which is " + currentPass + " by the way");
 
-		document.getElementById('helper').style.display = 'none';
+    document.getElementById("helper").style.display = "none";
 
-		//var invalid = document.getElementById('invalid').innerHTML="";
+    //var invalid = document.getElementById('invalid').innerHTML="";
 
-		S.numFailedAttempts = 0;
-		if(S.loadingChats){
-			clearTimeout(S.waiting);
-			S.loadingChats = false;
-		}
-		return;
-	}
+    S.numFailedAttempts = 0;
+    if (S.loadingChats) {
+      clearTimeout(S.waiting);
+      S.loadingChats = false;
+    }
+    return;
+  }
 
   // Setup for the Chat Page
-	if (window.passage.tags.includes('chat')) {
-		//console.log('at the chat');
-    S.currPage="chat";
-		S.currentHelper = 4;
-		//formatMessage(false);
-		startChat();
-		return;
-	}
+  if (window.passage.tags.includes("chat")) {
+    //console.log('at the chat');
+    S.currPage = "chat";
+    S.currentHelper = 4;
+    //formatMessage(false);
+    startChat();
+    return;
+  }
 
   // Setup for the Hangman Page
-	if (window.passage.tags.includes('hangman')) {
-    S.currPage="hangman";
-		startHangman();
-		return;
-	}
+  if (window.passage.tags.includes("hangman")) {
+    S.currPage = "hangman";
+    startHangman();
+    return;
+  }
 
   // Setup for the Manifesto Page
-	if(window.passage.tags.includes('manifesto')){
-		S.displayFullMessage = false;
-		S.responsesDisplayed = false;
-		S.messageDisplayed = false;
-		S.currMessage = '';
-		//document.getElementById('exit').style.display='none';
-		var manifesto = document.getElementById('manifestoText').innerHTML;
-		document.getElementById('manifestoText').innerHTML = '';
-		document.getElementById('manifestoText').addEventListener("click", function(){S.displayFullMessage = true;})
-		var exitButton=document.getElementById('exitButton');
-		exitButton.onclick = function(){
-	    goto('Passcode');
-	  }
-		exitButton.style.margin = 0;
-		manifestoType(manifesto,0);
-		return;
-	}
+  if (window.passage.tags.includes("manifesto")) {
+    S.displayFullMessage = false;
+    S.responsesDisplayed = false;
+    S.messageDisplayed = false;
+    S.currMessage = "";
+    //document.getElementById('exit').style.display='none';
+    var manifesto = document.getElementById("manifestoText").innerHTML;
+    document.getElementById("manifestoText").innerHTML = "";
+    document
+      .getElementById("manifestoText")
+      .addEventListener("click", function () {
+        S.displayFullMessage = true;
+      });
+    var exitButton = document.getElementById("exitButton");
+    exitButton.onclick = function () {
+      goto("Passcode");
+    };
+    exitButton.style.margin = 0;
+    manifestoType(manifesto, 0);
+    return;
+  }
 
-	if(window.passage.tags.includes('other')){
-		return;
-	}
+  if (window.passage.tags.includes("other")) {
+    return;
+  }
 
-  S.currPage="discussion";
+  S.currPage = "discussion";
 
-	if(window.passage.name == 'Enter'){
-		console.log('chatting with J: attempt '+S.numJAttempts);
-	}
-	document.getElementById('darkMessage').addEventListener("click", function(){S.displayFullMessage = true;})
-	document.getElementById('messageText').innterHTML = '';
-	document.getElementById('messageText').style.margin = 0;
-	//formatMessage(true);
+  if (window.passage.name == "Enter") {
+    console.log("chatting with J: attempt " + S.numJAttempts);
+  }
+  document.getElementById("darkMessage").addEventListener("click", function () {
+    S.displayFullMessage = true;
+  });
+  document.getElementById("messageText").innterHTML = "";
+  document.getElementById("messageText").style.margin = 0;
+  //formatMessage(true);
 
-	if(document.getElementsByClassName('responses').length > 0){
-		var x = document.getElementsByClassName('responses');
-		x[0].style.display = 'none';
-	}
-	S.displayFullMessage = false;
-	S.responsesDisplayed = false;
-	S.messageDisplayed = false;
-	S.currMessage = '';
-	showJMessage();
+  if (document.getElementsByClassName("responses").length > 0) {
+    var x = document.getElementsByClassName("responses");
+    x[0].style.display = "none";
+  }
+  S.displayFullMessage = false;
+  S.responsesDisplayed = false;
+  S.messageDisplayed = false;
+  S.currMessage = "";
+  showJMessage();
 });
 
 // return the current passcode for the Passcode Page
 function getCurrentPasscode() {
-	  var normalCodePhrase = S.passcodePhrase;
-		var currCodeIndex = S.currPassIndex;
-		var normalCode = '';
-	  if(currCodeIndex+3 > normalCodePhrase.length)
-		{
-			normalCode = normalCodePhrase.substring(currCodeIndex);
-			normalCode += normalCodePhrase.substring(0, 3 - (normalCodePhrase.length - currCodeIndex));
-		}
-		else{
-			normalCode = normalCodePhrase.substring(currCodeIndex, currCodeIndex+3);
-		}
-		return normalCode.toUpperCase();
+  var normalCodePhrase = S.passcodePhrase;
+  var currCodeIndex = S.currPassIndex;
+  var normalCode = "";
+  if (currCodeIndex + 3 > normalCodePhrase.length) {
+    normalCode = normalCodePhrase.substring(currCodeIndex);
+    normalCode += normalCodePhrase.substring(
+      0,
+      3 - (normalCodePhrase.length - currCodeIndex),
+    );
+  } else {
+    normalCode = normalCodePhrase.substring(currCodeIndex, currCodeIndex + 3);
+  }
+  return normalCode.toUpperCase();
 }
 
 // update the index and therefore passcode for the Passcode Pages
 // called after 3 failed attempts or failed hangman game or failed conversation
 function updateCurrIndex() {
-	var currCodeIndex= S.currPassIndex;
-	var normalCodePhrase = S.passcodePhrase;
-	if(currCodeIndex+3 >= normalCodePhrase.length)
-		{
-			S.currPassIndex = 3 - (normalCodePhrase.length - currCodeIndex);
-		}
-		else{
-			S.currPassIndex = currCodeIndex+3;
-		}
-	console.log(getCurrentPasscode());
+  var currCodeIndex = S.currPassIndex;
+  var normalCodePhrase = S.passcodePhrase;
+  if (currCodeIndex + 3 >= normalCodePhrase.length) {
+    S.currPassIndex = 3 - (normalCodePhrase.length - currCodeIndex);
+  } else {
+    S.currPassIndex = currCodeIndex + 3;
+  }
+  console.log(getCurrentPasscode());
 }
 
 //load a new page
-function goto(passage){
-	clearTimeout(S.waiting);
-	S.waiting = undefined;
-	if(passage == "Passcode"){
-		updateCurrIndex();
-	}
+function goto(passage) {
+  clearTimeout(S.waiting);
+  S.waiting = undefined;
+  if (passage == "Passcode") {
+    updateCurrIndex();
+  }
 
-	window.story.show(passage);
+  window.story.show(passage);
 }
 /* twine-user-script #4: "hangman_func.js" */
 // phrases for the hangman page
@@ -1857,7 +1908,7 @@ function updateBackground(prevPasscode, currPasscode){
 [[It shouldn’t be hidden.]]</tw-passagedata><tw-passagedata pid="57" name="I’m not as new as you seem to think." tags="" position="1377,1696" size="100,100">Is that so? And yet you chose the simple passcode…
 [[There’s more than one passcode?]]
 [[They’re both simple, Rumplestiltskin.]]
-[[I thought it’d be fun to get through your way.]]</tw-passagedata><tw-passagedata pid="58" name="I bet I could guess." tags="noexit toComeback" position="341,1526" size="100,100">Such confidence. But how much are you actually willing to bet?</tw-passagedata><tw-passagedata pid="59" name="Your fun or mine?" tags="noexit toComeback" position="461,1525" size="100,100">Obviously mine.</tw-passagedata><tw-passagedata pid="60" name="Why so cryptic?" tags="noexit toComeback" position="581,1528" size="100,100">Why not? You little birds are so fun to play with.</tw-passagedata><tw-passagedata pid="61" name="The passcode is easy." tags="noexit toLeave" position="691,1528" size="100,100">It’s meant to be. I made it a child’s lock for a reason.</tw-passagedata><tw-passagedata pid="62" name="These questions are nonsensical." tags="noexit toComeback" position="811,1528" size="100,100">Only because they don’t make sense to you.</tw-passagedata><tw-passagedata pid="63" name="It shouldn’t be hidden." tags="noexit toWelcome" position="938,1528" size="100,100">True. Everyone deserves to know.</tw-passagedata><tw-passagedata pid="64" name="And you’d know all about that, wouldn’t you?" tags="noexit toWelcome" position="1426,1530" size="100,100">Ha! Yes, I suppose I would.</tw-passagedata><tw-passagedata pid="65" name="So what if I am?" tags="noexit toComeback" position="1540,1530" size="100,100">Ha! Fair enough. You’re entitled to your mysteries.&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="No, my memory is actually terrible." tags="noexit toComeback" position="1650,1534" size="100,100">Then you might want to be taking notes.</tw-passagedata><tw-passagedata pid="67" name="You could let me through." tags="noexit toComeback" position="1762,1530" size="100,100">Come on. You know that’s not my style.</tw-passagedata><tw-passagedata pid="68" name="Make me guess a new passcode. I dare you." tags="noexit toLeave" position="1877,1530" size="100,100">As you wish.</tw-passagedata><tw-passagedata pid="69" name="You tell me, oh mysterious one." tags="noexit toWelcome" position="1990,1526" size="100,100">Fine. You win.</tw-passagedata><tw-passagedata pid="70" name="But only as long as you make the rules?" tags="noexit toComeback" position="933,1848" size="100,100">Now you’re getting it.</tw-passagedata><tw-passagedata pid="71" name="How about a game of Guess Who?" tags="noexit toComeback" position="1038,1848" size="100,100">But that’s such an easy game. I already know everything about you, little bird.</tw-passagedata><tw-passagedata pid="72" name="What if I don’t like games?" tags="noexit toLeave" position="1151,1848" size="100,100">Then you’re not going to be very fun to poke at.</tw-passagedata><tw-passagedata pid="73" name="There’s more than one passcode?" tags="noexit toComeback" position="1263,1846" size="100,100">Wouldn’t you like to know.</tw-passagedata><tw-passagedata pid="74" name="They’re both simple, Rumplestiltskin." tags="leave toPasscode rumple" position="1385,1846" size="100,100">Fair dig, if you actually know it. Why don’t you prove your knowledge.</tw-passagedata><tw-passagedata pid="75" name="I thought it’d be fun to get through your way." tags="noexit toWelcome" position="1505,1847" size="100,100">And get through you shall.</tw-passagedata><tw-passagedata pid="76" name="What are your best secrets?" tags="noexit toComeback" position="2842,1538" size="100,100">The ones I make myself.</tw-passagedata><tw-passagedata pid="77" name="Aren’t secrets dangerous?" tags="noexit toComeback" position="2962,1538" size="100,100">Only if they’re the best kind.</tw-passagedata><tw-passagedata pid="78" name="Being bewildered is fun. You should try it sometime." tags="noexit toComeback" position="3067,1538" size="100,100">No thanks. I’d rather watch someone wander than wander myself.</tw-passagedata><tw-passagedata pid="79" name="Because I keep picking the wrong ones." tags="noexit toComeback" position="2915,1814" size="100,100">And yet you’re still here…</tw-passagedata><tw-passagedata pid="80" name="You’re making it sound like there isn’t." tags="noexit toComeback" position="3030,1818" size="100,100">What would you do if there wasn’t, little bird?</tw-passagedata><tw-passagedata pid="81" name="You’re impossible." tags="noexit toComeback" position="3146,1818" size="100,100">That might be the point.</tw-passagedata><tw-passagedata pid="82" name="You don’t exactly make that easy." tags="noexit toComeback" position="3270,1813" size="100,100">I know. It’s nothing personal.</tw-passagedata><tw-passagedata pid="83" name="Or I could just leave you." tags="noexit toLeave" position="3397,1813" size="100,100">Do it.</tw-passagedata><tw-passagedata pid="84" name="I’m not convinced you’re worth knowing." tags="noexit toLeave" position="3522,1803" size="100,100">Then stop trying.</tw-passagedata><tw-passagedata pid="85" name="I can be lost and have purpose." tags="" position="3273,1361" size="100,100">Maybe, but you’re admitting you’re rather bad at pursuing that purpose.
+[[I thought it’d be fun to get through your way.]]</tw-passagedata><tw-passagedata pid="58" name="I bet I could guess." tags="noexit toComeback" position="341,1526" size="100,100">Such confidence. But how much are you actually willing to bet?</tw-passagedata><tw-passagedata pid="59" name="Your fun or mine?" tags="noexit toComeback" position="461,1525" size="100,100">Obviously mine.</tw-passagedata><tw-passagedata pid="60" name="Why so cryptic?" tags="noexit toComeback" position="581,1528" size="100,100">Why not? You little birds are so fun to play with.</tw-passagedata><tw-passagedata pid="61" name="The passcode is easy." tags="noexit toLeave" position="691,1528" size="100,100">It’s meant to be. I made it a child’s lock for a reason.</tw-passagedata><tw-passagedata pid="62" name="These questions are nonsensical." tags="noexit toComeback" position="811,1528" size="100,100">Only because they don’t make sense to you.</tw-passagedata><tw-passagedata pid="63" name="It shouldn’t be hidden." tags="noexit toWelcome" position="938,1528" size="100,100">True. Everyone deserves to know.</tw-passagedata><tw-passagedata pid="64" name="And you’d know all about that, wouldn’t you?" tags="noexit toWelcome" position="1426,1530" size="100,100">Ha! Yes, I suppose I would.</tw-passagedata><tw-passagedata pid="65" name="So what if I am?" tags="noexit toComeback" position="1540,1530" size="100,100">Ha! Fair enough. You’re entitled to your mysteries.</tw-passagedata><tw-passagedata pid="66" name="No, my memory is actually terrible." tags="noexit toComeback" position="1650,1534" size="100,100">Then you might want to be taking notes.</tw-passagedata><tw-passagedata pid="67" name="You could let me through." tags="noexit toComeback" position="1762,1530" size="100,100">Come on. You know that’s not my style.</tw-passagedata><tw-passagedata pid="68" name="Make me guess a new passcode. I dare you." tags="noexit toLeave" position="1877,1530" size="100,100">As you wish.</tw-passagedata><tw-passagedata pid="69" name="You tell me, oh mysterious one." tags="noexit toWelcome" position="1990,1526" size="100,100">Fine. You win.</tw-passagedata><tw-passagedata pid="70" name="But only as long as you make the rules?" tags="noexit toComeback" position="933,1848" size="100,100">Now you’re getting it.</tw-passagedata><tw-passagedata pid="71" name="How about a game of Guess Who?" tags="noexit toComeback" position="1038,1848" size="100,100">But that’s such an easy game. I already know everything about you, little bird.</tw-passagedata><tw-passagedata pid="72" name="What if I don’t like games?" tags="noexit toLeave" position="1151,1848" size="100,100">Then you’re not going to be very fun to poke at.</tw-passagedata><tw-passagedata pid="73" name="There’s more than one passcode?" tags="noexit toComeback" position="1263,1846" size="100,100">Wouldn’t you like to know.</tw-passagedata><tw-passagedata pid="74" name="They’re both simple, Rumplestiltskin." tags="leave toPasscode rumple" position="1385,1846" size="100,100">Fair dig, if you actually know it. Why don’t you prove your knowledge.</tw-passagedata><tw-passagedata pid="75" name="I thought it’d be fun to get through your way." tags="noexit toWelcome" position="1505,1847" size="100,100">And get through you shall.</tw-passagedata><tw-passagedata pid="76" name="What are your best secrets?" tags="noexit toComeback" position="2842,1538" size="100,100">The ones I make myself.</tw-passagedata><tw-passagedata pid="77" name="Aren’t secrets dangerous?" tags="noexit toComeback" position="2962,1538" size="100,100">Only if they’re the best kind.</tw-passagedata><tw-passagedata pid="78" name="Being bewildered is fun. You should try it sometime." tags="noexit toComeback" position="3067,1538" size="100,100">No thanks. I’d rather watch someone wander than wander myself.</tw-passagedata><tw-passagedata pid="79" name="Because I keep picking the wrong ones." tags="noexit toComeback" position="2915,1814" size="100,100">And yet you’re still here…</tw-passagedata><tw-passagedata pid="80" name="You’re making it sound like there isn’t." tags="noexit toComeback" position="3030,1818" size="100,100">What would you do if there wasn’t, little bird?</tw-passagedata><tw-passagedata pid="81" name="You’re impossible." tags="noexit toComeback" position="3146,1818" size="100,100">That might be the point.</tw-passagedata><tw-passagedata pid="82" name="You don’t exactly make that easy." tags="noexit toComeback" position="3270,1813" size="100,100">I know. It’s nothing personal.</tw-passagedata><tw-passagedata pid="83" name="Or I could just leave you." tags="noexit toLeave" position="3397,1813" size="100,100">Do it.</tw-passagedata><tw-passagedata pid="84" name="I’m not convinced you’re worth knowing." tags="noexit toLeave" position="3522,1803" size="100,100">Then stop trying.</tw-passagedata><tw-passagedata pid="85" name="I can be lost and have purpose." tags="" position="3273,1361" size="100,100">Maybe, but you’re admitting you’re rather bad at pursuing that purpose.
 [[That’s kind of rude.]]
 [[What, like you’re so good at pursuing yours?]]
 [[What if my purpose was to get lost?]]</tw-passagedata><tw-passagedata pid="86" name="Are you making fun of me?" tags="" position="3643,1359" size="100,100">I might be. Should I not?
