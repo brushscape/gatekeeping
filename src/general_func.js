@@ -411,7 +411,7 @@ $(window).on("sm.passage.shown", function (event, passage) {
   S.currPage = "discussion";
 
   if (window.passage.name == "Enter") {
-    console.log("chatting with J: attempt " + S.numJAttempts);
+    console.log("chatting with X: attempt " + S.numJAttempts);
   }
   document.getElementById("darkMessage").addEventListener("click", function () {
     S.displayFullMessage = true;
