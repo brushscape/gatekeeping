@@ -21,9 +21,9 @@ if (typeof S == "undefined") {
     ],
     leaveHelper: [
       "T:if you were trying to ask them personal questions... maybe dont",
-      "M:Don't take it personally. They're just an asshole.",
       "E:Don't worry. They don't hold a grudge. You can always try again",
       "K:psssed em off XD",
+      "M:Don't take it personally. They're just an asshole.",
     ],
     chatHelper: "X:You just found the biggest secret. Are you satisfied?",
     rumpleHelper: "X:Your move, little bird. Give it thrice",
