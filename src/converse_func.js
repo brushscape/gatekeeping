@@ -43,13 +43,16 @@ function parsePassage(passName) {
 }
 
 function showJMessage() {
-  if (document.getElementById("responses")) {
-    document.getElementById("responses").style.display = "none";
-  }
-  document.getElementById("messageText").innerHTML = "";
   S.displayFullMessage = false;
   S.currMessage = "";
   clearTimeout(S.waiting);
+
+  if (document.getElementById("responses")) {
+    document.getElementById("responses").style.display = "none";
+  }
+  if (document.getElementById("messageText")) {
+    document.getElementById("messageText").innerHTML = "";
+  }
 
   var content = parsePassage(S.currPassage);
   if (S.responseListeners.length > 0) {
@@ -92,6 +95,7 @@ function typeText(message, i, responses) {
     if (document.getElementById("messageText")) {
       document.getElementById("messageText").innerHTML = S.currMessage;
     }
+
     if (punc == "." || punc == "?" || punc == "!") {
       var nextCharIsPunc = false;
       if (i < message.length) {
@@ -192,8 +196,9 @@ function fadeInResponse(j) {
 
 function clickOption(i) {
   var el = document.getElementById("responses").children[i];
+  el.removeEventListener("click", clickOption, true);
   el.style.pointerEvents = "none";
   S.currPassage = el.innerHTML;
-  el.removeEventListener("click", clickOption, true);
+
   S.waiting = setTimeout(showJMessage, 10);
 }
