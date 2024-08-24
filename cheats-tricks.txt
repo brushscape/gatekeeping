@@ -23,7 +23,7 @@ Puzzle Page:
 
 Chat Page:
   The secret passcode to get here is the answer to the riddle in a helper popup when you get back from the reward page.
-  "Colored like the Earthly sky, oh cousin crow of mine; guess the name my friends call I. The letter, root of nine."
+  "Two paths cross to plea your silence in a sign; guess the name my friends call me and say it thrice in line."
   Their name is also printed to console, so you can look there if you're not one for riddles.
 
 And I think that's all the secrets? If you get stuck at any point and want to know why, you can always dm me.
